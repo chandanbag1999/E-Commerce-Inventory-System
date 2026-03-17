@@ -1,0 +1,11 @@
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\bin\Debug\net10.0\EcommerceInventorySystem.Domain.deps.json
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\bin\Debug\net10.0\EcommerceInventorySystem.Domain.dll
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\bin\Debug\net10.0\EcommerceInventorySystem.Domain.pdb
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\obj\Debug\net10.0\EcommerceInventorySystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\obj\Debug\net10.0\EcommerceInventorySystem.Domain.AssemblyInfoInputs.cache
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\obj\Debug\net10.0\EcommerceInventorySystem.Domain.AssemblyInfo.cs
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\obj\Debug\net10.0\EcommerceInventorySystem.Domain.csproj.CoreCompileInputs.cache
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\obj\Debug\net10.0\EcommerceInventorySystem.Domain.dll
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\obj\Debug\net10.0\refint\EcommerceInventorySystem.Domain.dll
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\obj\Debug\net10.0\EcommerceInventorySystem.Domain.pdb
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Domain\obj\Debug\net10.0\ref\EcommerceInventorySystem.Domain.dll
