@@ -17,3 +17,4 @@ D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInv
 D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Infrastructure\obj\Debug\net10.0\EcommerceInventorySystem.Infrastructure.pdb
 D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Infrastructure\obj\Debug\net10.0\EcommerceInventorySystem.Infrastructure.genruntimeconfig.cache
 D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Infrastructure\obj\Debug\net10.0\ref\EcommerceInventorySystem.Infrastructure.dll
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Infrastructure\obj\Debug\net10.0\EcommerceInventorySystem.Infrastructure.sourcelink.json

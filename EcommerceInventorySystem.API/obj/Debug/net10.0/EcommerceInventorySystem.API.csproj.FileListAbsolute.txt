@@ -53,3 +53,4 @@ D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInv
 D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.API\obj\Debug\net10.0\EcommerceInventorySystem.API.pdb
 D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.API\obj\Debug\net10.0\EcommerceInventorySystem.API.genruntimeconfig.cache
 D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.API\obj\Debug\net10.0\ref\EcommerceInventorySystem.API.dll
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.API\obj\Debug\net10.0\EcommerceInventorySystem.API.sourcelink.json

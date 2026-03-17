@@ -13,3 +13,4 @@ D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInv
 D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Application\obj\Debug\net10.0\refint\EcommerceInventorySystem.Application.dll
 D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Application\obj\Debug\net10.0\EcommerceInventorySystem.Application.pdb
 D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Application\obj\Debug\net10.0\ref\EcommerceInventorySystem.Application.dll
+D:\CodeSpace\Parmanent Field\C#\Dot_net\E-Commerce-Inventory-System\EcommerceInventorySystem\EcommerceInventorySystem.Application\obj\Debug\net10.0\EcommerceInventorySystem.Application.sourcelink.json
