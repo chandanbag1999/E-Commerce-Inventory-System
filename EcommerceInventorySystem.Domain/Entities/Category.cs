@@ -6,5 +6,5 @@ public class Category : BaseEntity
     public string Description { get; set; } = string.Empty;
 
     // Navigation property
-    public ICollection<Product> products { get; set; } = new List<Product>();
+    public ICollection<Product> Products { get; set; } = new List<Product>();
 }
