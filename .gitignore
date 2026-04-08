@@ -1,1 +1,65 @@
-appsettings.json
+# .NET
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.user
+*.suo
+*.cache
+*.log
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]uild/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+
+# Test Results
+TestResults/
+coverage/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local files
+*.local
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+src/EIVMS.API/appsettings.json
+
+# Secrets
+*.env
+*.key
+*.pfx
+
+# Logs
+*.log
+Logs/
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+# Custom
+AGENTS.md
+

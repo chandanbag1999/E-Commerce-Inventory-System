@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="EcommerceInventorySystem.API/EcommerceInventorySystem.API.csproj" />
-  <Project Path="EcommerceInventorySystem.Application/EcommerceInventorySystem.Application.csproj" />
-  <Project Path="EcommerceInventorySystem.Domain/EcommerceInventorySystem.Domain.csproj" />
-  <Project Path="EcommerceInventorySystem.Infrastructure/EcommerceInventorySystem.Infrastructure.csproj" />
-</Solution>
