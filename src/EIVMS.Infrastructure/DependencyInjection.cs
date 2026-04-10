@@ -4,9 +4,28 @@ using Microsoft.AspNetCore.Http;
 using EIVMS.Application.Modules.Identity.Interfaces;
 using EIVMS.Application.Modules.Identity.Services;
 using EIVMS.Application.Modules.Identity.Validators;
+using EIVMS.Application.Modules.UserManagement.Interfaces;
+using EIVMS.Application.Modules.UserManagement.Services;
+using EIVMS.Application.Modules.ProductCatalog.Interfaces;
+using EIVMS.Application.Modules.ProductCatalog.Services;
+using EIVMS.Application.Modules.Inventory.Interfaces;
+using EIVMS.Application.Modules.Inventory.Services;
+using EIVMS.Application.Modules.Orders.Interfaces;
+using EIVMS.Application.Modules.Orders.Services;
+using EIVMS.Application.Modules.Orders.Validators;
+using EIVMS.Application.Modules.Payments.Interfaces;
+using EIVMS.Application.Modules.Payments.Services;
+using EIVMS.Application.Modules.Payments.Validators;
 using EIVMS.Infrastructure.Persistence;
 using EIVMS.Infrastructure.Repositories;
+using EIVMS.Infrastructure.Repositories.UserManagement;
+using EIVMS.Infrastructure.Repositories.ProductCatalog;
+using EIVMS.Infrastructure.Repositories.Inventory;
+using EIVMS.Infrastructure.Repositories.Orders;
+using EIVMS.Infrastructure.Repositories.Payments;
 using EIVMS.Infrastructure.Services;
+using EIVMS.Infrastructure.Services.UserManagement;
+using EIVMS.Infrastructure.Services.Payments;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -37,10 +56,50 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAuthService, AuthService>();
 
+        services.AddScoped<IUserManagementRepository, UserManagementRepository>();
+        services.AddScoped<IUserProfileService, UserProfileService>();
+        services.AddScoped<IAddressService, AddressService>();
+        services.AddScoped<IOrganizationService, OrganizationService>();
+        services.AddScoped<IVendorService, VendorService>();
+
+        services.AddScoped<IFileStorageService, LocalFileStorageService>();
+
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IProductService, ProductService>();
+
+        services.AddScoped<IInventoryRepository, InventoryRepository>();
+        services.AddScoped<IInventoryService, InventoryService>();
+
+        services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IOrderService, OrderService>();
+        services.AddScoped<IInventoryIntegrationService, EIVMS.Application.Modules.Orders.Services.Integration.InventoryIntegrationService>();
+        services.AddScoped<IProductIntegrationService, EIVMS.Application.Modules.Orders.Services.Integration.ProductIntegrationService>();
+
+        services.Configure<PaymentSettings>(configuration.GetSection("Payment"));
+
+        services.AddScoped<IPaymentRepository, PaymentRepository>();
+        services.AddScoped<IPaymentService, PaymentService>();
+        services.AddScoped<IWebhookService, WebhookService>();
+        services.AddScoped<IRefundService, RefundService>();
+        services.AddScoped<IReconciliationService, ReconciliationService>();
+        
+        services.AddSingleton<IPaymentGatewayFactory, PaymentGatewayFactory>();
+        services.AddHttpClient<RazorpayGatewayService>();
+        services.AddHttpClient<StripeGatewayService>();
+        services.AddSingleton<IPaymentGateway, RazorpayGatewayService>();
+        services.AddSingleton<IPaymentGateway, StripeGatewayService>();
+        
+        services.AddSingleton<IWebhookIdempotencyStore, InMemoryWebhookIdempotencyStore>();
+        services.AddHostedService<ReconciliationBackgroundService>();
+
         services.AddSingleton<IJwtService, JwtService>();
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
         services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
+        services.AddValidatorsFromAssemblyContaining<EIVMS.Application.Modules.ProductCatalog.Validators.CreateProductValidator>();
+        services.AddValidatorsFromAssemblyContaining<EIVMS.Application.Modules.Orders.Validators.CreateOrderValidator>();
+        services.AddValidatorsFromAssemblyContaining<CreatePaymentValidator>();
+        services.AddValidatorsFromAssemblyContaining<RefundRequestValidator>();
 
         services.AddAuthentication(options =>
         {
@@ -97,7 +156,11 @@ public static class DependencyInjection
             var permissions = new[]
             {
                 "product:create", "product:read", "product:update", "product:delete",
-                "inventory:manage", "inventory:view",
+                "inventory:warehouse:create", "inventory:warehouse:update", "inventory:warehouse:delete",
+                "inventory:item:create", "inventory:item:update",
+                "inventory:stock:create", "inventory:reservation:create", "inventory:reservation:update",
+                "inventory:transfer:create", "inventory:transfer:update",
+                "inventory:alert:update", "inventory:admin",
                 "order:create", "order:read", "order:update", "order:cancel",
                 "user:manage", "user:view",
                 "report:generate", "report:view"
@@ -108,6 +171,11 @@ public static class DependencyInjection
                 options.AddPolicy(permission, policy =>
                     policy.RequireClaim("permission", permission));
             }
+
+            options.AddPolicy("orders:read", policy =>
+                policy.RequireClaim("permission", "order:read"));
+            options.AddPolicy("orders:update", policy =>
+                policy.RequireClaim("permission", "order:update"));
 
             options.AddPolicy("AdminOnly", policy =>
                 policy.RequireRole("Admin"));

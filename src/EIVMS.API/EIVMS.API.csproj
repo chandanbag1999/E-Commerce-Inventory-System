@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <!-- Temporarily removed due to source generator bug in .NET 10 -->
     <!-- <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" /> -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.5">

@@ -9,6 +9,7 @@ public interface IUserRepository
     Task<bool> EmailExistsAsync(string email);
     Task AddAsync(User user);
     Task UpdateAsync(User user);
+    Task AddUserRoleAsync(UserRole userRole);
     Task<RefreshToken?> GetRefreshTokenAsync(string tokenHash);
     Task RevokeTokenFamilyAsync(string tokenFamily);
     Task AddRefreshTokenAsync(RefreshToken refreshToken);

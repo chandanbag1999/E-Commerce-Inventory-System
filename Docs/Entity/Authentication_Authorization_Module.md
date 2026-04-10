@@ -53,27 +53,48 @@ Is module ke bina koi bhi kisi bhi resource ko access kar sakta hai — jo ek e-
 
 | Role | Description |
 |------|-------------|
-| `Admin` | Full system access |
-| `Vendor` | Own product/inventory management |
-| `Staff` | Operational tasks only |
-| `Customer` | Order-facing access only |
+| `SuperAdmin` | Full system access - can manage all users and system |
+| `Admin` | System administration - user and settings management |
+| `InventoryManager` | Warehouse and inventory management |
+| `SalesManager` | Sales and order management |
+| `Staff` | Operational tasks - inventory and orders (default for new registrations) |
 
 ### Permission Strings (Granular)
 product:create      product:read      product:update      product:delete
-inventory:manage    inventory:view
-order:create        order:read        order:update        order:cancel
-user:manage         user:view
+inventory:manage    inventory:view     inventory:receive    inventory:dispatch
+order:create        order:read        order:update      order:cancel    order:fulfill
+user:manage         user:create      user:view        user:update     user:delete
+role:manage
 report:generate     report:view
+settings:manage     dashboard:view
 
 ### Role → Permission Mapping
 
-| Permission | Admin | Vendor | Staff | Customer |
-|------------|-------|--------|-------|----------|
-| product:create | ✅ | ✅ | ❌ | ❌ |
-| inventory:manage | ✅ | ✅ | ✅ | ❌ |
-| order:create | ✅ | ❌ | ✅ | ✅ |
-| user:manage | ✅ | ❌ | ❌ | ❌ |
-| report:generate | ✅ | ✅ | ❌ | ❌ |
+| Permission | SuperAdmin | Admin | InventoryManager | SalesManager | Staff |
+|------------|-----------|-------|------------------|---------------|-------|
+| product:create | ✅ | ✅ | ❌ | ✅ | ❌ |
+| product:read | ✅ | ✅ | ✅ | ✅ | ✅ |
+| product:update | ✅ | ✅ | ❌ | ✅ | ❌ |
+| product:delete | ✅ | ✅ | ❌ | ❌ | ❌ |
+| inventory:manage | ✅ | ✅ | ✅ | ❌ | ❌ |
+| inventory:view | ✅ | ✅ | ✅ | ✅ | ✅ |
+| inventory:receive | ✅ | ❌ | ✅ | ❌ | ✅ |
+| inventory:dispatch | ✅ | ❌ | ✅ | ❌ | ✅ |
+| order:create | ✅ | ✅ | ❌ | ✅ | ❌ |
+| order:read | ✅ | ✅ | ✅ | ✅ | ✅ |
+| order:update | ✅ | ✅ | ✅ | ✅ | ✅ |
+| order:cancel | ✅ | ❌ | ❌ | ✅ | ❌ |
+| order:fulfill | ✅ | ❌ | ❌ | ✅ | ❌ |
+| user:manage | ✅ | ❌ | ❌ | ❌ | ❌ |
+| user:create | ✅ | ✅ | ❌ | ❌ | ❌ |
+| user:view | ✅ | ✅ | ❌ | ❌ | ❌ |
+| user:update | ✅ | ✅ | ❌ | ❌ | ❌ |
+| user:delete | ✅ | ❌ | ❌ | ❌ | ❌ |
+| role:manage | ✅ | ❌ | ❌ | ❌ | ❌ |
+| report:generate | ✅ | ✅ | ✅ | ✅ | ❌ |
+| report:view | ✅ | ✅ | ✅ | ✅ | ❌ |
+| settings:manage | ✅ | ✅ | ❌ | ❌ | ❌ |
+| dashboard:view | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 > **Enterprise Rule:** Role = collection of permissions. User ko directly permissions assign nahi hoti — sirf Role assign hoti hai. Permissions us Role ke through aati hain.
 
@@ -88,6 +109,9 @@ EIVMS.Domain
     ├── UserRole.cs
     └── RefreshToken.cs
 EIVMS.Application
+├── Common/Interfaces/
+│   ├── IJwtService.cs
+│   └── IPasswordHasher.cs
 └── Modules/Identity/
     ├── DTOs/
     │   ├── RegisterRequestDto.cs
@@ -98,8 +122,11 @@ EIVMS.Application
     ├── Interfaces/
     │   ├── IAuthService.cs
     │   └── IUserRepository.cs
-    └── Services/
-    └── AuthService.cs
+    ├── Services/
+    │   └── AuthService.cs
+    └── Validators/
+        ├── RegisterRequestValidator.cs
+        └── LoginRequestValidator.cs
 EIVMS.Infrastructure
 ├── Persistence/
 │   ├── AppDbContext.cs (DbSets for Users, Roles, Permissions, RefreshTokens)
@@ -242,6 +269,8 @@ public class CurrentUserDto
     public string Email { get; set; }
     public List<string> Roles { get; set; }
     public List<string> Permissions { get; set; }
+    public string Role { get; set; }           // Primary role (first role)
+    public DateTime? LastLoginAt { get; set; } // Last successful login timestamp
 }
 ```
 
@@ -270,10 +299,16 @@ public interface IUserRepository
     Task<bool> EmailExistsAsync(string email);
     Task AddAsync(User user);
     Task UpdateAsync(User user);
+    Task AddUserRoleAsync(UserRole userRole);
+    Task<RefreshToken?> GetRefreshTokenAsync(string tokenHash);
+    Task RevokeTokenFamilyAsync(string tokenFamily);
+    Task AddRefreshTokenAsync(RefreshToken refreshToken);
+    Task UpdateRefreshTokenAsync(RefreshToken refreshToken);
+    Task<Role?> GetRoleByNameAsync(string roleName);
 }
 ```
 
-> **Note:** `IJwtService` interface Infrastructure mein nahi, `Application/Common/Interfaces/` mein hogi — kyunki yeh Application layer ko bhi chahiye.
+> **Note:** `IJwtService` interface `Application/Common/Interfaces/` mein hai — kyunki yeh Application layer ko bhi chahiye.
 
 ---
 
@@ -283,15 +318,24 @@ public interface IUserRepository
 ```csharp
 public class JwtService : IJwtService
 {
-    // Access token: short-lived (15 minutes)
-    // Contains: UserId, Email, Roles, Permissions as claims
+    private readonly IConfiguration _config;
+
+    public JwtService(IConfiguration config)
+    {
+        _config = config;
+    }
+
+    // Access token: configurable via appsettings (default 15 minutes)
+    // Contains: UserId, Email, FullName, Roles, Permissions, JTI, IAT as claims
     public string GenerateAccessToken(User user, List<string> roles, List<string> permissions)
     {
         var claims = new List<Claim>
         {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Email, user.Email),
-            new("fullName", $"{user.FirstName} {user.LastName}"),
+            new("fullName", user.FullName),
+            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
         };
 
         // Roles as claims
@@ -305,14 +349,17 @@ public class JwtService : IJwtService
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_config["Jwt:SecretKey"]!));
 
-        var token = new JwtSecurityToken(
+        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var tokenDescriptor = new JwtSecurityToken(
             issuer: _config["Jwt:Issuer"],
             audience: _config["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(15),
-            signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
+            notBefore: DateTime.UtcNow,
+            expires: GetAccessTokenExpiry(),
+            signingCredentials: credentials);
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+        return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
     }
 
     // Refresh token: cryptographically random, stored as SHA-256 hash in DB
@@ -327,6 +374,18 @@ public class JwtService : IJwtService
     {
         var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(token));
         return Convert.ToBase64String(bytes);
+    }
+
+    public DateTime GetAccessTokenExpiry()
+    {
+        var expiryMinutes = int.Parse(_config["Jwt:AccessTokenExpiryMinutes"] ?? "15");
+        return DateTime.UtcNow.AddMinutes(expiryMinutes);
+    }
+
+    public DateTime GetRefreshTokenExpiry()
+    {
+        var expiryDays = int.Parse(_config["Jwt:RefreshTokenExpiryDays"] ?? "7");
+        return DateTime.UtcNow.AddDays(expiryDays);
     }
 }
 ```
@@ -364,7 +423,7 @@ Hash password (BCrypt work factor 12)
 ↓
 Create User entity
 ↓
-Assign default Role = "Customer"
+Assign default Role = "Staff" (not "Customer" — Staff is the default for new registrations)
 ↓
 Save to DB (transaction)
 ↓
@@ -559,28 +618,86 @@ builder.HasOne(r => r.User)
 
 ### RolePermissionSeeder.cs (Infrastructure/Seeders/)
 ```csharp
-public class RolePermissionSeeder
+public static class RolePermissionSeeder
 {
     public static async Task SeedAsync(AppDbContext context)
     {
         if (await context.Roles.AnyAsync()) return;
 
-        var permissions = new[]
+        // Define all permissions
+        var permissions = new Dictionary<string, Permission>
         {
-            new Permission("product:create", "product", "create"),
-            new Permission("product:read",   "product", "read"),
-            new Permission("inventory:manage", "inventory", "manage"),
-            // ... rest of permissions
+            ["product:create"] = Permission.Create("product:create", "product", "create", "Create new products"),
+            ["product:read"]   = Permission.Create("product:read",   "product", "read",   "View products"),
+            ["product:update"] = Permission.Create("product:update", "product", "update", "Update products"),
+            ["product:delete"] = Permission.Create("product:delete", "product", "delete", "Delete products"),
+            ["inventory:manage"] = Permission.Create("inventory:manage", "inventory", "manage", "Full inventory management"),
+            ["inventory:view"]   = Permission.Create("inventory:view",   "inventory", "view",   "View inventory"),
+            ["inventory:receive"] = Permission.Create("inventory:receive", "inventory", "receive", "Receive stock"),
+            ["inventory:dispatch"] = Permission.Create("inventory:dispatch", "inventory", "dispatch", "Dispatch stock"),
+            ["order:create"] = Permission.Create("order:create", "order", "create", "Create orders"),
+            ["order:read"]   = Permission.Create("order:read",   "order", "read",   "View orders"),
+            ["order:update"] = Permission.Create("order:update", "order", "update", "Update orders"),
+            ["order:cancel"] = Permission.Create("order:cancel", "order", "cancel", "Cancel orders"),
+            ["order:fulfill"] = Permission.Create("order:fulfill", "order", "fulfill", "Fulfill orders"),
+            ["user:manage"] = Permission.Create("user:manage", "user", "manage", "Manage users"),
+            ["user:create"] = Permission.Create("user:create", "user", "create", "Create users"),
+            ["user:view"]   = Permission.Create("user:view",   "user", "view",   "View users"),
+            ["user:update"] = Permission.Create("user:update", "user", "update", "Update users"),
+            ["user:delete"] = Permission.Create("user:delete", "user", "delete", "Delete users"),
+            ["role:manage"] = Permission.Create("role:manage", "role", "manage", "Manage roles"),
+            ["report:generate"] = Permission.Create("report:generate", "report", "generate", "Generate reports"),
+            ["report:view"]     = Permission.Create("report:view",     "report", "view",     "View reports"),
+            ["settings:manage"] = Permission.Create("settings:manage", "settings", "manage", "Manage system settings"),
+            ["dashboard:view"] = Permission.Create("dashboard:view", "dashboard", "view", "View dashboard"),
         };
 
-        var adminRole = new Role("Admin", "ADMIN", "Full system access");
-        // Assign all permissions to Admin
+        await context.Permissions.AddRangeAsync(permissions.Values);
 
-        var vendorRole = new Role("Vendor", "VENDOR", "Vendor access");
-        // Assign vendor-specific permissions
+        // Create roles with specific permissions
+        var superAdminRole = Role.Create("SuperAdmin", "Full system access - can manage all users and system");
+        var superAdminPermissions = permissions.Keys.ToList(); // All permissions
 
-        await context.Permissions.AddRangeAsync(permissions);
-        await context.Roles.AddRangeAsync(adminRole, vendorRole);
+        var adminRole = Role.Create("Admin", "System administration - user and settings management");
+        var adminPermissions = new[] { "product:create", "product:read", "product:update", "product:delete",
+            "inventory:manage", "inventory:view", "inventory:receive", "inventory:dispatch",
+            "order:create", "order:read", "order:update", "order:cancel", "order:fulfill",
+            "user:create", "user:view", "user:update", "report:generate", "report:view",
+            "dashboard:view", "settings:manage" };
+
+        var inventoryManagerRole = Role.Create("InventoryManager", "Warehouse and inventory management");
+        var inventoryManagerPermissions = new[] { "product:read", "inventory:manage", "inventory:view",
+            "inventory:receive", "inventory:dispatch", "order:read", "order:update", "report:generate", "report:view", "dashboard:view" };
+
+        var salesManagerRole = Role.Create("SalesManager", "Sales and order management");
+        var salesManagerPermissions = new[] { "product:create", "product:read", "product:update", "inventory:view",
+            "order:create", "order:read", "order:update", "order:cancel", "order:fulfill", "report:generate", "report:view", "dashboard:view" };
+
+        var staffRole = Role.Create("Staff", "Operational tasks - inventory and orders");
+        var staffPermissions = new[] { "product:read", "inventory:view", "inventory:receive", "inventory:dispatch",
+            "order:read", "order:update", "dashboard:view" };
+
+        await context.Roles.AddRangeAsync(superAdminRole, adminRole, inventoryManagerRole, salesManagerRole, staffRole);
+        await context.SaveChangesAsync();
+
+        // Create RolePermission mappings
+        var rolePermissions = new List<RolePermission>();
+        foreach (var permKey in superAdminPermissions)
+            rolePermissions.Add(RolePermission.Create(superAdminRole.Id, permissions[permKey].Id));
+
+        foreach (var permKey in adminPermissions)
+            rolePermissions.Add(RolePermission.Create(adminRole.Id, permissions[permKey].Id));
+
+        foreach (var permKey in inventoryManagerPermissions)
+            rolePermissions.Add(RolePermission.Create(inventoryManagerRole.Id, permissions[permKey].Id));
+
+        foreach (var permKey in salesManagerPermissions)
+            rolePermissions.Add(RolePermission.Create(salesManagerRole.Id, permissions[permKey].Id));
+
+        foreach (var permKey in staffPermissions)
+            rolePermissions.Add(RolePermission.Create(staffRole.Id, permissions[permKey].Id));
+
+        await context.RolePermissions.AddRangeAsync(rolePermissions);
         await context.SaveChangesAsync();
     }
 }
@@ -602,11 +719,69 @@ public class RolePermissionSeeder
 }
 ```
 
+> **Configuration Keys:** `AccessTokenExpiryMinutes` and `RefreshTokenExpiryDays` are configurable via appsettings — no hardcoding in service.
+
+---
+
+## 16. FluentValidation — Input Validation
+
+### RegisterRequestValidator.cs
+```csharp
+public class RegisterRequestValidator : AbstractValidator<RegisterRequestDto>
+{
+    public RegisterRequestValidator()
+    {
+        RuleFor(x => x.FirstName)
+            .NotEmpty().WithMessage("First name is required")
+            .MaximumLength(50).WithMessage("First name cannot exceed 50 characters")
+            .Matches(@"^[a-zA-Z\s]+$").WithMessage("First name can only contain letters");
+
+        RuleFor(x => x.LastName)
+            .NotEmpty().WithMessage("Last name is required")
+            .MaximumLength(50).WithMessage("Last name cannot exceed 50 characters");
+
+        RuleFor(x => x.Email)
+            .NotEmpty().WithMessage("Email is required")
+            .EmailAddress().WithMessage("Invalid email format")
+            .MaximumLength(256).WithMessage("Email cannot exceed 256 characters");
+
+        RuleFor(x => x.Password)
+            .NotEmpty().WithMessage("Password is required")
+            .MinimumLength(8).WithMessage("Password must be at least 8 characters")
+            .MaximumLength(100).WithMessage("Password cannot exceed 100 characters")
+            .Matches(@"[A-Z]").WithMessage("Password must contain at least one uppercase letter")
+            .Matches(@"[a-z]").WithMessage("Password must contain at least one lowercase letter")
+            .Matches(@"[0-9]").WithMessage("Password must contain at least one digit")
+            .Matches(@"[!@#$%^&*(),.?""':{}|<>]").WithMessage("Password must contain at least one special character");
+
+        RuleFor(x => x.ConfirmPassword)
+            .NotEmpty().WithMessage("Confirm password is required")
+            .Equal(x => x.Password).WithMessage("Passwords do not match");
+    }
+}
+```
+
+### LoginRequestValidator.cs
+```csharp
+public class LoginRequestValidator : AbstractValidator<LoginRequestDto>
+{
+    public LoginRequestValidator()
+    {
+        RuleFor(x => x.Email)
+            .NotEmpty().WithMessage("Email is required")
+            .EmailAddress().WithMessage("Invalid email format");
+
+        RuleFor(x => x.Password)
+            .NotEmpty().WithMessage("Password is required");
+    }
+}
+```
+
 > **Production Rule:** SecretKey kabhi bhi appsettings mein hardcode mat karo. Environment variable ya Azure Key Vault / AWS Secrets Manager use karo.
 
 ---
 
-## 16. Security Best Practices Implemented
+## 17. Security Best Practices Implemented
 
 | Concern | Implementation |
 |---------|---------------|
@@ -615,22 +790,26 @@ public class RolePermissionSeeder
 | Token rotation | Every refresh generates new token, old revoked |
 | Reuse detection | Revoked token reuse = entire family revoked |
 | Brute force | 5 attempts → 15-minute account lock |
-| Claims | UserId, Email, Roles, Permissions in JWT |
+| Claims | UserId, Email, FullName, Roles, Permissions, JTI, IAT in JWT |
 | Audit trail | IP + UserAgent stored with each refresh token |
-| Expiry | Access: 15 min, Refresh: 7 days |
+| Expiry | Configurable via appsettings (Access: 15 min, Refresh: 7 days) |
 | Concurrent sessions | Multiple refresh tokens per user supported |
+| Validation | FluentValidation for Register and Login DTOs |
 
 ---
 
-## 17. MVP vs Enterprise Scope
+## 18. MVP vs Enterprise Scope
 
 ### ✅ MVP (Current Implementation)
-- JWT access token
+- JWT access token with configurable expiry
 - Refresh token with rotation
-- BCrypt password hashing
-- Role-based access (Admin, Vendor, Staff, Customer)
+- Token reuse detection (entire family revoked)
+- BCrypt password hashing with work factor 12
+- Role-based access (SuperAdmin, Admin, InventoryManager, SalesManager, Staff)
 - Permission claims in JWT
-- Account lockout
+- FluentValidation (Register/Login)
+- Account lockout after 5 failed attempts
+- Default role for new registrations: "Staff"
 
 ### 🔮 Enterprise Extensions (Future Scope)
 - Email verification on register

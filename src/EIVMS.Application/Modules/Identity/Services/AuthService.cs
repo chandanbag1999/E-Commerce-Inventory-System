@@ -56,10 +56,11 @@ public class AuthService : IAuthService
         var user = User.Create(dto.FirstName, dto.LastName, dto.Email, passwordHash);
         await _userRepository.AddAsync(user);
 
-        var customerRole = await _userRepository.GetRoleByNameAsync("Customer");
-        if (customerRole != null)
+        var staffRole = await _userRepository.GetRoleByNameAsync("Staff");
+        if (staffRole != null)
         {
-            var userRole = UserRole.Create(user.Id, customerRole.Id);
+            var userRole = UserRole.Create(user.Id, staffRole.Id);
+            await _userRepository.AddUserRoleAsync(userRole);
         }
 
         var userWithRoles = await _userRepository.GetByIdWithRolesAsync(user.Id);
@@ -324,6 +325,7 @@ public class AuthService : IAuthService
                 Email = user.Email,
                 Roles = roles,
                 Permissions = permissions,
+                Role = roles.FirstOrDefault() ?? "Staff",
                 LastLoginAt = user.LastLoginAt
             }
         };

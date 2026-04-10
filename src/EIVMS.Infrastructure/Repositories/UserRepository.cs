@@ -48,6 +48,12 @@ public class UserRepository : IUserRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task AddUserRoleAsync(UserRole userRole)
+    {
+        await _context.UserRoles.AddAsync(userRole);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<RefreshToken?> GetRefreshTokenAsync(string tokenHash)
     {
         return await _context.RefreshTokens

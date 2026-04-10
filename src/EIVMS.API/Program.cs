@@ -2,12 +2,22 @@ using EIVMS.Infrastructure;
 using EIVMS.Infrastructure.Persistence;
 using EIVMS.Infrastructure.Seeders;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddInfrastructure(builder.Configuration);
+try
+{
+    builder.Services.AddInfrastructure(builder.Configuration);
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Failed to add infrastructure: {ex.Message}");
+}
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(EIVMS.Application.Modules.Orders.Services.OrderService).Assembly));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,9 +26,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Development", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("http://localhost:8080")
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
@@ -32,11 +43,28 @@ using (var scope = app.Services.CreateScope())
     {
         try
         {
+            Console.WriteLine("Creating database tables...");
+            await db.Database.EnsureCreatedAsync();
+            Console.WriteLine("Database tables created.");
+            
+            var connection = db.Database.GetDbConnection();
+            connection.Open();
+            using (var cmd = connection.CreateCommand())
+            {
+                cmd.CommandText = @"ALTER TABLE ""Users"" ADD COLUMN IF NOT EXISTS ""Status"" integer NOT NULL DEFAULT 1";
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Added Status column to Users table.");
+            }
+            connection.Close();
+            
             await RolePermissionSeeder.SeedAsync(db);
+            await UserSeeder.SeedAsync(db, builder.Configuration);
+            await ProductCatalogSeeder.SeedAsync(db);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Database seeding skipped: {ex.Message}");
+            Console.WriteLine($"Database seeding error: {ex.Message}");
+            Console.WriteLine($"Stack: {ex.StackTrace}");
         }
     }
 }

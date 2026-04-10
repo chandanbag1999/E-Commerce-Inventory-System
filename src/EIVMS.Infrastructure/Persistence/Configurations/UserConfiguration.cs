@@ -1,4 +1,5 @@
 using EIVMS.Domain.Entities.Identity;
+using EIVMS.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -40,6 +41,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.FailedLoginAttempts)
             .HasDefaultValue(0);
+
+        builder.Property(u => u.Status)
+            .IsRequired()
+            .HasDefaultValue(UserStatus.Active);
 
         builder.Property(u => u.CreatedAt)
             .IsRequired();

@@ -1,4 +1,5 @@
 using EIVMS.Domain.Common;
+using EIVMS.Domain.Enums;
 
 namespace EIVMS.Domain.Entities.Identity;
 
@@ -13,9 +14,12 @@ public class User : BaseEntity
     public int FailedLoginAttempts { get; private set; } = 0;
     public DateTime? LockedUntil { get; private set; }
     public DateTime? LastLoginAt { get; private set; }
+    public UserStatus Status { get; private set; } = UserStatus.Active;
 
     public ICollection<UserRole> UserRoles { get; private set; } = new List<UserRole>();
     public ICollection<RefreshToken> RefreshTokens { get; private set; } = new List<RefreshToken>();
+    public UserManagement.UserProfile? UserProfile { get; private set; }
+    public ICollection<UserManagement.UserAuditLog> AuditLogs { get; private set; } = new List<UserManagement.UserAuditLog>();
 
     private User() { }
 
@@ -84,4 +88,39 @@ public class User : BaseEntity
     }
 
     public string FullName => $"{FirstName} {LastName}".Trim();
+
+    public void Suspend()
+    {
+        Status = UserStatus.Suspended;
+        SetUpdatedAt();
+    }
+
+    public void Activate()
+    {
+        Status = UserStatus.Active;
+        IsActive = true;
+        SetUpdatedAt();
+    }
+
+    public void SoftDelete()
+    {
+        Status = UserStatus.Deleted;
+        IsActive = false;
+        SetUpdatedAt();
+    }
+
+    public void ChangePassword(string newPasswordHash)
+    {
+        if (string.IsNullOrWhiteSpace(newPasswordHash))
+            throw new ArgumentException("Password hash cannot be empty");
+        PasswordHash = newPasswordHash;
+        SetUpdatedAt();
+    }
+
+    public void UpdateName(string firstName, string lastName)
+    {
+        FirstName = firstName.Trim();
+        LastName = lastName.Trim();
+        SetUpdatedAt();
+    }
 }
