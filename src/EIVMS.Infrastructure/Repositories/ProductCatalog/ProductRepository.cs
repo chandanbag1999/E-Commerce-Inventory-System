@@ -204,8 +204,15 @@ public class ProductRepository : IProductRepository
         return await _context.Categories
             .Include(c => c.Parent)
             .Include(c => c.Children.Where(ch => !ch.IsDeleted))
-            .Include(c => c.Products.Where(p => !p.IsDeleted))
             .FirstOrDefaultAsync(c => c.Id == id && !c.IsDeleted);
+    }
+
+    public async Task<Category?> GetCategoryByIdIncludingDeletedAsync(Guid id)
+    {
+        return await _context.Categories
+            .Include(c => c.Parent)
+            .Include(c => c.Children)
+            .FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<Category?> GetCategoryBySlugAsync(string slug)
@@ -217,7 +224,6 @@ public class ProductRepository : IProductRepository
     {
         return await _context.Categories
             .Include(c => c.Parent)
-            .Include(c => c.Products.Where(p => !p.IsDeleted))
             .Where(c => !c.IsDeleted && c.IsActive)
             .OrderBy(c => c.DisplayOrder)
             .ToListAsync();
@@ -312,5 +318,34 @@ public class ProductRepository : IProductRepository
         var existingTags = await _context.ProductTags.Where(pt => pt.ProductId == productId).ToListAsync();
         _context.ProductTags.RemoveRange(existingTags);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<Category>> GetDeletedCategoriesAsync()
+    {
+        return await _context.Categories
+            .Where(c => c.IsDeleted)
+            .OrderByDescending(c => c.UpdatedAt)
+            .ToListAsync();
+    }
+
+    public async Task RestoreCategoryAsync(Guid id)
+    {
+        var category = await _context.Categories.FindAsync(id);
+        if (category != null)
+        {
+            category.Restore();
+            await _context.SaveChangesAsync();
+        }
+    }
+
+    public async Task<int> PermanentlyDeleteOldCategoriesAsync(int monthsOld = 12)
+    {
+        var cutoffDate = DateTime.UtcNow.AddMonths(-monthsOld);
+        var oldCategories = await _context.Categories
+            .Where(c => c.IsDeleted && c.UpdatedAt < cutoffDate)
+            .ToListAsync();
+        _context.Categories.RemoveRange(oldCategories);
+        await _context.SaveChangesAsync();
+        return oldCategories.Count;
     }
 }

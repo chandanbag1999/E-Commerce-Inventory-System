@@ -2,8 +2,10 @@ using EIVMS.Application.Common.Models;
 using EIVMS.Application.Modules.Orders.DTOs;
 using EIVMS.Application.Modules.Orders.Interfaces;
 using EIVMS.Application.Modules.Orders.Validators;
+using EIVMS.Application.Modules.Notifications.Interfaces;
 using EIVMS.Application.Modules.UserManagement.DTOs.User;
 using EIVMS.Domain.Entities.Orders;
+using EIVMS.Domain.Enums.Notifications;
 using EIVMS.Domain.Enums.Orders;
 using EIVMS.Domain.Events.Orders;
 using FluentValidation;
@@ -17,6 +19,7 @@ public class OrderService : IOrderService
     private readonly IOrderRepository _orderRepository;
     private readonly IInventoryIntegrationService _inventoryService;
     private readonly IProductIntegrationService _productService;
+    private readonly INotificationService _notificationService;
     private readonly IMediator _mediator;
     private readonly IValidator<CreateOrderDto> _orderValidator;
     private readonly ILogger<OrderService> _logger;
@@ -28,6 +31,7 @@ public class OrderService : IOrderService
         IOrderRepository orderRepository,
         IInventoryIntegrationService inventoryService,
         IProductIntegrationService productService,
+        INotificationService notificationService,
         IMediator mediator,
         IValidator<CreateOrderDto> orderValidator,
         ILogger<OrderService> logger)
@@ -35,6 +39,7 @@ public class OrderService : IOrderService
         _orderRepository = orderRepository;
         _inventoryService = inventoryService;
         _productService = productService;
+        _notificationService = notificationService;
         _mediator = mediator;
         _orderValidator = orderValidator;
         _logger = logger;
@@ -95,6 +100,22 @@ public class OrderService : IOrderService
 
         await _orderRepository.AddAsync(order);
 
+        await _notificationService.CreateForUserAsync(
+            userId,
+            NotificationType.Order,
+            "New Order Received",
+            $"Order {order.OrderNumber} has been created for {FormatCurrency(order.TotalAmount)}.",
+            NotificationPriority.Medium,
+            "/orders");
+
+        await _notificationService.CreateForRolesAsync(
+            ["Admin", "SalesManager"],
+            NotificationType.Order,
+            "New Order Received",
+            $"Order {order.OrderNumber} was placed by {order.ShippingContactName} for {FormatCurrency(order.TotalAmount)}.",
+            NotificationPriority.Medium,
+            "/orders");
+
         await _mediator.Publish(new OrderCreatedEvent(order.Id, order.OrderNumber, userId, order.TotalAmount, order.CreatedAt));
 
         _logger.LogInformation("Order created: {OrderNumber} for User: {UserId}, Amount: {Amount}", order.OrderNumber, userId, order.TotalAmount);
@@ -122,7 +143,7 @@ public class OrderService : IOrderService
     public async Task<ApiResponse<PaginatedResponseDto<OrderListResponseDto>>> GetMyOrdersAsync(Guid userId, OrderFilterDto filter)
     {
         filter.UserId = userId;
-        filter.PageSize = Math.Min(filter.PageSize, 50);
+        NormalizePaging(filter);
         var (orders, totalCount) = await _orderRepository.GetPagedAsync(filter);
         var dtos = orders.Select(MapToListDto).ToList();
         return ApiResponse<PaginatedResponseDto<OrderListResponseDto>>.SuccessResponse(new PaginatedResponseDto<OrderListResponseDto> { Items = dtos, TotalCount = totalCount, PageNumber = filter.PageNumber, PageSize = filter.PageSize });
@@ -139,6 +160,13 @@ public class OrderService : IOrderService
             order.Confirm(dto.PaymentTransactionId, dto.GatewayResponse);
             await _orderRepository.UpdateAsync(order);
             await _inventoryService.ConfirmStockAsync(order.OrderNumber);
+            await _notificationService.CreateForUserAsync(
+                order.UserId,
+                NotificationType.Payment,
+                "Payment Confirmed",
+                $"Payment for order {order.OrderNumber} has been confirmed.",
+                NotificationPriority.Medium,
+                "/orders");
             await _mediator.Publish(new OrderConfirmedEvent(order.Id, order.OrderNumber, order.UserId, dto.PaymentTransactionId));
             return ApiResponse<OrderResponseDto>.SuccessResponse(await MapToDetailDtoAsync(order), "Payment confirmed, order is being processed");
         }
@@ -165,6 +193,13 @@ public class OrderService : IOrderService
         order.Cancel(dto.Reason, dto.Notes, userId);
         await _orderRepository.UpdateAsync(order);
         await _inventoryService.ReleaseStockAsync(order.OrderNumber);
+        await _notificationService.CreateForUserAsync(
+            order.UserId,
+            NotificationType.Alert,
+            "Order Cancelled",
+            $"Order {order.OrderNumber} was cancelled. Reason: {dto.Reason}.",
+            NotificationPriority.High,
+            "/orders");
         var shouldRefund = order.PaymentStatus == PaymentStatus.Paid;
         await _mediator.Publish(new OrderCancelledEvent(order.Id, order.OrderNumber, order.UserId, dto.Reason.ToString(), shouldRefund));
         return ApiResponse<bool>.SuccessResponse(true, "Order cancelled successfully");
@@ -177,6 +212,21 @@ public class OrderService : IOrderService
         if (order.Status != OrderStatus.Packed) return ApiResponse<bool>.ErrorResponse("Order must be in Packed status to ship");
         order.MarkAsShipped(dto.TrackingNumber, dto.CourierName, dto.TrackingUrl, dto.EstimatedDeliveryDate, adminUserId);
         await _orderRepository.UpdateAsync(order);
+        await _notificationService.CreateForUserAsync(
+            order.UserId,
+            NotificationType.Delivery,
+            "Order Shipped",
+            $"Order {order.OrderNumber} shipped via {dto.CourierName}. Tracking: {dto.TrackingNumber}.",
+            NotificationPriority.Medium,
+            "/deliveries");
+
+        await _notificationService.CreateForRolesAsync(
+            ["Delivery", "Admin"],
+            NotificationType.Delivery,
+            "Shipment Ready",
+            $"Order {order.OrderNumber} is ready for delivery handling.",
+            NotificationPriority.Medium,
+            "/deliveries");
         await _mediator.Publish(new OrderShippedEvent(order.Id, order.OrderNumber, order.UserId, dto.TrackingNumber, dto.CourierName, dto.TrackingUrl, dto.EstimatedDeliveryDate));
         return ApiResponse<bool>.SuccessResponse(true, "Order marked as shipped");
     }
@@ -187,6 +237,13 @@ public class OrderService : IOrderService
         if (order == null) return ApiResponse<bool>.ErrorResponse("Order not found", statusCode: 404);
         order.MarkAsDelivered(adminUserId);
         await _orderRepository.UpdateAsync(order);
+        await _notificationService.CreateForUserAsync(
+            order.UserId,
+            NotificationType.Delivery,
+            "Delivery Completed",
+            $"Order {order.OrderNumber} has been delivered successfully.",
+            NotificationPriority.Medium,
+            "/orders");
         await _mediator.Publish(new OrderDeliveredEvent(order.Id, order.OrderNumber, order.UserId, order.ActualDeliveryDate!.Value));
         return ApiResponse<bool>.SuccessResponse(true, "Order marked as delivered");
     }
@@ -206,14 +263,37 @@ public class OrderService : IOrderService
             await _orderRepository.AddReturnItemAsync(returnItemEntity);
         }
         await _orderRepository.UpdateAsync(order);
+        await _notificationService.CreateForRolesAsync(
+            ["Admin", "InventoryManager", "SalesManager"],
+            NotificationType.Order,
+            "Return Requested",
+            $"Order {order.OrderNumber} has a new return request.",
+            NotificationPriority.High,
+            "/orders");
         await _mediator.Publish(new OrderReturnRequestedEvent(order.Id, order.OrderNumber, order.UserId, dto.Reason.ToString()));
         return ApiResponse<bool>.SuccessResponse(true, "Return request submitted successfully");
     }
 
     public async Task<ApiResponse<PaginatedResponseDto<OrderListResponseDto>>> GetAllOrdersAsync(OrderFilterDto filter)
     {
+        NormalizePaging(filter);
         var (orders, totalCount) = await _orderRepository.GetPagedAsync(filter);
         return ApiResponse<PaginatedResponseDto<OrderListResponseDto>>.SuccessResponse(new PaginatedResponseDto<OrderListResponseDto> { Items = orders.Select(MapToListDto).ToList(), TotalCount = totalCount, PageNumber = filter.PageNumber, PageSize = filter.PageSize });
+    }
+
+    private static void NormalizePaging(OrderFilterDto filter)
+    {
+        if (filter.Limit.HasValue && filter.Limit.Value > 0)
+        {
+            filter.PageNumber = 1;
+            filter.PageSize = filter.Limit.Value;
+        }
+
+        filter.PageSize = Math.Clamp(filter.PageSize, 1, 50);
+        if (filter.PageNumber < 1)
+        {
+            filter.PageNumber = 1;
+        }
     }
 
     public async Task<ApiResponse<OrderResponseDto>> UpdateOrderStatusAsync(Guid orderId, UpdateOrderStatusDto dto, Guid adminUserId)
@@ -296,6 +376,11 @@ public class OrderService : IOrderService
     private static OrderListResponseDto MapToListDto(Order order)
     {
         var primaryImage = order.Items.FirstOrDefault()?.ProductImageUrl;
-        return new OrderListResponseDto { Id = order.Id, OrderNumber = order.OrderNumber, Status = order.Status, PaymentStatus = order.PaymentStatus, TotalAmount = order.TotalAmount, TotalItems = order.Items.Sum(i => i.Quantity), PrimaryProductImage = primaryImage, TrackingNumber = order.TrackingNumber, CreatedAt = order.CreatedAt, EstimatedDeliveryDate = order.EstimatedDeliveryDate };
+        return new OrderListResponseDto { Id = order.Id, OrderNumber = order.OrderNumber, CustomerName = order.ShippingContactName, Status = order.Status, PaymentStatus = order.PaymentStatus, TotalAmount = order.TotalAmount, TotalItems = order.Items.Sum(i => i.Quantity), PrimaryProductImage = primaryImage, TrackingNumber = order.TrackingNumber, CreatedAt = order.CreatedAt, EstimatedDeliveryDate = order.EstimatedDeliveryDate };
+    }
+
+    private static string FormatCurrency(decimal amount)
+    {
+        return string.Concat("₹", amount.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("en-IN")));
     }
 }

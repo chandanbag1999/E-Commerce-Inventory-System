@@ -390,10 +390,12 @@ public class ProductService : IProductService
         return ApiResponse<bool>.SuccessResponse(true, "Media order updated");
     }
 
-    public async Task<ApiResponse<CategoryResponseDto>> GetCategoryByIdAsync(Guid id)
+    public async Task<ApiResponse<CategoryResponseDto>> GetCategoryByIdAsync(Guid id, bool includeDeleted = false)
     {
         var category = await _repository.GetCategoryByIdAsync(id);
-        if (category == null || category.IsDeleted)
+        if (category == null)
+            return ApiResponse<CategoryResponseDto>.ErrorResponse("Category not found", 404);
+        if (!includeDeleted && category.IsDeleted)
             return ApiResponse<CategoryResponseDto>.ErrorResponse("Category not found", 404);
         return ApiResponse<CategoryResponseDto>.SuccessResponse(MapCategoryToDto(category));
     }
@@ -482,6 +484,41 @@ public class ProductService : IProductService
         category.SetImage(url);
         await _repository.UpdateCategoryAsync(category);
         return ApiResponse<string>.SuccessResponse(url, "Category image uploaded");
+    }
+
+    public async Task<ApiResponse<List<CategoryResponseDto>>> GetDeletedCategoriesAsync()
+    {
+        var categories = await _repository.GetDeletedCategoriesAsync();
+        var dtos = categories.Select(MapCategoryToDto).ToList();
+        return ApiResponse<List<CategoryResponseDto>>.SuccessResponse(dtos, "Deleted categories retrieved");
+    }
+
+    public async Task<ApiResponse<bool>> RestoreCategoryAsync(Guid id)
+    {
+        try
+        {
+            // Use GetCategoryByIdIncludingDeleted to find deleted categories
+            var category = await _repository.GetCategoryByIdIncludingDeletedAsync(id);
+            
+            if (category == null)
+                return ApiResponse<bool>.ErrorResponse("Category not found", 404);
+            
+            if (!category.IsDeleted)
+                return ApiResponse<bool>.ErrorResponse("Category is not deleted", 400);
+
+            await _repository.RestoreCategoryAsync(id);
+            return ApiResponse<bool>.SuccessResponse(true, "Category restored successfully");
+        }
+        catch (Exception ex)
+        {
+            return ApiResponse<bool>.ErrorResponse($"Failed to restore category: {ex.Message}", 500);
+        }
+    }
+
+    public async Task<ApiResponse<int>> PermanentlyDeleteOldCategoriesAsync(int monthsOld = 12)
+    {
+        var deletedCount = await _repository.PermanentlyDeleteOldCategoriesAsync(monthsOld);
+        return ApiResponse<int>.SuccessResponse(deletedCount, $"{deletedCount} old categories permanently deleted");
     }
 
     private static string GenerateSlug(string input)
@@ -638,6 +675,8 @@ public class ProductService : IProductService
             DisplayOrder = category.DisplayOrder,
             ImageUrl = category.ImageUrl,
             IsActive = category.IsActive,
+            IsDeleted = category.IsDeleted,
+            DeletedAt = category.IsDeleted ? category.UpdatedAt : null,
             ProductCount = category.Products.Count(p => !p.IsDeleted),
             CommissionRate = category.CommissionRate,
             MetaTitle = category.MetaTitle,

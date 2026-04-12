@@ -97,6 +97,13 @@ public class Category : BaseEntity
         SetUpdatedAt();
     }
 
+    public void Restore()
+    {
+        IsDeleted = false;
+        IsActive = true;
+        SetUpdatedAt();
+    }
+
     public string GetFullPath()
     {
         return Parent != null ? $"{Parent.GetFullPath()} > {Name}" : Name;

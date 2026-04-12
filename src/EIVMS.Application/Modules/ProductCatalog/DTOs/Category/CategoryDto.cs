@@ -25,6 +25,8 @@ public class CategoryResponseDto
     public int DisplayOrder { get; set; }
     public string? ImageUrl { get; set; }
     public bool IsActive { get; set; }
+    public bool IsDeleted { get; set; }
+    public DateTime? DeletedAt { get; set; }
     public int ProductCount { get; set; }
     public List<CategoryResponseDto> Children { get; set; } = new();
     public decimal? CommissionRate { get; set; }

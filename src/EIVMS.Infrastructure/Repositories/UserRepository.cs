@@ -94,4 +94,24 @@ public class UserRepository : IUserRepository
                 .ThenInclude(rp => rp.Permission)
             .FirstOrDefaultAsync(r => r.NormalizedName == roleName.ToUpperInvariant());
     }
+
+    public async Task<List<User>> GetUsersByRoleNamesAsync(params string[] roleNames)
+    {
+        var normalizedRoleNames = roleNames
+            .Where(roleName => !string.IsNullOrWhiteSpace(roleName))
+            .Select(roleName => roleName.ToUpperInvariant())
+            .Distinct()
+            .ToArray();
+
+        if (normalizedRoleNames.Length == 0)
+        {
+            return [];
+        }
+
+        return await _context.Users
+            .Include(user => user.UserRoles)
+                .ThenInclude(userRole => userRole.Role)
+            .Where(user => user.IsActive && user.UserRoles.Any(userRole => userRole.Role != null && normalizedRoleNames.Contains(userRole.Role.NormalizedName)))
+            .ToListAsync();
+    }
 }

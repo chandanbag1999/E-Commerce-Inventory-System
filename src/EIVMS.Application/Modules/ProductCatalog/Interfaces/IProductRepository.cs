@@ -27,12 +27,16 @@ public interface IProductRepository
     Task UnsetAllPrimaryMediaAsync(Guid productId);
 
     Task<Category?> GetCategoryByIdAsync(Guid id);
+    Task<Category?> GetCategoryByIdIncludingDeletedAsync(Guid id);
     Task<Category?> GetCategoryBySlugAsync(string slug);
     Task<List<Category>> GetCategoryTreeAsync(Guid? parentId = null);
     Task<bool> CategorySlugExistsAsync(string slug, Guid? excludeId = null);
     Task AddCategoryAsync(Category category);
     Task UpdateCategoryAsync(Category category);
     Task<List<Guid>> GetSubCategoryIdsAsync(Guid categoryId);
+    Task<List<Category>> GetDeletedCategoriesAsync();
+    Task RestoreCategoryAsync(Guid id);
+    Task<int> PermanentlyDeleteOldCategoriesAsync(int monthsOld = 12);
 
     Task<List<AttributeDefinition>> GetAttributeDefinitionsAsync(Guid? categoryId = null);
     Task<AttributeDefinition?> GetAttributeDefinitionByIdAsync(Guid id);

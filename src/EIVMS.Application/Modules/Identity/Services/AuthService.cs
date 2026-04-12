@@ -52,14 +52,23 @@ public class AuthService : IAuthService
                 statusCode: 409);
         }
 
+        if (string.Equals(dto.Role?.Trim(), "admin", StringComparison.OrdinalIgnoreCase))
+        {
+            return ApiResponse<AuthResponseDto>.ErrorResponse(
+                "Admin accounts cannot be self-registered",
+                statusCode: 403);
+        }
+
+        var (firstName, lastName) = ExtractNameParts(dto);
         var passwordHash = _passwordHasher.HashPassword(dto.Password);
-        var user = User.Create(dto.FirstName, dto.LastName, dto.Email, passwordHash);
+        var user = User.Create(firstName, lastName, dto.Email, passwordHash);
         await _userRepository.AddAsync(user);
 
-        var staffRole = await _userRepository.GetRoleByNameAsync("Staff");
-        if (staffRole != null)
+        var assignedRoleName = ResolveAssignedRoleName(dto.Role);
+        var assignedRole = await _userRepository.GetRoleByNameAsync(assignedRoleName);
+        if (assignedRole != null)
         {
-            var userRole = UserRole.Create(user.Id, staffRole.Id);
+            var userRole = UserRole.Create(user.Id, assignedRole.Id);
             await _userRepository.AddUserRoleAsync(userRole);
         }
 
@@ -279,6 +288,7 @@ public class AuthService : IAuthService
             Email = user.Email,
             Roles = roles,
             Permissions = permissions,
+            Role = NormalizeFrontendRole(roles),
             LastLoginAt = user.LastLoginAt
         };
 
@@ -305,6 +315,45 @@ public class AuthService : IAuthService
             .ToList();
     }
 
+    private static (string FirstName, string LastName) ExtractNameParts(RegisterRequestDto dto)
+    {
+        if (!string.IsNullOrWhiteSpace(dto.Name))
+        {
+            var parts = dto.Name.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var firstName = parts.FirstOrDefault() ?? string.Empty;
+            var lastName = parts.Length > 1 ? string.Join(' ', parts.Skip(1)) : string.Empty;
+            return (firstName, lastName);
+        }
+
+        return (dto.FirstName.Trim(), dto.LastName.Trim());
+    }
+
+    private static string ResolveAssignedRoleName(string? requestedRole)
+    {
+        return requestedRole?.Trim().ToLowerInvariant() switch
+        {
+            "seller" => "SalesManager",
+            "warehouse" => "InventoryManager",
+            "delivery" => "Delivery",
+            _ => "Staff"
+        };
+    }
+
+    private static string NormalizeFrontendRole(IEnumerable<string> roles)
+    {
+        var normalizedRoles = roles
+            .Where(role => !string.IsNullOrWhiteSpace(role))
+            .Select(role => role.Trim())
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        if (normalizedRoles.Contains("SuperAdmin") || normalizedRoles.Contains("Admin")) return "admin";
+        if (normalizedRoles.Contains("SalesManager")) return "seller";
+        if (normalizedRoles.Contains("InventoryManager") || normalizedRoles.Contains("Staff")) return "warehouse";
+        if (normalizedRoles.Contains("Delivery")) return "delivery";
+
+        return "warehouse";
+    }
+
     private AuthResponseDto BuildAuthResponse(
         string accessToken,
         string rawRefreshToken,
@@ -325,7 +374,7 @@ public class AuthService : IAuthService
                 Email = user.Email,
                 Roles = roles,
                 Permissions = permissions,
-                Role = roles.FirstOrDefault() ?? "Staff",
+                Role = NormalizeFrontendRole(roles),
                 LastLoginAt = user.LastLoginAt
             }
         };

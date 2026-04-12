@@ -15,4 +15,5 @@ public interface IUserRepository
     Task AddRefreshTokenAsync(RefreshToken refreshToken);
     Task UpdateRefreshTokenAsync(RefreshToken refreshToken);
     Task<Role?> GetRoleByNameAsync(string roleName);
+    Task<List<User>> GetUsersByRoleNamesAsync(params string[] roleNames);
 }

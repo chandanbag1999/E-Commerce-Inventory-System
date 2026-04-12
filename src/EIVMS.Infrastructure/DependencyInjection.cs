@@ -6,10 +6,13 @@ using EIVMS.Application.Modules.Identity.Services;
 using EIVMS.Application.Modules.Identity.Validators;
 using EIVMS.Application.Modules.UserManagement.Interfaces;
 using EIVMS.Application.Modules.UserManagement.Services;
+using EIVMS.Application.Modules.Analytics.Interfaces;
 using EIVMS.Application.Modules.ProductCatalog.Interfaces;
 using EIVMS.Application.Modules.ProductCatalog.Services;
 using EIVMS.Application.Modules.Inventory.Interfaces;
 using EIVMS.Application.Modules.Inventory.Services;
+using EIVMS.Application.Modules.Notifications.Interfaces;
+using EIVMS.Application.Modules.Notifications.Services;
 using EIVMS.Application.Modules.Orders.Interfaces;
 using EIVMS.Application.Modules.Orders.Services;
 using EIVMS.Application.Modules.Orders.Validators;
@@ -21,9 +24,11 @@ using EIVMS.Infrastructure.Repositories;
 using EIVMS.Infrastructure.Repositories.UserManagement;
 using EIVMS.Infrastructure.Repositories.ProductCatalog;
 using EIVMS.Infrastructure.Repositories.Inventory;
+using EIVMS.Infrastructure.Repositories.Notifications;
 using EIVMS.Infrastructure.Repositories.Orders;
 using EIVMS.Infrastructure.Repositories.Payments;
 using EIVMS.Infrastructure.Services;
+using EIVMS.Infrastructure.Services.Analytics;
 using EIVMS.Infrastructure.Services.UserManagement;
 using EIVMS.Infrastructure.Services.Payments;
 using FluentValidation;
@@ -53,6 +58,8 @@ public static class DependencyInjection
                         errorCodesToAdd: null);
                 }));
 
+        services.AddHttpContextAccessor();
+
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAuthService, AuthService>();
 
@@ -61,6 +68,7 @@ public static class DependencyInjection
         services.AddScoped<IAddressService, AddressService>();
         services.AddScoped<IOrganizationService, OrganizationService>();
         services.AddScoped<IVendorService, VendorService>();
+        services.AddScoped<IAnalyticsService, AnalyticsService>();
 
         services.AddScoped<IFileStorageService, LocalFileStorageService>();
 
@@ -69,6 +77,9 @@ public static class DependencyInjection
 
         services.AddScoped<IInventoryRepository, InventoryRepository>();
         services.AddScoped<IInventoryService, InventoryService>();
+
+        services.AddScoped<INotificationRepository, NotificationRepository>();
+        services.AddScoped<INotificationService, NotificationService>();
 
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IOrderService, OrderService>();
@@ -96,6 +107,7 @@ public static class DependencyInjection
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
         services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
+        services.AddValidatorsFromAssemblyContaining<LoginRequestValidator>();
         services.AddValidatorsFromAssemblyContaining<EIVMS.Application.Modules.ProductCatalog.Validators.CreateProductValidator>();
         services.AddValidatorsFromAssemblyContaining<EIVMS.Application.Modules.Orders.Validators.CreateOrderValidator>();
         services.AddValidatorsFromAssemblyContaining<CreatePaymentValidator>();

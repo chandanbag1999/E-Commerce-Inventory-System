@@ -8,8 +8,6 @@ public static class RolePermissionSeeder
 {
     public static async Task SeedAsync(AppDbContext context)
     {
-        if (await context.Roles.AnyAsync()) return;
-
         var permissions = new Dictionary<string, Permission>
         {
             ["product:create"] = Permission.Create("product:create", "product", "create", "Create new products"),
@@ -37,7 +35,21 @@ public static class RolePermissionSeeder
             ["dashboard:view"] = Permission.Create("dashboard:view", "dashboard", "view", "View dashboard"),
         };
 
-        await context.Permissions.AddRangeAsync(permissions.Values);
+        var existingPermissions = await context.Permissions
+            .ToDictionaryAsync(permission => permission.Name, StringComparer.OrdinalIgnoreCase);
+
+        var missingPermissions = permissions.Values
+            .Where(permission => !existingPermissions.ContainsKey(permission.Name))
+            .ToList();
+
+        if (missingPermissions.Count > 0)
+        {
+            await context.Permissions.AddRangeAsync(missingPermissions);
+            await context.SaveChangesAsync();
+        }
+
+        var allPermissions = await context.Permissions
+            .ToDictionaryAsync(permission => permission.Name, StringComparer.OrdinalIgnoreCase);
 
         var superAdminRole = Role.Create("SuperAdmin", "Full system access - can manage all users and system");
         var superAdminPermissions = permissions.Keys.ToList();
@@ -82,41 +94,82 @@ public static class RolePermissionSeeder
             "dashboard:view"
         };
 
-        await context.Roles.AddRangeAsync(superAdminRole, adminRole, inventoryManagerRole, salesManagerRole, staffRole);
-        await context.SaveChangesAsync();
-
-        var rolePermissions = new List<RolePermission>();
-
-        foreach (var permKey in superAdminPermissions)
+        var deliveryRole = Role.Create("Delivery", "Delivery operations and shipment visibility");
+        var deliveryPermissions = new[]
         {
-            rolePermissions.Add(RolePermission.Create(superAdminRole.Id, permissions[permKey].Id));
+            "order:read",
+            "dashboard:view",
+            "report:view"
+        };
+
+        var desiredRoles = new Dictionary<string, Role>(StringComparer.OrdinalIgnoreCase)
+        {
+            [superAdminRole.Name] = superAdminRole,
+            [adminRole.Name] = adminRole,
+            [inventoryManagerRole.Name] = inventoryManagerRole,
+            [salesManagerRole.Name] = salesManagerRole,
+            [staffRole.Name] = staffRole,
+            [deliveryRole.Name] = deliveryRole,
+        };
+
+        var existingRoles = await context.Roles
+            .ToDictionaryAsync(role => role.Name, StringComparer.OrdinalIgnoreCase);
+
+        var missingRoles = desiredRoles.Values
+            .Where(role => !existingRoles.ContainsKey(role.Name))
+            .ToList();
+
+        if (missingRoles.Count > 0)
+        {
+            await context.Roles.AddRangeAsync(missingRoles);
+            await context.SaveChangesAsync();
         }
 
-        foreach (var permKey in adminPermissions)
+        var allRoles = await context.Roles
+            .ToDictionaryAsync(role => role.Name, StringComparer.OrdinalIgnoreCase);
+
+        var desiredRolePermissions = new Dictionary<string, IEnumerable<string>>(StringComparer.OrdinalIgnoreCase)
         {
-            rolePermissions.Add(RolePermission.Create(adminRole.Id, permissions[permKey].Id));
+            ["SuperAdmin"] = superAdminPermissions,
+            ["Admin"] = adminPermissions,
+            ["InventoryManager"] = inventoryManagerPermissions,
+            ["SalesManager"] = salesManagerPermissions,
+            ["Staff"] = staffPermissions,
+            ["Delivery"] = deliveryPermissions,
+        };
+
+        var existingRolePermissions = await context.RolePermissions
+            .Select(rolePermission => new { rolePermission.RoleId, rolePermission.PermissionId })
+            .ToListAsync();
+
+        var missingRolePermissions = new List<RolePermission>();
+
+        foreach (var (roleName, permissionNames) in desiredRolePermissions)
+        {
+            if (!allRoles.TryGetValue(roleName, out var role)) continue;
+
+            foreach (var permissionName in permissionNames)
+            {
+                if (!allPermissions.TryGetValue(permissionName, out var permission)) continue;
+
+                var alreadyLinked = existingRolePermissions.Any(existing =>
+                    existing.RoleId == role.Id && existing.PermissionId == permission.Id);
+
+                if (!alreadyLinked)
+                {
+                    missingRolePermissions.Add(RolePermission.Create(role.Id, permission.Id));
+                }
+            }
         }
 
-        foreach (var permKey in inventoryManagerPermissions)
+        if (missingRolePermissions.Count > 0)
         {
-            rolePermissions.Add(RolePermission.Create(inventoryManagerRole.Id, permissions[permKey].Id));
+            await context.RolePermissions.AddRangeAsync(missingRolePermissions);
+            await context.SaveChangesAsync();
         }
-
-        foreach (var permKey in salesManagerPermissions)
-        {
-            rolePermissions.Add(RolePermission.Create(salesManagerRole.Id, permissions[permKey].Id));
-        }
-
-        foreach (var permKey in staffPermissions)
-        {
-            rolePermissions.Add(RolePermission.Create(staffRole.Id, permissions[permKey].Id));
-        }
-
-        await context.RolePermissions.AddRangeAsync(rolePermissions);
-        await context.SaveChangesAsync();
 
         Console.WriteLine("✅ Roles and Permissions seeded successfully!");
-        Console.WriteLine($"   Roles: SuperAdmin, Admin, InventoryManager, SalesManager, Staff");
-        Console.WriteLine($"   Permissions: {permissions.Count} total");
+        Console.WriteLine($"   Roles: SuperAdmin, Admin, InventoryManager, SalesManager, Delivery, Staff");
+        Console.WriteLine($"   Permissions: {allPermissions.Count} total");
     }
 }

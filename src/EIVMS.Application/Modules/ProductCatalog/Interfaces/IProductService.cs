@@ -29,10 +29,13 @@ public interface IProductService
     Task<ApiResponse<bool>> SetPrimaryImageAsync(Guid productId, Guid mediaId, Guid userId);
     Task<ApiResponse<bool>> UpdateMediaOrderAsync(Guid productId, List<Guid> orderedMediaIds, Guid userId);
 
-    Task<ApiResponse<CategoryResponseDto>> GetCategoryByIdAsync(Guid id);
+    Task<ApiResponse<CategoryResponseDto>> GetCategoryByIdAsync(Guid id, bool includeDeleted = false);
     Task<ApiResponse<List<CategoryResponseDto>>> GetCategoryTreeAsync();
     Task<ApiResponse<CategoryResponseDto>> CreateCategoryAsync(CreateCategoryDto dto);
     Task<ApiResponse<CategoryResponseDto>> UpdateCategoryAsync(Guid id, CreateCategoryDto dto);
     Task<ApiResponse<bool>> DeleteCategoryAsync(Guid id);
     Task<ApiResponse<string>> UploadCategoryImageAsync(Guid id, IFormFile file);
+    Task<ApiResponse<List<CategoryResponseDto>>> GetDeletedCategoriesAsync();
+    Task<ApiResponse<bool>> RestoreCategoryAsync(Guid id);
+    Task<ApiResponse<int>> PermanentlyDeleteOldCategoriesAsync(int monthsOld = 12);
 }

@@ -24,26 +24,34 @@ public static class ProductCatalogSeeder
         await context.Categories.AddRangeAsync(smartphones, laptops, accessories);
         await context.SaveChangesAsync();
 
-        var fashion = Category.Create("Fashion", "fashion", null, "Fashion and clothing items", 2);
-        await context.Categories.AddAsync(fashion);
+        var beverages = Category.Create("Beverages", "beverages", null, "Drinks and beverages", 2);
+        await context.Categories.AddAsync(beverages);
         await context.SaveChangesAsync();
 
-        var menFashion = Category.Create("Men's Fashion", "mens-fashion", fashion.Id, "Men's clothing and accessories", 1);
-        var womenFashion = Category.Create("Women's Fashion", "womens-fashion", fashion.Id, "Women's clothing and accessories", 2);
-        await context.Categories.AddRangeAsync(menFashion, womenFashion);
-        await context.SaveChangesAsync();
-
-        var homeGarden = Category.Create("Home & Garden", "home-garden", null, "Home and garden products", 3);
-        await context.Categories.AddAsync(homeGarden);
-        await context.SaveChangesAsync();
-
-        var furniture = Category.Create("Furniture", "furniture", homeGarden.Id, "Home furniture", 1);
-        var decor = Category.Create("Home Decor", "home-decor", homeGarden.Id, "Home decoration items", 2);
-        await context.Categories.AddRangeAsync(furniture, decor);
-        await context.SaveChangesAsync();
-
-        var sports = Category.Create("Sports & Outdoors", "sports-outdoors", null, "Sports and outdoor equipment", 4);
+        var sports = Category.Create("Sports", "sports", null, "Sports and fitness equipment", 3);
         await context.Categories.AddAsync(sports);
+        await context.SaveChangesAsync();
+
+        var kitchen = Category.Create("Kitchen", "kitchen", null, "Kitchenware and utensils", 4);
+        await context.Categories.AddAsync(kitchen);
+        await context.SaveChangesAsync();
+
+        var home = Category.Create("Home", "home", null, "Home and living", 5);
+        await context.Categories.AddAsync(home);
+        await context.SaveChangesAsync();
+
+        var decor = Category.Create("Home Decor", "home-decor", home.Id, "Home decoration items", 1);
+        var lighting = Category.Create("Lighting", "lighting", home.Id, "Lights and lamps", 2);
+        await context.Categories.AddRangeAsync(decor, lighting);
+        await context.SaveChangesAsync();
+
+        var apparel = Category.Create("Apparel", "apparel", null, "Clothing and fashion", 6);
+        await context.Categories.AddAsync(apparel);
+        await context.SaveChangesAsync();
+
+        var menApparel = Category.Create("Men's Clothing", "mens-clothing", apparel.Id, "Men's clothing", 1);
+        var womenApparel = Category.Create("Women's Clothing", "womens-clothing", apparel.Id, "Women's clothing", 2);
+        await context.Categories.AddRangeAsync(menApparel, womenApparel);
         await context.SaveChangesAsync();
 
         var tags = new List<Tag>
@@ -59,7 +67,7 @@ public static class ProductCatalogSeeder
         await context.SaveChangesAsync();
 
         Console.WriteLine("✅ Product Catalog seeded successfully!");
-        Console.WriteLine($"   Categories: 12");
+        Console.WriteLine($"   Categories: {15}");
         Console.WriteLine($"   Tags: {tags.Count}");
     }
 }

@@ -143,6 +143,84 @@ public class AuthServiceTests
     }
 
     [Fact]
+    public async Task RegisterAsync_WithAdminRole_ShouldReturn403()
+    {
+        var dto = new RegisterRequestDto
+        {
+            Name = "Admin User",
+            Email = "admin-request@example.com",
+            Password = "Password@123",
+            ConfirmPassword = "Password@123",
+            Role = "admin"
+        };
+
+        _userRepositoryMock
+            .Setup(r => r.EmailExistsAsync(It.IsAny<string>()))
+            .ReturnsAsync(false);
+
+        var result = await _authService.RegisterAsync(dto);
+
+        result.Success.Should().BeFalse();
+        result.StatusCode.Should().Be(403);
+        result.Message.Should().Contain("cannot be self-registered");
+    }
+
+    [Fact]
+    public async Task RegisterAsync_WithSellerRole_ShouldResolveSalesManagerRole()
+    {
+        var dto = new RegisterRequestDto
+        {
+            Name = "Seller User",
+            Email = "seller@example.com",
+            Password = "Password@123",
+            ConfirmPassword = "Password@123",
+            Role = "seller"
+        };
+
+        var salesManagerRole = Role.Create("SalesManager", "Sales role");
+
+        _userRepositoryMock
+            .Setup(r => r.EmailExistsAsync(It.IsAny<string>()))
+            .ReturnsAsync(false);
+
+        _passwordHasherMock
+            .Setup(h => h.HashPassword(It.IsAny<string>()))
+            .Returns("hashedPassword123");
+
+        _userRepositoryMock
+            .Setup(r => r.AddAsync(It.IsAny<User>()))
+            .Returns(Task.CompletedTask);
+
+        _userRepositoryMock
+            .Setup(r => r.GetRoleByNameAsync("SalesManager"))
+            .ReturnsAsync(salesManagerRole);
+
+        _userRepositoryMock
+            .Setup(r => r.AddUserRoleAsync(It.IsAny<UserRole>()))
+            .Returns(Task.CompletedTask);
+
+        _userRepositoryMock
+            .Setup(r => r.GetByIdWithRolesAsync(It.IsAny<Guid>()))
+            .ReturnsAsync((Guid id) => User.Create("Seller", "User", dto.Email, "hashedPassword"));
+
+        _jwtServiceMock.Setup(j => j.GenerateAccessToken(It.IsAny<User>(), It.IsAny<List<string>>(), It.IsAny<List<string>>()))
+            .Returns("fake.jwt.token");
+        _jwtServiceMock.Setup(j => j.GenerateRefreshToken()).Returns("fakeRefreshToken");
+        _jwtServiceMock.Setup(j => j.HashToken(It.IsAny<string>())).Returns("hashedRefreshToken");
+        _jwtServiceMock.Setup(j => j.GetAccessTokenExpiry()).Returns(DateTime.UtcNow.AddMinutes(15));
+        _jwtServiceMock.Setup(j => j.GetRefreshTokenExpiry()).Returns(DateTime.UtcNow.AddDays(7));
+
+        _userRepositoryMock
+            .Setup(r => r.AddRefreshTokenAsync(It.IsAny<RefreshToken>()))
+            .Returns(Task.CompletedTask);
+
+        var result = await _authService.RegisterAsync(dto);
+
+        result.Success.Should().BeTrue();
+        _userRepositoryMock.Verify(r => r.GetRoleByNameAsync("SalesManager"), Times.Once);
+    }
+
+    [Fact]
     public async Task LoginAsync_WithValidCredentials_ShouldReturnSuccess()
     {
         var dto = new LoginRequestDto

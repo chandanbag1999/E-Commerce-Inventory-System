@@ -67,4 +67,28 @@ public class CategoriesController : ControllerBase
         var result = await _productService.UploadCategoryImageAsync(id, file);
         return result.Success ? Ok(result) : BadRequest(result);
     }
+
+    [HttpGet("deleted")]
+    [Authorize(Policy = "product:read")]
+    public async Task<IActionResult> GetDeletedCategories()
+    {
+        var result = await _productService.GetDeletedCategoriesAsync();
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+
+    [HttpPost("{id:guid}/restore")]
+    [Authorize(Policy = "product:update")]
+    public async Task<IActionResult> RestoreCategory(Guid id)
+    {
+        var result = await _productService.RestoreCategoryAsync(id);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+
+    [HttpDelete("permanent")]
+    [Authorize(Policy = "product:delete")]
+    public async Task<IActionResult> PermanentlyDeleteCategories([FromQuery] int monthsOld = 12)
+    {
+        var result = await _productService.PermanentlyDeleteOldCategoriesAsync(monthsOld);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
 }

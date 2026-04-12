@@ -110,6 +110,7 @@ public class OrderListResponseDto
 {
     public Guid Id { get; set; }
     public string OrderNumber { get; set; } = string.Empty;
+    public string CustomerName { get; set; } = string.Empty;
     public OrderStatus Status { get; set; }
     public PaymentStatus PaymentStatus { get; set; }
     public decimal TotalAmount { get; set; }
@@ -162,6 +163,7 @@ public class ReturnItemDto
 
 public class OrderFilterDto
 {
+    public int? Limit { get; set; }
     public int PageNumber { get; set; } = 1;
     public int PageSize { get; set; } = 20;
     public Guid? UserId { get; set; }

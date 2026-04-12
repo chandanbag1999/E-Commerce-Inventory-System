@@ -1,7 +1,9 @@
 using EIVMS.Application.Common.Models;
 using EIVMS.Application.Modules.Inventory.DTOs;
 using EIVMS.Application.Modules.Inventory.Interfaces;
+using EIVMS.Application.Modules.Notifications.Interfaces;
 using EIVMS.Domain.Entities.Inventory;
+using EIVMS.Domain.Enums.Notifications;
 using EIVMS.Domain.Enums.Inventory;
 
 namespace EIVMS.Application.Modules.Inventory.Services;
@@ -9,10 +11,12 @@ namespace EIVMS.Application.Modules.Inventory.Services;
 public class InventoryService : IInventoryService
 {
     private readonly IInventoryRepository _repository;
+    private readonly INotificationService _notificationService;
 
-    public InventoryService(IInventoryRepository repository)
+    public InventoryService(IInventoryRepository repository, INotificationService notificationService)
     {
         _repository = repository;
+        _notificationService = notificationService;
     }
 
     public async Task<ApiResponse<WarehouseDto>> GetWarehouseByIdAsync(Guid id)
@@ -568,6 +572,13 @@ public class InventoryService : IInventoryService
                 var alert = InventoryAlert.Create(item.Id, item.ProductId, item.SKU, item.WarehouseId,
                     InventoryAlertType.LowStock, item.AvailableQuantity, item.LowStockThreshold);
                 await _repository.AddInventoryAlertAsync(alert);
+                await _notificationService.CreateForRolesAsync(
+                    ["Admin", "InventoryManager"],
+                    NotificationType.Stock,
+                    "Low Stock Alert",
+                    alert.Message,
+                    NotificationPriority.High,
+                    "/inventory");
             }
         }
 
@@ -580,6 +591,13 @@ public class InventoryService : IInventoryService
                 var alert = InventoryAlert.Create(item.Id, item.ProductId, item.SKU, item.WarehouseId,
                     InventoryAlertType.OutOfStock, 0, item.LowStockThreshold);
                 await _repository.AddInventoryAlertAsync(alert);
+                await _notificationService.CreateForRolesAsync(
+                    ["Admin", "InventoryManager"],
+                    NotificationType.Alert,
+                    "Out of Stock Alert",
+                    alert.Message,
+                    NotificationPriority.Critical,
+                    "/inventory");
             }
         }
 

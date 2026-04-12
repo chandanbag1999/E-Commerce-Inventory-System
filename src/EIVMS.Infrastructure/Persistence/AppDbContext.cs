@@ -2,12 +2,14 @@ using EIVMS.Domain.Entities.Identity;
 using EIVMS.Domain.Entities.UserManagement;
 using EIVMS.Domain.Entities.ProductCatalog;
 using EIVMS.Domain.Entities.Inventory;
+using EIVMS.Domain.Entities.Notifications;
 using EIVMS.Domain.Entities.Orders;
 using EIVMS.Domain.Entities.Payments;
 using EIVMS.Infrastructure.Persistence.Configurations;
 using EIVMS.Infrastructure.Persistence.Configurations.UserManagement;
 using EIVMS.Infrastructure.Persistence.Configurations.ProductCatalog;
 using EIVMS.Infrastructure.Persistence.Configurations.Inventory;
+using EIVMS.Infrastructure.Persistence.Configurations.Notifications;
 using EIVMS.Infrastructure.Persistence.Configurations.Orders;
 using EIVMS.Infrastructure.Persistence.Configurations.Payments;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +50,8 @@ public class AppDbContext : DbContext
     public DbSet<StockReservation> StockReservations => Set<StockReservation>();
     public DbSet<StockTransfer> StockTransfers => Set<StockTransfer>();
     public DbSet<InventoryAlert> InventoryAlerts => Set<InventoryAlert>();
+
+    public DbSet<Notification> Notifications => Set<Notification>();
 
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
@@ -92,6 +96,7 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new StockReservationConfiguration());
         modelBuilder.ApplyConfiguration(new StockTransferConfiguration());
         modelBuilder.ApplyConfiguration(new InventoryAlertConfiguration());
+        modelBuilder.ApplyConfiguration(new NotificationConfiguration());
 
         modelBuilder.ApplyConfiguration(new OrderConfiguration());
         modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
