@@ -500,3 +500,48 @@ ORDER BY s."Id", s."Id0", p0."DisplayOrder"
 2026-04-14 23:30:39.044 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.ProductsController.GetBySku (EcommerceInventory.API)'
 2026-04-14 23:30:39.044 +05:30 [INF] [efb760bb-503d-4b2c-82b5-b3298507ab68] GET /api/v1/products/sku/LAPTOP-001 responded 404 in 315.5598ms
 2026-04-14 23:30:39.044 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/products/sku/LAPTOP-001 - 404 null application/json; charset=utf-8 315.8873ms
+2026-04-14 23:33:54.175 +05:30 [INF] Applying database migrations...
+2026-04-14 23:33:54.908 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:54.911 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:54.911 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:54.911 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:54.911 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:54.911 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:54.911 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:54.911 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:54.911 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:54.911 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:33:58.034 +05:30 [INF] Executed DbCommand (282ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 23:33:58.379 +05:30 [INF] Executed DbCommand (274ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-14 23:33:58.758 +05:30 [INF] Executed DbCommand (263ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-14 23:33:59.312 +05:30 [INF] Executed DbCommand (264ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-14 23:33:59.572 +05:30 [INF] Executed DbCommand (259ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 23:33:59.578 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-14 23:33:59.930 +05:30 [INF] Database migrations applied successfully.
+2026-04-14 23:33:59.934 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-14 23:34:00.566 +05:30 [INF] Executed DbCommand (262ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-14 23:34:00.581 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-14 23:34:00.582 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-14 23:34:00.657 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-14 23:34:00.673 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-14 23:34:00.744 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-14 23:34:00.744 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-14 23:34:00.744 +05:30 [INF] Hosting environment: Development
+2026-04-14 23:34:00.744 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
