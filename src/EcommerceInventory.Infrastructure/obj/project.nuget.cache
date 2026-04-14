@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WqdXIF4ZLjg=",
+  "dgSpecHash": "+k95KKAqDlc=",
   "success": true,
-  "projectFilePath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
+  "projectFilePath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",

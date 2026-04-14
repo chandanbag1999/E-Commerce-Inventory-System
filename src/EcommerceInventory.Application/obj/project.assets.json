@@ -615,11 +615,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj",
+      "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj",
       "projectName": "EcommerceInventory.Application",
-      "projectPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj",
+      "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\obj\\",
+      "outputPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -640,8 +640,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
-              "projectPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
+            "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
+              "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
             }
           }
         }

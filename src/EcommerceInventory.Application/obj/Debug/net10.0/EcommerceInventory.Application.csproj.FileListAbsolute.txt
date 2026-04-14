@@ -1,4 +1,4 @@
-d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\bin\Debug\net10.0\EcommerceInventory.Application.deps.json
+D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\bin\Debug\net10.0\EcommerceInventory.Application.deps.json
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\bin\Debug\net10.0\EcommerceInventory.Application.dll
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\bin\Debug\net10.0\EcommerceInventory.Application.pdb
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\bin\Debug\net10.0\EcommerceInventory.Domain.dll
@@ -8,8 +8,9 @@ d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInven
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\EcommerceInventory.Application.AssemblyInfoInputs.cache
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\EcommerceInventory.Application.AssemblyInfo.cs
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\EcommerceInventory.Application.csproj.CoreCompileInputs.cache
-d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\Ecommerc.90C3B07C.Up2Date
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\EcommerceInventory.Application.sourcelink.json
+D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\Ecommerc.90C3B07C.Up2Date
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\EcommerceInventory.Application.dll
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\refint\EcommerceInventory.Application.dll
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\EcommerceInventory.Application.pdb
-d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\ref\EcommerceInventory.Application.dll
+D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\obj\Debug\net10.0\ref\EcommerceInventory.Application.dll

@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj": {}
+    "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj": {}
   },
   "projects": {
     "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
@@ -32,8 +32,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
-                "projectPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
+              "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
+                "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
               }
             }
           }
@@ -361,14 +361,14 @@
         }
       }
     },
-    "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
+    "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj",
+        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj",
         "projectName": "EcommerceInventory.Domain",
-        "projectPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj",
+        "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\obj\\",
+        "outputPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -700,14 +700,14 @@
         }
       }
     },
-    "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj": {
+    "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
+        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
         "projectName": "EcommerceInventory.Infrastructure",
-        "projectPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
+        "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\obj\\",
+        "outputPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -731,8 +731,8 @@
               "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
                 "projectPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj"
               },
-              "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
-                "projectPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
+              "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
+                "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
               }
             }
           }

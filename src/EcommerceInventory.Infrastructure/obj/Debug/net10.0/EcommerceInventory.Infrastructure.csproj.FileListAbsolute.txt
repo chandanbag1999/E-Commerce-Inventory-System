@@ -11,6 +11,7 @@ d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInven
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\EcommerceInventory.Infrastructure.AssemblyInfoInputs.cache
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\EcommerceInventory.Infrastructure.AssemblyInfo.cs
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\EcommerceInventory.Infrastructure.csproj.CoreCompileInputs.cache
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\EcommerceInventory.Infrastructure.sourcelink.json
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\Ecommerc.D9A8FE1E.Up2Date
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\EcommerceInventory.Infrastructure.dll
 d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\refint\EcommerceInventory.Infrastructure.dll

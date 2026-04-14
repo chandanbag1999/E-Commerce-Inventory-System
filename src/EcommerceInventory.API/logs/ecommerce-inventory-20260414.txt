@@ -1,0 +1,1491 @@
+2026-04-14 17:35:33.243 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:35:33.291 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:35:33.293 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:35:33.294 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:35:33.296 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:35:33.297 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:35:33.298 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:35:33.300 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:35:33.301 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:35:33.302 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.334 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.382 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.384 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.385 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.387 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.388 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.389 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.394 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.395 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:18.396 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:22.299 +05:30 [ERR] Failed executing DbCommand (278ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 17:36:23.228 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:23.230 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:23.232 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:23.233 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:23.235 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:23.236 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:23.237 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:23.239 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:23.244 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:36:23.246 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.620 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.663 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.665 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.666 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.667 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.669 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.671 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.672 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.673 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:04.675 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:08.402 +05:30 [ERR] Failed executing DbCommand (277ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 17:38:37.726 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:37.767 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:37.768 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:37.770 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:37.771 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:37.772 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:37.773 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:37.775 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:37.776 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:38:37.777 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.467 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.508 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.510 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.511 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.512 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.513 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.515 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.518 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.519 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:03.521 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:06.853 +05:30 [ERR] Failed executing DbCommand (305ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 17:39:07.309 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:07.311 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:07.313 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:07.314 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:07.315 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:07.319 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:07.320 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:07.321 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:07.323 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:07.324 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.361 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.407 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.408 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.410 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.411 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.414 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.416 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.420 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.422 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:44.424 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:39:47.440 +05:30 [ERR] Failed executing DbCommand (283ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 17:39:47.737 +05:30 [INF] Executed DbCommand (267ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-14 17:39:48.172 +05:30 [INF] Executed DbCommand (316ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-14 17:39:48.437 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-04-14 17:39:48.689 +05:30 [INF] Executed DbCommand (249ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-14 17:39:48.944 +05:30 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 17:39:48.960 +05:30 [INF] Applying migration '20260414120838_InitialCreate'.
+2026-04-14 17:39:49.451 +05:30 [INF] Executed DbCommand (334ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+2026-04-14 17:39:49.717 +05:30 [INF] Executed DbCommand (262ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE categories (
+    "Id" uuid NOT NULL,
+    "Name" character varying(150) NOT NULL,
+    "Slug" character varying(200) NOT NULL,
+    "Description" text,
+    "ImageUrl" character varying(500),
+    "CloudinaryId" character varying(200),
+    "ParentId" uuid,
+    "IsActive" boolean NOT NULL,
+    "SortOrder" integer NOT NULL,
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_categories" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_categories_categories_ParentId" FOREIGN KEY ("ParentId") REFERENCES categories ("Id") ON DELETE SET NULL
+);
+2026-04-14 17:39:49.974 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE permissions (
+    "Id" uuid NOT NULL,
+    "Name" character varying(150) NOT NULL,
+    "Module" character varying(100) NOT NULL,
+    "Description" character varying(300),
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_permissions" PRIMARY KEY ("Id")
+);
+2026-04-14 17:39:50.230 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE roles (
+    "Id" uuid NOT NULL,
+    "Name" character varying(100) NOT NULL,
+    "Description" character varying(300),
+    "HierarchyLevel" integer NOT NULL,
+    "IsSystemRole" boolean NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_roles" PRIMARY KEY ("Id")
+);
+2026-04-14 17:39:50.494 +05:30 [INF] Executed DbCommand (253ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE suppliers (
+    "Id" uuid NOT NULL,
+    "Name" character varying(200) NOT NULL,
+    "ContactName" character varying(150),
+    "Email" character varying(200),
+    "Phone" character varying(20),
+    address_street text,
+    address_city text,
+    address_state text,
+    address_pincode text,
+    address_country text,
+    "GstNumber" character varying(50),
+    "IsActive" boolean NOT NULL,
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_suppliers" PRIMARY KEY ("Id")
+);
+2026-04-14 17:39:50.761 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE users (
+    "Id" uuid NOT NULL,
+    "FullName" character varying(150) NOT NULL,
+    "Email" character varying(200) NOT NULL,
+    "PasswordHash" character varying(500) NOT NULL,
+    "Phone" character varying(20),
+    "ProfileImageUrl" character varying(500),
+    "CloudinaryProfileId" character varying(200),
+    "Status" character varying(20) NOT NULL,
+    "IsEmailVerified" boolean NOT NULL,
+    "LastLoginAt" timestamp with time zone,
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_users" PRIMARY KEY ("Id")
+);
+2026-04-14 17:39:51.030 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE products (
+    "Id" uuid NOT NULL,
+    "CategoryId" uuid NOT NULL,
+    "Name" character varying(200) NOT NULL,
+    "Slug" character varying(250) NOT NULL,
+    "Description" text,
+    "Sku" character varying(100) NOT NULL,
+    "Barcode" character varying(100),
+    "UnitPrice" numeric(18,2) NOT NULL,
+    "CostPrice" numeric(18,2) NOT NULL,
+    "ReorderLevel" integer NOT NULL,
+    "ReorderQty" integer NOT NULL,
+    "Status" character varying(20) NOT NULL,
+    "WeightKg" numeric(10,3),
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_products" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_products_categories_CategoryId" FOREIGN KEY ("CategoryId") REFERENCES categories ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:39:51.305 +05:30 [INF] Executed DbCommand (260ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE role_permissions (
+    "RoleId" uuid NOT NULL,
+    "PermissionId" uuid NOT NULL,
+    CONSTRAINT "PK_role_permissions" PRIMARY KEY ("RoleId", "PermissionId"),
+    CONSTRAINT "FK_role_permissions_permissions_PermissionId" FOREIGN KEY ("PermissionId") REFERENCES permissions ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_role_permissions_roles_RoleId" FOREIGN KEY ("RoleId") REFERENCES roles ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:39:51.573 +05:30 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE email_verification_tokens (
+    "Id" uuid NOT NULL,
+    "UserId" uuid NOT NULL,
+    "TokenHash" character varying(500) NOT NULL,
+    "ExpiresAt" timestamp with time zone NOT NULL,
+    "IsUsed" boolean NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_email_verification_tokens" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_email_verification_tokens_users_UserId" FOREIGN KEY ("UserId") REFERENCES users ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:39:51.842 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE password_reset_tokens (
+    "Id" uuid NOT NULL,
+    "UserId" uuid NOT NULL,
+    "TokenHash" character varying(500) NOT NULL,
+    "ExpiresAt" timestamp with time zone NOT NULL,
+    "IsUsed" boolean NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_password_reset_tokens" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_password_reset_tokens_users_UserId" FOREIGN KEY ("UserId") REFERENCES users ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:39:52.110 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE refresh_tokens (
+    "Id" uuid NOT NULL,
+    "UserId" uuid NOT NULL,
+    "Token" character varying(500) NOT NULL,
+    "ExpiresAt" timestamp with time zone NOT NULL,
+    "IsRevoked" boolean NOT NULL,
+    "RevokedAt" timestamp with time zone,
+    "ReplacedBy" character varying(500),
+    "DeviceInfo" character varying(300),
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_refresh_tokens" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_refresh_tokens_users_UserId" FOREIGN KEY ("UserId") REFERENCES users ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:39:52.377 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE user_roles (
+    "UserId" uuid NOT NULL,
+    "RoleId" uuid NOT NULL,
+    "AssignedAt" timestamp with time zone NOT NULL,
+    "AssignedBy" uuid,
+    CONSTRAINT "PK_user_roles" PRIMARY KEY ("UserId", "RoleId"),
+    CONSTRAINT "FK_user_roles_roles_RoleId" FOREIGN KEY ("RoleId") REFERENCES roles ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_user_roles_users_UserId" FOREIGN KEY ("UserId") REFERENCES users ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:39:52.655 +05:30 [INF] Executed DbCommand (263ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE warehouses (
+    "Id" uuid NOT NULL,
+    "Name" character varying(150) NOT NULL,
+    "Code" character varying(20) NOT NULL,
+    address_street text,
+    address_city text,
+    address_state text,
+    address_pincode text,
+    address_country text,
+    "ManagerId" uuid,
+    "Phone" character varying(20),
+    "IsActive" boolean NOT NULL,
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_warehouses" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_warehouses_users_ManagerId" FOREIGN KEY ("ManagerId") REFERENCES users ("Id") ON DELETE SET NULL
+);
+2026-04-14 17:39:52.935 +05:30 [INF] Executed DbCommand (269ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE product_images (
+    "Id" uuid NOT NULL,
+    "ProductId" uuid NOT NULL,
+    "CloudinaryId" character varying(200) NOT NULL,
+    "ImageUrl" character varying(500) NOT NULL,
+    "IsPrimary" boolean NOT NULL,
+    "DisplayOrder" integer NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_product_images" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_product_images_products_ProductId" FOREIGN KEY ("ProductId") REFERENCES products ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:39:53.208 +05:30 [INF] Executed DbCommand (258ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE purchase_orders (
+    "Id" uuid NOT NULL,
+    "PoNumber" character varying(50) NOT NULL,
+    "SupplierId" uuid NOT NULL,
+    "WarehouseId" uuid NOT NULL,
+    "Status" character varying(30) NOT NULL,
+    "TotalAmount" numeric(18,2) NOT NULL,
+    "Notes" text,
+    "ExpectedDeliveryAt" timestamp with time zone,
+    "ApprovedBy" uuid,
+    "ApprovedAt" timestamp with time zone,
+    "ReceivedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_purchase_orders" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_purchase_orders_suppliers_SupplierId" FOREIGN KEY ("SupplierId") REFERENCES suppliers ("Id") ON DELETE RESTRICT,
+    CONSTRAINT "FK_purchase_orders_warehouses_WarehouseId" FOREIGN KEY ("WarehouseId") REFERENCES warehouses ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:39:53.476 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE sales_orders (
+    "Id" uuid NOT NULL,
+    "SoNumber" character varying(50) NOT NULL,
+    "CustomerName" character varying(200) NOT NULL DEFAULT 'Walk-in Customer',
+    "CustomerEmail" character varying(200),
+    "CustomerPhone" character varying(20),
+    "WarehouseId" uuid NOT NULL,
+    "Status" character varying(30) NOT NULL,
+    "Subtotal" numeric(18,2) NOT NULL,
+    "TotalAmount" numeric(18,2) NOT NULL,
+    "Notes" text,
+    "ShippingAddressJson" jsonb,
+    "ApprovedBy" uuid,
+    "ApprovedAt" timestamp with time zone,
+    "ShippedAt" timestamp with time zone,
+    "DeliveredAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_sales_orders" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_sales_orders_warehouses_WarehouseId" FOREIGN KEY ("WarehouseId") REFERENCES warehouses ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:39:53.747 +05:30 [INF] Executed DbCommand (257ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE stocks (
+    "Id" uuid NOT NULL,
+    "ProductId" uuid NOT NULL,
+    "WarehouseId" uuid NOT NULL,
+    "Quantity" integer NOT NULL,
+    "ReservedQty" integer NOT NULL,
+    "LastCountedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_stocks" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_stocks_products_ProductId" FOREIGN KEY ("ProductId") REFERENCES products ("Id") ON DELETE RESTRICT,
+    CONSTRAINT "FK_stocks_warehouses_WarehouseId" FOREIGN KEY ("WarehouseId") REFERENCES warehouses ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:39:54.011 +05:30 [INF] Executed DbCommand (253ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE purchase_order_items (
+    "Id" uuid NOT NULL,
+    "PurchaseOrderId" uuid NOT NULL,
+    "ProductId" uuid NOT NULL,
+    "QuantityOrdered" integer NOT NULL,
+    "QuantityReceived" integer NOT NULL,
+    "UnitCost" numeric(18,2) NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_purchase_order_items" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_purchase_order_items_products_ProductId" FOREIGN KEY ("ProductId") REFERENCES products ("Id") ON DELETE RESTRICT,
+    CONSTRAINT "FK_purchase_order_items_purchase_orders_PurchaseOrderId" FOREIGN KEY ("PurchaseOrderId") REFERENCES purchase_orders ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:39:54.281 +05:30 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE sales_order_items (
+    "Id" uuid NOT NULL,
+    "SalesOrderId" uuid NOT NULL,
+    "ProductId" uuid NOT NULL,
+    "Quantity" integer NOT NULL,
+    "UnitPrice" numeric(18,2) NOT NULL,
+    "Discount" numeric(18,2) NOT NULL DEFAULT 0.0,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_sales_order_items" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_sales_order_items_products_ProductId" FOREIGN KEY ("ProductId") REFERENCES products ("Id") ON DELETE RESTRICT,
+    CONSTRAINT "FK_sales_order_items_sales_orders_SalesOrderId" FOREIGN KEY ("SalesOrderId") REFERENCES sales_orders ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:39:54.548 +05:30 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE stock_movements (
+    "Id" uuid NOT NULL,
+    "StockId" uuid NOT NULL,
+    "MovementType" character varying(50) NOT NULL,
+    "Quantity" integer NOT NULL,
+    "QuantityBefore" integer NOT NULL,
+    "QuantityAfter" integer NOT NULL,
+    "ReferenceId" uuid,
+    "ReferenceType" character varying(50),
+    "Notes" text,
+    "PerformedBy" uuid,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_stock_movements" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_stock_movements_stocks_StockId" FOREIGN KEY ("StockId") REFERENCES stocks ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:39:55.197 +05:30 [INF] Executed DbCommand (636ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000001', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View users', 'Users', 'Users.View', TIMESTAMPTZ '2026-04-14T12:08:37.479311Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000002', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create users', 'Users', 'Users.Create', TIMESTAMPTZ '2026-04-14T12:08:37.479578Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000003', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit users', 'Users', 'Users.Edit', TIMESTAMPTZ '2026-04-14T12:08:37.479578Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000004', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete users', 'Users', 'Users.Delete', TIMESTAMPTZ '2026-04-14T12:08:37.479579Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000005', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Assign/revoke roles', 'Users', 'Users.AssignRole', TIMESTAMPTZ '2026-04-14T12:08:37.479579Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000010', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View roles', 'Roles', 'Roles.View', TIMESTAMPTZ '2026-04-14T12:08:37.479579Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000020', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View categories', 'Categories', 'Categories.View', TIMESTAMPTZ '2026-04-14T12:08:37.479579Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000021', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create categories', 'Categories', 'Categories.Create', TIMESTAMPTZ '2026-04-14T12:08:37.47958Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000022', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit categories', 'Categories', 'Categories.Edit', TIMESTAMPTZ '2026-04-14T12:08:37.47958Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000023', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete categories', 'Categories', 'Categories.Delete', TIMESTAMPTZ '2026-04-14T12:08:37.47958Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000030', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View products', 'Products', 'Products.View', TIMESTAMPTZ '2026-04-14T12:08:37.47958Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000031', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create products', 'Products', 'Products.Create', TIMESTAMPTZ '2026-04-14T12:08:37.47958Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000032', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit products', 'Products', 'Products.Edit', TIMESTAMPTZ '2026-04-14T12:08:37.47958Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000033', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete products', 'Products', 'Products.Delete', TIMESTAMPTZ '2026-04-14T12:08:37.479581Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000040', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View warehouses', 'Warehouses', 'Warehouses.View', TIMESTAMPTZ '2026-04-14T12:08:37.479581Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000041', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create warehouses', 'Warehouses', 'Warehouses.Create', TIMESTAMPTZ '2026-04-14T12:08:37.479581Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000042', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit warehouses', 'Warehouses', 'Warehouses.Edit', TIMESTAMPTZ '2026-04-14T12:08:37.479581Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000043', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete warehouses', 'Warehouses', 'Warehouses.Delete', TIMESTAMPTZ '2026-04-14T12:08:37.479587Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000050', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View stock levels', 'Stocks', 'Stocks.View', TIMESTAMPTZ '2026-04-14T12:08:37.479587Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000051', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Adjust stock manually', 'Stocks', 'Stocks.Adjust', TIMESTAMPTZ '2026-04-14T12:08:37.479587Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000060', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View suppliers', 'Suppliers', 'Suppliers.View', TIMESTAMPTZ '2026-04-14T12:08:37.479587Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000061', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create suppliers', 'Suppliers', 'Suppliers.Create', TIMESTAMPTZ '2026-04-14T12:08:37.479588Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000062', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit suppliers', 'Suppliers', 'Suppliers.Edit', TIMESTAMPTZ '2026-04-14T12:08:37.479588Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000063', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete suppliers', 'Suppliers', 'Suppliers.Delete', TIMESTAMPTZ '2026-04-14T12:08:37.479588Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000070', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View purchase orders', 'PurchaseOrders', 'PurchaseOrders.View', TIMESTAMPTZ '2026-04-14T12:08:37.479588Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000071', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create/manage purchase orders', 'PurchaseOrders', 'PurchaseOrders.Create', TIMESTAMPTZ '2026-04-14T12:08:37.479588Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000072', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Approve/reject purchase orders', 'PurchaseOrders', 'PurchaseOrders.Approve', TIMESTAMPTZ '2026-04-14T12:08:37.479589Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000073', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Receive purchase orders', 'PurchaseOrders', 'PurchaseOrders.Receive', TIMESTAMPTZ '2026-04-14T12:08:37.479589Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000074', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Cancel purchase orders', 'PurchaseOrders', 'PurchaseOrders.Cancel', TIMESTAMPTZ '2026-04-14T12:08:37.479589Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000080', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View sales orders', 'SalesOrders', 'SalesOrders.View', TIMESTAMPTZ '2026-04-14T12:08:37.479589Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000081', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create/manage sales orders', 'SalesOrders', 'SalesOrders.Create', TIMESTAMPTZ '2026-04-14T12:08:37.479589Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000082', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Approve sales orders', 'SalesOrders', 'SalesOrders.Approve', TIMESTAMPTZ '2026-04-14T12:08:37.47959Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000083', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Ship sales orders', 'SalesOrders', 'SalesOrders.Ship', TIMESTAMPTZ '2026-04-14T12:08:37.47959Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000084', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Mark sales orders delivered', 'SalesOrders', 'SalesOrders.Deliver', TIMESTAMPTZ '2026-04-14T12:08:37.47959Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000085', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Cancel sales orders', 'SalesOrders', 'SalesOrders.Cancel', TIMESTAMPTZ '2026-04-14T12:08:37.47959Z');
+2026-04-14 17:39:55.461 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000001', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 1, TRUE, 'SuperAdmin', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000002', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 2, TRUE, 'Admin', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000003', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 3, FALSE, 'InventoryManager', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000004', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 4, FALSE, 'WarehouseManager', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000005', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 5, FALSE, 'PurchaseManager', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000006', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 6, FALSE, 'SalesManager', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000007', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 7, FALSE, 'Accountant', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000008', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 10, FALSE, 'Viewer', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+2026-04-14 17:39:56.005 +05:30 [INF] Executed DbCommand (530ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000001', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000002', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000003', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000004', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000005', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000010', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000020', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000021', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000022', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000023', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000031', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000032', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000033', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000041', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000042', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000043', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000051', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000061', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000062', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000063', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000071', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000072', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000073', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000074', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000081', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000082', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000083', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000084', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000085', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000001', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000002', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000003', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000005', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000010', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000020', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000021', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000022', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000023', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000031', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000032', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000033', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000041', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000042', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000043', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000051', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000061', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000062', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000063', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000071', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000072', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000073', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000074', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000081', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000082', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000083', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000084', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000085', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000020', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000021', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000022', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000031', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000032', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000051', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000004');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000004');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000051', '11111111-0000-0000-0000-000000000004');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000061', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000062', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000071', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000072', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000073', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000081', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000082', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000083', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000084', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000001', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000010', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000020', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000008');
+2026-04-14 17:39:56.270 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_categories_parent ON categories ("ParentId");
+2026-04-14 17:39:56.539 +05:30 [INF] Executed DbCommand (257ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX idx_categories_slug ON categories ("Slug");
+2026-04-14 17:39:56.795 +05:30 [INF] Executed DbCommand (249ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_email_verification_tokens_UserId" ON email_verification_tokens ("UserId");
+2026-04-14 17:39:57.057 +05:30 [INF] Executed DbCommand (250ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_password_reset_tokens_UserId" ON password_reset_tokens ("UserId");
+2026-04-14 17:39:57.316 +05:30 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_permissions_Name" ON permissions ("Name");
+2026-04-14 17:39:57.578 +05:30 [INF] Executed DbCommand (250ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_product_images_product ON product_images ("ProductId");
+2026-04-14 17:39:57.843 +05:30 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_products_category ON products ("CategoryId");
+2026-04-14 17:39:58.107 +05:30 [ERR] Failed executing DbCommand (250ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_products_status ON products ("Status") WHERE deleted_at IS NULL;
+2026-04-14 17:41:38.005 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:38.045 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:38.047 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:38.048 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:38.049 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:38.051 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:38.052 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:38.053 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:38.054 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:38.056 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:41.788 +05:30 [INF] Executed DbCommand (280ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 17:41:54.373 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:54.441 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:54.447 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:54.450 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:54.453 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:54.456 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:54.461 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:54.464 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:54.467 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:41:54.471 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.159 +05:30 [INF] Applying database migrations...
+2026-04-14 17:57:59.965 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.968 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.968 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.968 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.968 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.968 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.968 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.968 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.968 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:57:59.968 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 17:58:03.937 +05:30 [INF] Executed DbCommand (297ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 17:58:04.238 +05:30 [INF] Executed DbCommand (258ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-14 17:58:04.640 +05:30 [INF] Executed DbCommand (274ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-14 17:58:05.181 +05:30 [INF] Executed DbCommand (265ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-14 17:58:05.433 +05:30 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 17:58:05.442 +05:30 [INF] Applying migration '20260414121156_InitialCreate'.
+2026-04-14 17:58:05.969 +05:30 [INF] Executed DbCommand (368ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+2026-04-14 17:58:06.284 +05:30 [INF] Executed DbCommand (314ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE categories (
+    "Id" uuid NOT NULL,
+    "Name" character varying(150) NOT NULL,
+    "Slug" character varying(200) NOT NULL,
+    "Description" text,
+    "ImageUrl" character varying(500),
+    "CloudinaryId" character varying(200),
+    "ParentId" uuid,
+    "IsActive" boolean NOT NULL,
+    "SortOrder" integer NOT NULL,
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_categories" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_categories_categories_ParentId" FOREIGN KEY ("ParentId") REFERENCES categories ("Id") ON DELETE SET NULL
+);
+2026-04-14 17:58:06.556 +05:30 [INF] Executed DbCommand (272ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE permissions (
+    "Id" uuid NOT NULL,
+    "Name" character varying(150) NOT NULL,
+    "Module" character varying(100) NOT NULL,
+    "Description" character varying(300),
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_permissions" PRIMARY KEY ("Id")
+);
+2026-04-14 17:58:06.813 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE roles (
+    "Id" uuid NOT NULL,
+    "Name" character varying(100) NOT NULL,
+    "Description" character varying(300),
+    "HierarchyLevel" integer NOT NULL,
+    "IsSystemRole" boolean NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_roles" PRIMARY KEY ("Id")
+);
+2026-04-14 17:58:07.068 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE suppliers (
+    "Id" uuid NOT NULL,
+    "Name" character varying(200) NOT NULL,
+    "ContactName" character varying(150),
+    "Email" character varying(200),
+    "Phone" character varying(20),
+    address_street text,
+    address_city text,
+    address_state text,
+    address_pincode text,
+    address_country text,
+    "GstNumber" character varying(50),
+    "IsActive" boolean NOT NULL,
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_suppliers" PRIMARY KEY ("Id")
+);
+2026-04-14 17:58:07.325 +05:30 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE users (
+    "Id" uuid NOT NULL,
+    "FullName" character varying(150) NOT NULL,
+    "Email" character varying(200) NOT NULL,
+    "PasswordHash" character varying(500) NOT NULL,
+    "Phone" character varying(20),
+    "ProfileImageUrl" character varying(500),
+    "CloudinaryProfileId" character varying(200),
+    "Status" character varying(20) NOT NULL,
+    "IsEmailVerified" boolean NOT NULL,
+    "LastLoginAt" timestamp with time zone,
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_users" PRIMARY KEY ("Id")
+);
+2026-04-14 17:58:07.584 +05:30 [INF] Executed DbCommand (258ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE products (
+    "Id" uuid NOT NULL,
+    "CategoryId" uuid NOT NULL,
+    "Name" character varying(200) NOT NULL,
+    "Slug" character varying(250) NOT NULL,
+    "Description" text,
+    "Sku" character varying(100) NOT NULL,
+    "Barcode" character varying(100),
+    "UnitPrice" numeric(18,2) NOT NULL,
+    "CostPrice" numeric(18,2) NOT NULL,
+    "ReorderLevel" integer NOT NULL,
+    "ReorderQty" integer NOT NULL,
+    "Status" character varying(20) NOT NULL,
+    "WeightKg" numeric(10,3),
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_products" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_products_categories_CategoryId" FOREIGN KEY ("CategoryId") REFERENCES categories ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:58:07.926 +05:30 [INF] Executed DbCommand (342ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE role_permissions (
+    "RoleId" uuid NOT NULL,
+    "PermissionId" uuid NOT NULL,
+    CONSTRAINT "PK_role_permissions" PRIMARY KEY ("RoleId", "PermissionId"),
+    CONSTRAINT "FK_role_permissions_permissions_PermissionId" FOREIGN KEY ("PermissionId") REFERENCES permissions ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_role_permissions_roles_RoleId" FOREIGN KEY ("RoleId") REFERENCES roles ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:58:08.183 +05:30 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE email_verification_tokens (
+    "Id" uuid NOT NULL,
+    "UserId" uuid NOT NULL,
+    "TokenHash" character varying(500) NOT NULL,
+    "ExpiresAt" timestamp with time zone NOT NULL,
+    "IsUsed" boolean NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_email_verification_tokens" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_email_verification_tokens_users_UserId" FOREIGN KEY ("UserId") REFERENCES users ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:58:08.438 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE password_reset_tokens (
+    "Id" uuid NOT NULL,
+    "UserId" uuid NOT NULL,
+    "TokenHash" character varying(500) NOT NULL,
+    "ExpiresAt" timestamp with time zone NOT NULL,
+    "IsUsed" boolean NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_password_reset_tokens" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_password_reset_tokens_users_UserId" FOREIGN KEY ("UserId") REFERENCES users ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:58:08.698 +05:30 [INF] Executed DbCommand (259ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE refresh_tokens (
+    "Id" uuid NOT NULL,
+    "UserId" uuid NOT NULL,
+    "Token" character varying(500) NOT NULL,
+    "ExpiresAt" timestamp with time zone NOT NULL,
+    "IsRevoked" boolean NOT NULL,
+    "RevokedAt" timestamp with time zone,
+    "ReplacedBy" character varying(500),
+    "DeviceInfo" character varying(300),
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_refresh_tokens" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_refresh_tokens_users_UserId" FOREIGN KEY ("UserId") REFERENCES users ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:58:08.954 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE user_roles (
+    "UserId" uuid NOT NULL,
+    "RoleId" uuid NOT NULL,
+    "AssignedAt" timestamp with time zone NOT NULL,
+    "AssignedBy" uuid,
+    CONSTRAINT "PK_user_roles" PRIMARY KEY ("UserId", "RoleId"),
+    CONSTRAINT "FK_user_roles_roles_RoleId" FOREIGN KEY ("RoleId") REFERENCES roles ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_user_roles_users_UserId" FOREIGN KEY ("UserId") REFERENCES users ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:58:09.210 +05:30 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE warehouses (
+    "Id" uuid NOT NULL,
+    "Name" character varying(150) NOT NULL,
+    "Code" character varying(20) NOT NULL,
+    address_street text,
+    address_city text,
+    address_state text,
+    address_pincode text,
+    address_country text,
+    "ManagerId" uuid,
+    "Phone" character varying(20),
+    "IsActive" boolean NOT NULL,
+    "DeletedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_warehouses" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_warehouses_users_ManagerId" FOREIGN KEY ("ManagerId") REFERENCES users ("Id") ON DELETE SET NULL
+);
+2026-04-14 17:58:09.468 +05:30 [INF] Executed DbCommand (257ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE product_images (
+    "Id" uuid NOT NULL,
+    "ProductId" uuid NOT NULL,
+    "CloudinaryId" character varying(200) NOT NULL,
+    "ImageUrl" character varying(500) NOT NULL,
+    "IsPrimary" boolean NOT NULL,
+    "DisplayOrder" integer NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_product_images" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_product_images_products_ProductId" FOREIGN KEY ("ProductId") REFERENCES products ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:58:09.741 +05:30 [INF] Executed DbCommand (273ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE purchase_orders (
+    "Id" uuid NOT NULL,
+    "PoNumber" character varying(50) NOT NULL,
+    "SupplierId" uuid NOT NULL,
+    "WarehouseId" uuid NOT NULL,
+    "Status" character varying(30) NOT NULL,
+    "TotalAmount" numeric(18,2) NOT NULL,
+    "Notes" text,
+    "ExpectedDeliveryAt" timestamp with time zone,
+    "ApprovedBy" uuid,
+    "ApprovedAt" timestamp with time zone,
+    "ReceivedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_purchase_orders" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_purchase_orders_suppliers_SupplierId" FOREIGN KEY ("SupplierId") REFERENCES suppliers ("Id") ON DELETE RESTRICT,
+    CONSTRAINT "FK_purchase_orders_warehouses_WarehouseId" FOREIGN KEY ("WarehouseId") REFERENCES warehouses ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:58:10.005 +05:30 [INF] Executed DbCommand (263ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE sales_orders (
+    "Id" uuid NOT NULL,
+    "SoNumber" character varying(50) NOT NULL,
+    "CustomerName" character varying(200) NOT NULL DEFAULT 'Walk-in Customer',
+    "CustomerEmail" character varying(200),
+    "CustomerPhone" character varying(20),
+    "WarehouseId" uuid NOT NULL,
+    "Status" character varying(30) NOT NULL,
+    "Subtotal" numeric(18,2) NOT NULL,
+    "TotalAmount" numeric(18,2) NOT NULL,
+    "Notes" text,
+    "ShippingAddressJson" jsonb,
+    "ApprovedBy" uuid,
+    "ApprovedAt" timestamp with time zone,
+    "ShippedAt" timestamp with time zone,
+    "DeliveredAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    "CreatedBy" uuid,
+    "UpdatedBy" uuid,
+    CONSTRAINT "PK_sales_orders" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_sales_orders_warehouses_WarehouseId" FOREIGN KEY ("WarehouseId") REFERENCES warehouses ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:58:10.264 +05:30 [INF] Executed DbCommand (259ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE stocks (
+    "Id" uuid NOT NULL,
+    "ProductId" uuid NOT NULL,
+    "WarehouseId" uuid NOT NULL,
+    "Quantity" integer NOT NULL,
+    "ReservedQty" integer NOT NULL,
+    "LastCountedAt" timestamp with time zone,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_stocks" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_stocks_products_ProductId" FOREIGN KEY ("ProductId") REFERENCES products ("Id") ON DELETE RESTRICT,
+    CONSTRAINT "FK_stocks_warehouses_WarehouseId" FOREIGN KEY ("WarehouseId") REFERENCES warehouses ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:58:10.523 +05:30 [INF] Executed DbCommand (259ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE purchase_order_items (
+    "Id" uuid NOT NULL,
+    "PurchaseOrderId" uuid NOT NULL,
+    "ProductId" uuid NOT NULL,
+    "QuantityOrdered" integer NOT NULL,
+    "QuantityReceived" integer NOT NULL,
+    "UnitCost" numeric(18,2) NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_purchase_order_items" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_purchase_order_items_products_ProductId" FOREIGN KEY ("ProductId") REFERENCES products ("Id") ON DELETE RESTRICT,
+    CONSTRAINT "FK_purchase_order_items_purchase_orders_PurchaseOrderId" FOREIGN KEY ("PurchaseOrderId") REFERENCES purchase_orders ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:58:10.778 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE sales_order_items (
+    "Id" uuid NOT NULL,
+    "SalesOrderId" uuid NOT NULL,
+    "ProductId" uuid NOT NULL,
+    "Quantity" integer NOT NULL,
+    "UnitPrice" numeric(18,2) NOT NULL,
+    "Discount" numeric(18,2) NOT NULL DEFAULT 0.0,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_sales_order_items" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_sales_order_items_products_ProductId" FOREIGN KEY ("ProductId") REFERENCES products ("Id") ON DELETE RESTRICT,
+    CONSTRAINT "FK_sales_order_items_sales_orders_SalesOrderId" FOREIGN KEY ("SalesOrderId") REFERENCES sales_orders ("Id") ON DELETE CASCADE
+);
+2026-04-14 17:58:11.033 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE stock_movements (
+    "Id" uuid NOT NULL,
+    "StockId" uuid NOT NULL,
+    "MovementType" character varying(50) NOT NULL,
+    "Quantity" integer NOT NULL,
+    "QuantityBefore" integer NOT NULL,
+    "QuantityAfter" integer NOT NULL,
+    "ReferenceId" uuid,
+    "ReferenceType" character varying(50),
+    "Notes" text,
+    "PerformedBy" uuid,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone NOT NULL,
+    CONSTRAINT "PK_stock_movements" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_stock_movements_stocks_StockId" FOREIGN KEY ("StockId") REFERENCES stocks ("Id") ON DELETE RESTRICT
+);
+2026-04-14 17:58:11.541 +05:30 [INF] Executed DbCommand (508ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000001', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View users', 'Users', 'Users.View', TIMESTAMPTZ '2026-04-14T12:11:54.151895Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000002', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create users', 'Users', 'Users.Create', TIMESTAMPTZ '2026-04-14T12:11:54.152034Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000003', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit users', 'Users', 'Users.Edit', TIMESTAMPTZ '2026-04-14T12:11:54.152034Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000004', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete users', 'Users', 'Users.Delete', TIMESTAMPTZ '2026-04-14T12:11:54.152036Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000005', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Assign/revoke roles', 'Users', 'Users.AssignRole', TIMESTAMPTZ '2026-04-14T12:11:54.152036Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000010', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View roles', 'Roles', 'Roles.View', TIMESTAMPTZ '2026-04-14T12:11:54.152037Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000020', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View categories', 'Categories', 'Categories.View', TIMESTAMPTZ '2026-04-14T12:11:54.152037Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000021', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create categories', 'Categories', 'Categories.Create', TIMESTAMPTZ '2026-04-14T12:11:54.152037Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000022', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit categories', 'Categories', 'Categories.Edit', TIMESTAMPTZ '2026-04-14T12:11:54.152037Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000023', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete categories', 'Categories', 'Categories.Delete', TIMESTAMPTZ '2026-04-14T12:11:54.152037Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000030', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View products', 'Products', 'Products.View', TIMESTAMPTZ '2026-04-14T12:11:54.152037Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000031', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create products', 'Products', 'Products.Create', TIMESTAMPTZ '2026-04-14T12:11:54.152038Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000032', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit products', 'Products', 'Products.Edit', TIMESTAMPTZ '2026-04-14T12:11:54.152038Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000033', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete products', 'Products', 'Products.Delete', TIMESTAMPTZ '2026-04-14T12:11:54.152038Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000040', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View warehouses', 'Warehouses', 'Warehouses.View', TIMESTAMPTZ '2026-04-14T12:11:54.152038Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000041', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create warehouses', 'Warehouses', 'Warehouses.Create', TIMESTAMPTZ '2026-04-14T12:11:54.152038Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000042', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit warehouses', 'Warehouses', 'Warehouses.Edit', TIMESTAMPTZ '2026-04-14T12:11:54.152038Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000043', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete warehouses', 'Warehouses', 'Warehouses.Delete', TIMESTAMPTZ '2026-04-14T12:11:54.152039Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000050', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View stock levels', 'Stocks', 'Stocks.View', TIMESTAMPTZ '2026-04-14T12:11:54.152039Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000051', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Adjust stock manually', 'Stocks', 'Stocks.Adjust', TIMESTAMPTZ '2026-04-14T12:11:54.152039Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000060', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View suppliers', 'Suppliers', 'Suppliers.View', TIMESTAMPTZ '2026-04-14T12:11:54.152039Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000061', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create suppliers', 'Suppliers', 'Suppliers.Create', TIMESTAMPTZ '2026-04-14T12:11:54.152039Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000062', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Edit suppliers', 'Suppliers', 'Suppliers.Edit', TIMESTAMPTZ '2026-04-14T12:11:54.152042Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000063', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Delete suppliers', 'Suppliers', 'Suppliers.Delete', TIMESTAMPTZ '2026-04-14T12:11:54.152042Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000070', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View purchase orders', 'PurchaseOrders', 'PurchaseOrders.View', TIMESTAMPTZ '2026-04-14T12:11:54.152042Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000071', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create/manage purchase orders', 'PurchaseOrders', 'PurchaseOrders.Create', TIMESTAMPTZ '2026-04-14T12:11:54.152042Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000072', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Approve/reject purchase orders', 'PurchaseOrders', 'PurchaseOrders.Approve', TIMESTAMPTZ '2026-04-14T12:11:54.152042Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000073', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Receive purchase orders', 'PurchaseOrders', 'PurchaseOrders.Receive', TIMESTAMPTZ '2026-04-14T12:11:54.152042Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000074', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Cancel purchase orders', 'PurchaseOrders', 'PurchaseOrders.Cancel', TIMESTAMPTZ '2026-04-14T12:11:54.152043Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000080', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'View sales orders', 'SalesOrders', 'SalesOrders.View', TIMESTAMPTZ '2026-04-14T12:11:54.152043Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000081', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Create/manage sales orders', 'SalesOrders', 'SalesOrders.Create', TIMESTAMPTZ '2026-04-14T12:11:54.152043Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000082', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Approve sales orders', 'SalesOrders', 'SalesOrders.Approve', TIMESTAMPTZ '2026-04-14T12:11:54.152043Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000083', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Ship sales orders', 'SalesOrders', 'SalesOrders.Ship', TIMESTAMPTZ '2026-04-14T12:11:54.152043Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000084', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Mark sales orders delivered', 'SalesOrders', 'SalesOrders.Deliver', TIMESTAMPTZ '2026-04-14T12:11:54.152043Z');
+INSERT INTO permissions ("Id", "CreatedAt", "Description", "Module", "Name", "UpdatedAt")
+VALUES ('21111111-0000-0000-0000-000000000085', TIMESTAMPTZ '2025-01-01T00:00:00Z', 'Cancel sales orders', 'SalesOrders', 'SalesOrders.Cancel', TIMESTAMPTZ '2026-04-14T12:11:54.152044Z');
+2026-04-14 17:58:11.808 +05:30 [INF] Executed DbCommand (266ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000001', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 1, TRUE, 'SuperAdmin', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000002', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 2, TRUE, 'Admin', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000003', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 3, FALSE, 'InventoryManager', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000004', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 4, FALSE, 'WarehouseManager', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000005', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 5, FALSE, 'PurchaseManager', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000006', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 6, FALSE, 'SalesManager', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000007', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 7, FALSE, 'Accountant', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+INSERT INTO roles ("Id", "CreatedAt", "Description", "HierarchyLevel", "IsSystemRole", "Name", "UpdatedAt")
+VALUES ('11111111-0000-0000-0000-000000000008', TIMESTAMPTZ '2025-01-01T00:00:00Z', NULL, 10, FALSE, 'Viewer', TIMESTAMPTZ '2025-01-01T00:00:00Z');
+2026-04-14 17:58:12.325 +05:30 [INF] Executed DbCommand (516ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000001', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000002', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000003', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000004', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000005', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000010', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000020', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000021', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000022', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000023', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000031', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000032', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000033', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000041', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000042', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000043', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000051', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000061', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000062', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000063', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000071', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000072', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000073', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000074', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000081', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000082', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000083', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000084', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000085', '11111111-0000-0000-0000-000000000001');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000001', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000002', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000003', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000005', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000010', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000020', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000021', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000022', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000023', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000031', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000032', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000033', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000041', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000042', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000043', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000051', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000061', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000062', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000063', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000071', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000072', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000073', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000074', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000081', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000082', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000083', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000084', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000085', '11111111-0000-0000-0000-000000000002');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000020', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000021', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000022', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000031', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000032', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000051', '11111111-0000-0000-0000-000000000003');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000004');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000004');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000051', '11111111-0000-0000-0000-000000000004');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000061', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000062', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000071', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000072', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000073', '11111111-0000-0000-0000-000000000005');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000081', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000082', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000083', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000084', '11111111-0000-0000-0000-000000000006');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000007');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000001', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000010', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000020', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000030', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000040', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000050', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000060', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000070', '11111111-0000-0000-0000-000000000008');
+INSERT INTO role_permissions ("PermissionId", "RoleId")
+VALUES ('21111111-0000-0000-0000-000000000080', '11111111-0000-0000-0000-000000000008');
+2026-04-14 17:58:12.578 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_categories_parent ON categories ("ParentId");
+2026-04-14 17:58:12.924 +05:30 [INF] Executed DbCommand (345ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX idx_categories_slug ON categories ("Slug");
+2026-04-14 17:58:13.175 +05:30 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_email_verification_tokens_UserId" ON email_verification_tokens ("UserId");
+2026-04-14 17:58:13.428 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_password_reset_tokens_UserId" ON password_reset_tokens ("UserId");
+2026-04-14 17:58:13.719 +05:30 [INF] Executed DbCommand (291ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_permissions_Name" ON permissions ("Name");
+2026-04-14 17:58:13.974 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_product_images_product ON product_images ("ProductId");
+2026-04-14 17:58:14.228 +05:30 [INF] Executed DbCommand (253ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_products_category ON products ("CategoryId");
+2026-04-14 17:58:14.484 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_products_status ON products ("Status") WHERE "DeletedAt" IS NULL;
+2026-04-14 17:58:14.735 +05:30 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_products_Sku" ON products ("Sku");
+2026-04-14 17:58:14.991 +05:30 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_products_Slug" ON products ("Slug");
+2026-04-14 17:58:15.257 +05:30 [INF] Executed DbCommand (265ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_purchase_order_items_ProductId" ON purchase_order_items ("ProductId");
+2026-04-14 17:58:15.508 +05:30 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_purchase_order_items_PurchaseOrderId" ON purchase_order_items ("PurchaseOrderId");
+2026-04-14 17:58:15.762 +05:30 [INF] Executed DbCommand (253ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_po_status ON purchase_orders ("Status");
+2026-04-14 17:58:16.015 +05:30 [INF] Executed DbCommand (253ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_po_supplier ON purchase_orders ("SupplierId");
+2026-04-14 17:58:16.269 +05:30 [INF] Executed DbCommand (253ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_purchase_orders_PoNumber" ON purchase_orders ("PoNumber");
+2026-04-14 17:58:16.521 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_purchase_orders_WarehouseId" ON purchase_orders ("WarehouseId");
+2026-04-14 17:58:16.773 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_refresh_tokens_user_id ON refresh_tokens ("UserId");
+2026-04-14 17:58:17.025 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_refresh_tokens_Token" ON refresh_tokens ("Token");
+2026-04-14 17:58:17.278 +05:30 [INF] Executed DbCommand (253ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_role_permissions_PermissionId" ON role_permissions ("PermissionId");
+2026-04-14 17:58:17.536 +05:30 [INF] Executed DbCommand (257ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_roles_Name" ON roles ("Name");
+2026-04-14 17:58:17.788 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_sales_order_items_ProductId" ON sales_order_items ("ProductId");
+2026-04-14 17:58:18.059 +05:30 [INF] Executed DbCommand (271ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_sales_order_items_SalesOrderId" ON sales_order_items ("SalesOrderId");
+2026-04-14 17:58:18.311 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_so_status ON sales_orders ("Status");
+2026-04-14 17:58:18.564 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_sales_orders_SoNumber" ON sales_orders ("SoNumber");
+2026-04-14 17:58:18.917 +05:30 [INF] Executed DbCommand (353ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_sales_orders_WarehouseId" ON sales_orders ("WarehouseId");
+2026-04-14 17:58:19.174 +05:30 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_stock_movements_ref ON stock_movements ("ReferenceId");
+2026-04-14 17:58:19.425 +05:30 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_stock_movements_stock ON stock_movements ("StockId");
+2026-04-14 17:58:19.678 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_stocks_product ON stocks ("ProductId");
+2026-04-14 17:58:19.932 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_stocks_warehouse ON stocks ("WarehouseId");
+2026-04-14 17:58:20.185 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_stocks_ProductId_WarehouseId" ON stocks ("ProductId", "WarehouseId");
+2026-04-14 17:58:20.437 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_user_roles_RoleId" ON user_roles ("RoleId");
+2026-04-14 17:58:20.693 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX idx_users_status ON users ("Status") WHERE "DeletedAt" IS NULL;
+2026-04-14 17:58:20.946 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_users_Email" ON users ("Email");
+2026-04-14 17:58:21.199 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_warehouses_Code" ON warehouses ("Code");
+2026-04-14 17:58:21.455 +05:30 [INF] Executed DbCommand (256ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_warehouses_ManagerId" ON warehouses ("ManagerId");
+2026-04-14 17:58:21.707 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260414121156_InitialCreate', '10.0.5');
+2026-04-14 17:58:22.503 +05:30 [INF] Database migrations applied successfully.
+2026-04-14 17:58:22.570 +05:30 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-04-14 17:58:22.628 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-14 17:58:22.630 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-14 17:58:22.631 +05:30 [INF] Hosting environment: Development
+2026-04-14 17:58:22.631 +05:30 [INF] Content root path: d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
