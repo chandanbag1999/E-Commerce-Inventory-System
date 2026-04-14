@@ -1,3 +1,4 @@
+using EcommerceInventory.Application.DependencyInjections;
 using EcommerceInventory.Infrastructure;
 using EcommerceInventory.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,9 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog();
+
+// Add Application services (MediatR, AutoMapper, Validators)
+builder.Services.AddApplicationServices();
 
 // Add services to the container
 builder.Services.AddControllers();
