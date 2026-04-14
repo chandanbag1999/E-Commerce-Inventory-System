@@ -1,0 +1,11 @@
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\bin\Debug\net10.0\EcommerceInventory.Domain.deps.json
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\bin\Debug\net10.0\EcommerceInventory.Domain.dll
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\bin\Debug\net10.0\EcommerceInventory.Domain.pdb
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\obj\Debug\net10.0\EcommerceInventory.Domain.GeneratedMSBuildEditorConfig.editorconfig
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\obj\Debug\net10.0\EcommerceInventory.Domain.AssemblyInfoInputs.cache
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\obj\Debug\net10.0\EcommerceInventory.Domain.AssemblyInfo.cs
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\obj\Debug\net10.0\EcommerceInventory.Domain.csproj.CoreCompileInputs.cache
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\obj\Debug\net10.0\EcommerceInventory.Domain.dll
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\obj\Debug\net10.0\refint\EcommerceInventory.Domain.dll
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\obj\Debug\net10.0\EcommerceInventory.Domain.pdb
+d:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Domain\obj\Debug\net10.0\ref\EcommerceInventory.Domain.dll

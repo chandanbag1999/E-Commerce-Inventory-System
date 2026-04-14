@@ -1,7 +1,0 @@
-<Solution>
-  <Project Path="src/EIVMS.API/EIVMS.API.csproj" />
-  <Project Path="src/EIVMS.Application/EIVMS.Application.csproj" />
-  <Project Path="src/EIVMS.Domain/EIVMS.Domain.csproj" />
-  <Project Path="src/EIVMS.Infrastructure/EIVMS.Infrastructure.csproj" />
-  <Project Path="test/EIVMS.UnitTests/EIVMS.UnitTests.csproj" />
-</Solution>
