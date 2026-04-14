@@ -427,3 +427,341 @@ WHERE "Id" = @p2;
 2026-04-14 21:40:38.118 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
 2026-04-14 21:40:38.118 +05:30 [INF] [aa57f659-5f49-4894-a3b6-6e87b56bfbab] GET /scalar/ responded 200 in 134.37ms
 2026-04-14 21:40:38.118 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/ - 200 693 text/html 134.6854ms
+2026-04-14 22:01:17.993 +05:30 [INF] Applying database migrations...
+2026-04-14 22:01:18.764 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:18.766 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:18.767 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:18.767 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:18.767 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:18.767 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:18.767 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:18.767 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:18.767 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:18.767 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:01:22.787 +05:30 [INF] Executed DbCommand (278ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:01:23.445 +05:30 [INF] Executed DbCommand (572ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-14 22:01:23.827 +05:30 [INF] Executed DbCommand (257ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-14 22:01:24.359 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-14 22:01:24.621 +05:30 [INF] Executed DbCommand (261ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:01:24.628 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-14 22:01:24.881 +05:30 [INF] Database migrations applied successfully.
+2026-04-14 22:01:24.886 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-14 22:01:25.458 +05:30 [INF] Executed DbCommand (257ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-14 22:01:25.475 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-14 22:01:25.475 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-14 22:01:25.536 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-14 22:01:25.551 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-14 22:01:25.621 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-14 22:01:25.621 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-14 22:01:25.621 +05:30 [INF] Hosting environment: Development
+2026-04-14 22:01:25.621 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-14 22:01:37.333 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-14 22:01:37.379 +05:30 [INF] [a076b823-7482-45d9-86e7-062fc0cac14c] POST /api/v1/auth/login 
+2026-04-14 22:01:37.383 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-14 22:01:37.433 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:01:37.454 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-14 22:01:37.466 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-04-14 22:01:37.510 +05:30 [INF] Handling LoginCommand
+2026-04-14 22:01:37.744 +05:30 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-14 22:01:38.101 +05:30 [INF] Executed DbCommand (292ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-14 22:01:39.537 +05:30 [INF] Executed DbCommand (262ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-14 22:01:39.812 +05:30 [INF] Executed DbCommand (250ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-14 22:01:39.816 +05:30 [INF] Handled LoginCommand
+2026-04-14 22:01:39.824 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:01:39.856 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 2396.1262ms
+2026-04-14 22:01:39.857 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:01:39.859 +05:30 [INF] [a076b823-7482-45d9-86e7-062fc0cac14c] POST /api/v1/auth/login responded 200 in 2476.2718ms
+2026-04-14 22:01:39.864 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 2532.4676ms
+2026-04-14 22:01:47.086 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-14 22:01:47.088 +05:30 [INF] [d12a7980-7754-4f39-8f21-0cfe91dd8fa7] POST /api/v1/auth/login 
+2026-04-14 22:01:47.091 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:01:47.091 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-14 22:01:47.094 +05:30 [INF] Handling LoginCommand
+2026-04-14 22:01:47.387 +05:30 [INF] Executed DbCommand (284ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-14 22:01:48.364 +05:30 [INF] Executed DbCommand (250ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-14 22:01:48.616 +05:30 [INF] Executed DbCommand (250ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-14 22:01:48.617 +05:30 [INF] Handled LoginCommand
+2026-04-14 22:01:48.617 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:01:48.618 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 1526.9769ms
+2026-04-14 22:01:48.618 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:01:48.619 +05:30 [INF] [d12a7980-7754-4f39-8f21-0cfe91dd8fa7] POST /api/v1/auth/login responded 200 in 1530.0171ms
+2026-04-14 22:01:48.619 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 1533.2254ms
+2026-04-14 22:34:34.542 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-14 22:34:34.544 +05:30 [INF] [e702412c-efd0-4a73-a65e-e4508be4f715] POST /api/v1/auth/login 
+2026-04-14 22:34:34.557 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:34:34.558 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-14 22:34:34.576 +05:30 [INF] Handling LoginCommand
+2026-04-14 22:34:36.962 +05:30 [INF] Executed DbCommand (320ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-14 22:34:37.886 +05:30 [INF] Executed DbCommand (302ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-14 22:34:38.176 +05:30 [INF] Executed DbCommand (288ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-14 22:34:38.176 +05:30 [INF] Handled LoginCommand
+2026-04-14 22:34:38.177 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:34:38.179 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 3620.4491ms
+2026-04-14 22:34:38.179 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:34:38.182 +05:30 [INF] [e702412c-efd0-4a73-a65e-e4508be4f715] POST /api/v1/auth/login responded 200 in 3637.5358ms
+2026-04-14 22:34:38.184 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 3642.343ms
+2026-04-14 22:34:50.429 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users - null null
+2026-04-14 22:34:50.430 +05:30 [INF] [2cbca78b-5baf-460e-bc15-2ccd268a7ba2] GET /api/v1/users 
+2026-04-14 22:34:50.683 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.GetAllUsers (EcommerceInventory.API)'
+2026-04-14 22:34:50.696 +05:30 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUsers(Int32, Int32, System.String, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:34:50.704 +05:30 [INF] Handling GetAllUsersQuery
+2026-04-14 22:34:51.079 +05:30 [INF] Executed DbCommand (290ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM users AS u
+WHERE u."DeletedAt" IS NULL
+2026-04-14 22:34:51.439 +05:30 [INF] Executed DbCommand (287ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s."UserId", s."RoleId", s."AssignedAt", s."AssignedBy", s."Id", s."CreatedAt", s."Description", s."HierarchyLevel", s."IsSystemRole", s."Name", s."UpdatedAt"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL
+    ORDER BY u."FullName"
+    LIMIT @p1 OFFSET @p
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+) AS s ON u1."Id" = s."UserId"
+ORDER BY u1."FullName", u1."Id", s."UserId", s."RoleId"
+2026-04-14 22:34:51.453 +05:30 [INF] Handled GetAllUsersQuery
+2026-04-14 22:34:51.454 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Common.Models.PagedResult`1[[EcommerceInventory.Application.Features.Users.DTOs.UserListDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:34:51.476 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.GetAllUsers (EcommerceInventory.API) in 779.3317ms
+2026-04-14 22:34:51.476 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.GetAllUsers (EcommerceInventory.API)'
+2026-04-14 22:34:51.476 +05:30 [INF] [2cbca78b-5baf-460e-bc15-2ccd268a7ba2] GET /api/v1/users responded 200 in 1045.9544ms
+2026-04-14 22:34:51.486 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users - 200 null application/json; charset=utf-8 1056.3951ms
+2026-04-14 22:35:02.175 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/users - application/json 99
+2026-04-14 22:35:02.175 +05:30 [INF] [741e7f96-75b1-4069-b180-48f2e432cd11] POST /api/v1/users 
+2026-04-14 22:35:02.179 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'D72BHwxNq3KYjfiQGUZRdQ_SnC8ecND_h3XYqjKlg08'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-04-14 22:35:02.191 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'D72BHwxNq3KYjfiQGUZRdQ_SnC8ecND_h3XYqjKlg08'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-04-14 22:35:02.194 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+EcommerceInventory.API.Authorization.PermissionRequirement
+2026-04-14 22:35:02.202 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-04-14 22:35:02.202 +05:30 [INF] [741e7f96-75b1-4069-b180-48f2e432cd11] POST /api/v1/users responded 401 in 26.6147ms
+2026-04-14 22:35:02.202 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/users - 401 0 null 27.5319ms
+2026-04-14 22:35:14.977 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/users - application/json 99
+2026-04-14 22:35:14.977 +05:30 [INF] [2534b71b-0cba-401c-8922-3ca17d2946f3] POST /api/v1/users 
+2026-04-14 22:35:14.978 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'D72BHwxNq3KYjfiQGUZRdQ_SnC8ecND_h3XYqjKlg08'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-04-14 22:35:14.979 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'D72BHwxNq3KYjfiQGUZRdQ_SnC8ecND_h3XYqjKlg08'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-04-14 22:35:14.982 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+EcommerceInventory.API.Authorization.PermissionRequirement
+2026-04-14 22:35:14.984 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-04-14 22:35:14.984 +05:30 [INF] [2534b71b-0cba-401c-8922-3ca17d2946f3] POST /api/v1/users responded 401 in 6.4016ms
+2026-04-14 22:35:14.984 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/users - 401 0 null 7.0116ms
+2026-04-14 22:35:22.780 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-14 22:35:22.781 +05:30 [INF] [9cdb214b-1067-467a-b6d4-2bacb894b30d] POST /api/v1/auth/login 
+2026-04-14 22:35:22.781 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:35:22.781 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-14 22:35:22.782 +05:30 [INF] Handling LoginCommand
+2026-04-14 22:35:23.094 +05:30 [INF] Executed DbCommand (302ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-14 22:35:24.874 +05:30 [INF] Executed DbCommand (298ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-14 22:35:25.178 +05:30 [INF] Executed DbCommand (302ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-14 22:35:25.178 +05:30 [INF] Handled LoginCommand
+2026-04-14 22:35:25.179 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:35:25.179 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 2398.1702ms
+2026-04-14 22:35:25.179 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:35:25.180 +05:30 [INF] [9cdb214b-1067-467a-b6d4-2bacb894b30d] POST /api/v1/auth/login responded 200 in 2398.9201ms
+2026-04-14 22:35:25.180 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 2399.4073ms
+2026-04-14 22:35:31.230 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-14 22:35:31.230 +05:30 [INF] [1e16b35e-264c-4e9b-bcae-6e7fea5bc283] POST /api/v1/auth/login 
+2026-04-14 22:35:31.231 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:35:31.231 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-14 22:35:31.231 +05:30 [INF] Handling LoginCommand
+2026-04-14 22:35:31.887 +05:30 [INF] Executed DbCommand (652ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-14 22:35:32.738 +05:30 [INF] Executed DbCommand (296ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-14 22:35:33.032 +05:30 [INF] Executed DbCommand (291ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-14 22:35:33.037 +05:30 [INF] Handled LoginCommand
+2026-04-14 22:35:33.037 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:35:33.038 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 1806.8975ms
+2026-04-14 22:35:33.038 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:35:33.038 +05:30 [INF] [1e16b35e-264c-4e9b-bcae-6e7fea5bc283] POST /api/v1/auth/login responded 200 in 1807.4057ms
+2026-04-14 22:35:33.038 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 1807.8919ms
+2026-04-14 22:35:46.038 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/users - application/json 100
+2026-04-14 22:35:46.038 +05:30 [INF] [7d6f26af-f8c3-4ffc-8310-679203cefb0c] POST /api/v1/users 
+2026-04-14 22:35:46.039 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'D72BHwxNq3KYjfiQGUZRdQ_SnC8ecND_h3XYqjKlg08'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-04-14 22:35:46.039 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'D72BHwxNq3KYjfiQGUZRdQ_SnC8ecND_h3XYqjKlg08'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-04-14 22:35:46.039 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+EcommerceInventory.API.Authorization.PermissionRequirement
+2026-04-14 22:35:46.039 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-04-14 22:35:46.039 +05:30 [INF] [7d6f26af-f8c3-4ffc-8310-679203cefb0c] POST /api/v1/users responded 401 in 1.3334ms
+2026-04-14 22:35:46.040 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/users - 401 0 null 1.7319ms
+2026-04-14 22:35:54.315 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users - null null
+2026-04-14 22:35:54.315 +05:30 [INF] [94f34012-5139-4bac-b663-901dd2e6735d] GET /api/v1/users 
+2026-04-14 22:35:54.315 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+EcommerceInventory.API.Authorization.PermissionRequirement
+2026-04-14 22:35:54.315 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-04-14 22:35:54.315 +05:30 [INF] [94f34012-5139-4bac-b663-901dd2e6735d] GET /api/v1/users responded 401 in 0.2472ms
+2026-04-14 22:35:54.315 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users - 401 0 null 0.5446ms

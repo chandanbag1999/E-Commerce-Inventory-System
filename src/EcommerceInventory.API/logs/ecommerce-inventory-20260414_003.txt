@@ -1,0 +1,715 @@
+2026-04-14 22:36:09.543 +05:30 [INF] Applying database migrations...
+2026-04-14 22:36:11.359 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:11.364 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:11.365 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:11.365 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:11.365 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:11.365 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:11.365 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:11.365 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:11.365 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:11.366 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:15.677 +05:30 [INF] Executed DbCommand (289ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:36:16.051 +05:30 [INF] Executed DbCommand (270ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-14 22:36:16.493 +05:30 [INF] Executed DbCommand (270ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-14 22:36:17.395 +05:30 [INF] Executed DbCommand (604ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-14 22:36:17.661 +05:30 [INF] Executed DbCommand (264ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:36:17.673 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-14 22:36:17.944 +05:30 [INF] Database migrations applied successfully.
+2026-04-14 22:36:17.959 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-14 22:36:19.577 +05:30 [INF] Executed DbCommand (1,118ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-14 22:36:19.601 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-14 22:36:19.604 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-14 22:36:19.732 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-14 22:36:19.760 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-14 22:36:20.198 +05:30 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5255: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-04-14 22:36:55.177 +05:30 [INF] Applying database migrations...
+2026-04-14 22:36:56.325 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:56.329 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:56.329 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:56.329 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:56.329 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:56.330 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:56.330 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:56.330 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:56.330 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:36:56.330 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:37:01.682 +05:30 [INF] Executed DbCommand (293ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:37:02.053 +05:30 [INF] Executed DbCommand (261ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-14 22:37:02.732 +05:30 [INF] Executed DbCommand (513ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-14 22:37:03.776 +05:30 [INF] Executed DbCommand (274ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-14 22:37:04.042 +05:30 [INF] Executed DbCommand (258ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:37:04.052 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-14 22:37:04.318 +05:30 [INF] Database migrations applied successfully.
+2026-04-14 22:37:04.329 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-14 22:37:04.982 +05:30 [INF] Executed DbCommand (262ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-14 22:37:05.018 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-14 22:37:05.018 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-14 22:37:05.213 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-14 22:37:05.250 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-14 22:37:05.429 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-14 22:37:05.430 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-14 22:37:05.430 +05:30 [INF] Hosting environment: Development
+2026-04-14 22:37:05.430 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-14 22:39:09.038 +05:30 [INF] Applying database migrations...
+2026-04-14 22:39:10.343 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:10.350 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:10.350 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:10.350 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:10.350 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:10.350 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:10.350 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:10.350 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:10.350 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:10.350 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:39:13.765 +05:30 [INF] Executed DbCommand (277ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:39:14.238 +05:30 [INF] Executed DbCommand (331ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-14 22:39:14.684 +05:30 [INF] Executed DbCommand (262ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-14 22:39:15.213 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-14 22:39:15.472 +05:30 [INF] Executed DbCommand (257ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:39:15.483 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-14 22:39:16.333 +05:30 [INF] Database migrations applied successfully.
+2026-04-14 22:39:16.338 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-14 22:39:16.961 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-14 22:39:16.982 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-14 22:39:16.982 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-14 22:39:17.054 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-14 22:39:17.072 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-14 22:39:17.156 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-14 22:39:17.156 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-14 22:39:17.156 +05:30 [INF] Hosting environment: Development
+2026-04-14 22:39:17.156 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-14 22:41:24.599 +05:30 [INF] Applying database migrations...
+2026-04-14 22:41:25.913 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:25.918 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:25.923 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:25.923 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:25.923 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:25.923 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:25.923 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:25.923 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:25.923 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:25.923 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 22:41:29.293 +05:30 [INF] Executed DbCommand (265ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:41:29.648 +05:30 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-14 22:41:30.067 +05:30 [INF] Executed DbCommand (250ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-14 22:41:30.590 +05:30 [INF] Executed DbCommand (244ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-14 22:41:30.834 +05:30 [INF] Executed DbCommand (241ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 22:41:30.846 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-14 22:41:31.090 +05:30 [INF] Database migrations applied successfully.
+2026-04-14 22:41:31.094 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-14 22:41:31.707 +05:30 [INF] Executed DbCommand (246ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-14 22:41:31.735 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-14 22:41:31.737 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-14 22:41:31.828 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-14 22:41:31.848 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-14 22:41:31.946 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-14 22:41:31.946 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-14 22:41:31.946 +05:30 [INF] Hosting environment: Development
+2026-04-14 22:41:31.946 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-14 22:45:38.930 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-14 22:45:38.993 +05:30 [INF] [bb1e7072-caad-4eda-a0c4-f4b437e31816] POST /api/v1/auth/login 
+2026-04-14 22:45:38.996 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-14 22:45:39.206 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:45:39.244 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-14 22:45:39.265 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-04-14 22:45:39.373 +05:30 [INF] Handling LoginCommand
+2026-04-14 22:45:39.912 +05:30 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-14 22:45:40.306 +05:30 [INF] Executed DbCommand (282ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-14 22:45:41.794 +05:30 [INF] Executed DbCommand (247ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-14 22:45:42.060 +05:30 [INF] Executed DbCommand (238ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-14 22:45:42.062 +05:30 [INF] Handled LoginCommand
+2026-04-14 22:45:42.070 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:45:42.098 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 2851.2207ms
+2026-04-14 22:45:42.099 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:45:42.103 +05:30 [INF] [bb1e7072-caad-4eda-a0c4-f4b437e31816] POST /api/v1/auth/login responded 200 in 3107.2144ms
+2026-04-14 22:45:42.107 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 3178.9788ms
+2026-04-14 22:45:52.489 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-14 22:45:52.496 +05:30 [INF] [be6dce5f-ce61-4fe9-9299-22d471e78b81] POST /api/v1/auth/login 
+2026-04-14 22:45:52.499 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:45:52.499 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-14 22:45:52.507 +05:30 [INF] Handling LoginCommand
+2026-04-14 22:45:52.755 +05:30 [INF] Executed DbCommand (239ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-14 22:45:53.745 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-14 22:45:54.062 +05:30 [INF] Executed DbCommand (316ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-14 22:45:54.063 +05:30 [INF] Handled LoginCommand
+2026-04-14 22:45:54.065 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:45:54.066 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 1566.7696ms
+2026-04-14 22:45:54.070 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:45:54.070 +05:30 [INF] [be6dce5f-ce61-4fe9-9299-22d471e78b81] POST /api/v1/auth/login responded 200 in 1574.3628ms
+2026-04-14 22:45:54.072 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 1583.3586ms
+2026-04-14 22:45:54.154 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users - null null
+2026-04-14 22:45:54.154 +05:30 [INF] [cf657382-9725-4d49-9862-f82920439e3e] GET /api/v1/users 
+2026-04-14 22:45:54.225 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.GetAllUsers (EcommerceInventory.API)'
+2026-04-14 22:45:54.232 +05:30 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUsers(Int32, Int32, System.String, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:45:54.240 +05:30 [INF] Handling GetAllUsersQuery
+2026-04-14 22:45:54.524 +05:30 [INF] Executed DbCommand (248ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM users AS u
+WHERE u."DeletedAt" IS NULL
+2026-04-14 22:45:54.826 +05:30 [INF] Executed DbCommand (253ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s."UserId", s."RoleId", s."AssignedAt", s."AssignedBy", s."Id", s."CreatedAt", s."Description", s."HierarchyLevel", s."IsSystemRole", s."Name", s."UpdatedAt"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL
+    ORDER BY u."FullName"
+    LIMIT @p1 OFFSET @p
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+) AS s ON u1."Id" = s."UserId"
+ORDER BY u1."FullName", u1."Id", s."UserId", s."RoleId"
+2026-04-14 22:45:54.843 +05:30 [INF] Handled GetAllUsersQuery
+2026-04-14 22:45:54.844 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Common.Models.PagedResult`1[[EcommerceInventory.Application.Features.Users.DTOs.UserListDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:45:54.883 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.GetAllUsers (EcommerceInventory.API) in 650.6918ms
+2026-04-14 22:45:54.884 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.GetAllUsers (EcommerceInventory.API)'
+2026-04-14 22:45:54.886 +05:30 [INF] [cf657382-9725-4d49-9862-f82920439e3e] GET /api/v1/users responded 200 in 731.1793ms
+2026-04-14 22:45:54.893 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users - 200 null application/json; charset=utf-8 738.4461ms
+2026-04-14 22:45:54.931 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/users - application/json 99
+2026-04-14 22:45:54.932 +05:30 [INF] [6693f318-1b21-4009-8632-b1467b12d0e6] POST /api/v1/users 
+2026-04-14 22:45:54.940 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.CreateUser (EcommerceInventory.API)'
+2026-04-14 22:45:54.950 +05:30 [INF] Route matched with {action = "CreateUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateUser(EcommerceInventory.Application.Features.Users.DTOs.CreateUserDto, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:45:55.005 +05:30 [INF] Handling CreateUserCommand
+2026-04-14 22:45:55.294 +05:30 [INF] Executed DbCommand (242ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+FROM users AS u
+WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+LIMIT 1
+2026-04-14 22:45:55.779 +05:30 [INF] Executed DbCommand (247ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTime), @p9='?', @p10='?', @p11='?', @p12='?', @p13='?' (DbType = DateTime), @p14='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO users ("Id", "CloudinaryProfileId", "CreatedAt", "CreatedBy", "DeletedAt", "Email", "FullName", "IsEmailVerified", "LastLoginAt", "PasswordHash", "Phone", "ProfileImageUrl", "Status", "UpdatedAt", "UpdatedBy")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+2026-04-14 22:45:55.781 +05:30 [INF] Handled CreateUserCommand
+2026-04-14 22:45:55.782 +05:30 [INF] Executing CreatedResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Users.DTOs.UserResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:45:55.791 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.CreateUser (EcommerceInventory.API) in 838.9972ms
+2026-04-14 22:45:55.791 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.CreateUser (EcommerceInventory.API)'
+2026-04-14 22:45:55.791 +05:30 [INF] [6693f318-1b21-4009-8632-b1467b12d0e6] POST /api/v1/users responded 201 in 859.1604ms
+2026-04-14 22:45:55.791 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/users - 201 null application/json; charset=utf-8 859.6923ms
+2026-04-14 22:45:55.800 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users - null null
+2026-04-14 22:45:55.804 +05:30 [INF] [70e1c72e-9746-42fd-a98f-e34d6d5983bf] GET /api/v1/users 
+2026-04-14 22:45:55.806 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.GetAllUsers (EcommerceInventory.API)'
+2026-04-14 22:45:55.806 +05:30 [INF] Route matched with {action = "GetAllUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUsers(Int32, Int32, System.String, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:45:55.807 +05:30 [INF] Handling GetAllUsersQuery
+2026-04-14 22:45:56.053 +05:30 [INF] Executed DbCommand (245ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM users AS u
+WHERE u."DeletedAt" IS NULL
+2026-04-14 22:45:56.295 +05:30 [INF] Executed DbCommand (240ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s."UserId", s."RoleId", s."AssignedAt", s."AssignedBy", s."Id", s."CreatedAt", s."Description", s."HierarchyLevel", s."IsSystemRole", s."Name", s."UpdatedAt"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL
+    ORDER BY u."FullName"
+    LIMIT @p1 OFFSET @p
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+) AS s ON u1."Id" = s."UserId"
+ORDER BY u1."FullName", u1."Id", s."UserId", s."RoleId"
+2026-04-14 22:45:56.295 +05:30 [INF] Handled GetAllUsersQuery
+2026-04-14 22:45:56.295 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Common.Models.PagedResult`1[[EcommerceInventory.Application.Features.Users.DTOs.UserListDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:45:56.296 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.GetAllUsers (EcommerceInventory.API) in 489.6267ms
+2026-04-14 22:45:56.296 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.GetAllUsers (EcommerceInventory.API)'
+2026-04-14 22:45:56.296 +05:30 [INF] [70e1c72e-9746-42fd-a98f-e34d6d5983bf] GET /api/v1/users responded 200 in 492.08ms
+2026-04-14 22:45:56.296 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users - 200 null application/json; charset=utf-8 496.4743ms
+2026-04-14 22:48:51.801 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-14 22:48:51.801 +05:30 [INF] [93356b57-0835-4baf-8080-2de3a89a7956] POST /api/v1/auth/login 
+2026-04-14 22:48:51.802 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:48:51.802 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-14 22:48:51.809 +05:30 [INF] Handling LoginCommand
+2026-04-14 22:48:54.094 +05:30 [INF] Executed DbCommand (276ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-14 22:48:54.893 +05:30 [INF] Executed DbCommand (269ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-14 22:48:56.004 +05:30 [INF] Executed DbCommand (1,106ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-14 22:48:56.005 +05:30 [INF] Handled LoginCommand
+2026-04-14 22:48:56.005 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:48:56.005 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 4203.3333ms
+2026-04-14 22:48:56.005 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-14 22:48:56.005 +05:30 [INF] [93356b57-0835-4baf-8080-2de3a89a7956] POST /api/v1/auth/login responded 200 in 4203.9378ms
+2026-04-14 22:48:56.006 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 4204.775ms
+2026-04-14 22:48:56.148 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/roles - null null
+2026-04-14 22:48:56.148 +05:30 [INF] [ba5af24e-8db1-409c-ab11-bf06e598cdf0] GET /api/v1/roles 
+2026-04-14 22:48:56.148 +05:30 [INF] [ba5af24e-8db1-409c-ab11-bf06e598cdf0] GET /api/v1/roles responded 404 in 0.6503ms
+2026-04-14 22:48:56.149 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/roles - 404 0 null 1.2577ms
+2026-04-14 22:48:56.150 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/api/v1/roles, Response status code: 404
+2026-04-14 22:48:56.689 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users/31111111-0000-0000-0000-000000000001 - null null
+2026-04-14 22:48:56.689 +05:30 [INF] [f4b45e14-930a-45f1-9b88-669b414b7f62] GET /api/v1/users/31111111-0000-0000-0000-000000000001 
+2026-04-14 22:48:56.690 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:48:56.703 +05:30 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:48:56.706 +05:30 [INF] Handling GetUserByIdQuery
+2026-04-14 22:48:57.032 +05:30 [INF] Executed DbCommand (276ms) [Parameters=[@request_UserId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s."UserId", s."RoleId", s."AssignedAt", s."AssignedBy", s."Id", s."CreatedAt", s."Description", s."HierarchyLevel", s."IsSystemRole", s."Name", s."UpdatedAt"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = @request_UserId
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+) AS s ON u1."Id" = s."UserId"
+ORDER BY u1."Id", s."UserId", s."RoleId"
+2026-04-14 22:48:57.038 +05:30 [INF] Handled GetUserByIdQuery
+2026-04-14 22:48:57.038 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Users.DTOs.UserResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:48:57.038 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API) in 335.7885ms
+2026-04-14 22:48:57.039 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:48:57.039 +05:30 [INF] [f4b45e14-930a-45f1-9b88-669b414b7f62] GET /api/v1/users/31111111-0000-0000-0000-000000000001 responded 200 in 349.4161ms
+2026-04-14 22:48:57.039 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users/31111111-0000-0000-0000-000000000001 - 200 null application/json; charset=utf-8 350.2396ms
+2026-04-14 22:48:57.056 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users/search?searchTerm=Test - null null
+2026-04-14 22:48:57.056 +05:30 [INF] [a61d0218-46e2-4bcf-90f7-4f96f2f83a9e] GET /api/v1/users/search ?searchTerm=Test
+2026-04-14 22:48:57.057 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.SearchUsers (EcommerceInventory.API)'
+2026-04-14 22:48:57.070 +05:30 [INF] Route matched with {action = "SearchUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchUsers(System.String, Int32, Int32, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:48:57.082 +05:30 [INF] Handling SearchUsersQuery
+2026-04-14 22:48:57.422 +05:30 [INF] Executed DbCommand (300ms) [Parameters=[@searchTerm_contains='?', @searchTerm_contains0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM users AS u
+WHERE u."DeletedAt" IS NULL AND (lower(u."FullName") LIKE @searchTerm_contains OR lower(u."Email") LIKE @searchTerm_contains0)
+2026-04-14 22:48:57.753 +05:30 [INF] Executed DbCommand (265ms) [Parameters=[@searchTerm_contains='?', @searchTerm_contains0='?', @p3='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s."UserId", s."RoleId", s."AssignedAt", s."AssignedBy", s."Id", s."CreatedAt", s."Description", s."HierarchyLevel", s."IsSystemRole", s."Name", s."UpdatedAt"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND (lower(u."FullName") LIKE @searchTerm_contains OR lower(u."Email") LIKE @searchTerm_contains0)
+    ORDER BY u."FullName"
+    LIMIT @p3 OFFSET @p
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+) AS s ON u1."Id" = s."UserId"
+ORDER BY u1."FullName", u1."Id", s."UserId", s."RoleId"
+2026-04-14 22:48:57.757 +05:30 [INF] Handled SearchUsersQuery
+2026-04-14 22:48:57.758 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Common.Models.PagedResult`1[[EcommerceInventory.Application.Features.Users.DTOs.UserListDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:48:57.758 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.SearchUsers (EcommerceInventory.API) in 687.1962ms
+2026-04-14 22:48:57.758 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.SearchUsers (EcommerceInventory.API)'
+2026-04-14 22:48:57.758 +05:30 [INF] [a61d0218-46e2-4bcf-90f7-4f96f2f83a9e] GET /api/v1/users/search responded 200 in 701.7299ms
+2026-04-14 22:48:57.758 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users/search?searchTerm=Test - 200 null application/json; charset=utf-8 702.3648ms
+2026-04-14 22:48:57.823 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/users - application/json 83
+2026-04-14 22:48:57.823 +05:30 [INF] [7c390267-f70a-4969-a728-e3ad817614d0] POST /api/v1/users 
+2026-04-14 22:48:57.824 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.CreateUser (EcommerceInventory.API)'
+2026-04-14 22:48:57.824 +05:30 [INF] Route matched with {action = "CreateUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateUser(EcommerceInventory.Application.Features.Users.DTOs.CreateUserDto, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:48:57.828 +05:30 [INF] Handling CreateUserCommand
+2026-04-14 22:48:58.098 +05:30 [INF] Executed DbCommand (267ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+FROM users AS u
+WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+LIMIT 1
+2026-04-14 22:48:58.591 +05:30 [INF] Executed DbCommand (261ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (DbType = DateTime), @p5='?', @p6='?', @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTime), @p9='?', @p10='?', @p11='?', @p12='?', @p13='?' (DbType = DateTime), @p14='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO users ("Id", "CloudinaryProfileId", "CreatedAt", "CreatedBy", "DeletedAt", "Email", "FullName", "IsEmailVerified", "LastLoginAt", "PasswordHash", "Phone", "ProfileImageUrl", "Status", "UpdatedAt", "UpdatedBy")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+2026-04-14 22:48:58.591 +05:30 [INF] Handled CreateUserCommand
+2026-04-14 22:48:58.592 +05:30 [INF] Executing CreatedResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Users.DTOs.UserResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:48:58.592 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.CreateUser (EcommerceInventory.API) in 767.8398ms
+2026-04-14 22:48:58.592 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.CreateUser (EcommerceInventory.API)'
+2026-04-14 22:48:58.592 +05:30 [INF] [7c390267-f70a-4969-a728-e3ad817614d0] POST /api/v1/users responded 201 in 768.9223ms
+2026-04-14 22:48:58.592 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/users - 201 null application/json; charset=utf-8 769.3378ms
+2026-04-14 22:48:58.607 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/roles - application/json 49
+2026-04-14 22:48:58.607 +05:30 [INF] [babf3f52-c342-48fa-bd51-f96a1c359141] POST /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/roles 
+2026-04-14 22:48:58.608 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.AssignRole (EcommerceInventory.API)'
+2026-04-14 22:48:58.652 +05:30 [INF] Route matched with {action = "AssignRole", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AssignRole(System.Guid, EcommerceInventory.Application.Features.Users.DTOs.AssignRoleDto, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:48:58.671 +05:30 [INF] Handling AssignRoleCommand
+2026-04-14 22:48:59.371 +05:30 [INF] Executed DbCommand (661ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+FROM users AS u
+WHERE u."DeletedAt" IS NULL AND u."Id" = @p
+LIMIT 1
+2026-04-14 22:48:59.931 +05:30 [INF] Executed DbCommand (283ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+FROM roles AS r
+WHERE r."Id" = @p
+LIMIT 1
+2026-04-14 22:49:00.237 +05:30 [INF] Executed DbCommand (272ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p18='?' (DbType = Guid), @p4='?', @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (DbType = DateTime), @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTime), @p12='?', @p13='?', @p14='?', @p15='?', @p16='?' (DbType = DateTime), @p17='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO user_roles ("RoleId", "UserId", "AssignedAt", "AssignedBy")
+VALUES (@p0, @p1, @p2, @p3);
+UPDATE users SET "CloudinaryProfileId" = @p4, "CreatedAt" = @p5, "CreatedBy" = @p6, "DeletedAt" = @p7, "Email" = @p8, "FullName" = @p9, "IsEmailVerified" = @p10, "LastLoginAt" = @p11, "PasswordHash" = @p12, "Phone" = @p13, "ProfileImageUrl" = @p14, "Status" = @p15, "UpdatedAt" = @p16, "UpdatedBy" = @p17
+WHERE "Id" = @p18;
+2026-04-14 22:49:00.501 +05:30 [INF] Handled AssignRoleCommand
+2026-04-14 22:49:00.502 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-14 22:49:00.503 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.AssignRole (EcommerceInventory.API) in 1851.078ms
+2026-04-14 22:49:00.503 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.AssignRole (EcommerceInventory.API)'
+2026-04-14 22:49:00.503 +05:30 [INF] [babf3f52-c342-48fa-bd51-f96a1c359141] POST /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/roles responded 200 in 1896.1805ms
+2026-04-14 22:49:00.503 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/roles - 200 null application/json; charset=utf-8 1896.8099ms
+2026-04-14 22:49:00.517 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - null null
+2026-04-14 22:49:00.517 +05:30 [INF] [905ffe29-025d-44a7-a13d-34f8468763c3] GET /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 
+2026-04-14 22:49:00.518 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:49:00.518 +05:30 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:49:00.519 +05:30 [INF] Handling GetUserByIdQuery
+2026-04-14 22:49:00.801 +05:30 [INF] Executed DbCommand (280ms) [Parameters=[@request_UserId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s."UserId", s."RoleId", s."AssignedAt", s."AssignedBy", s."Id", s."CreatedAt", s."Description", s."HierarchyLevel", s."IsSystemRole", s."Name", s."UpdatedAt"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = @request_UserId
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+) AS s ON u1."Id" = s."UserId"
+ORDER BY u1."Id", s."UserId", s."RoleId"
+2026-04-14 22:49:00.801 +05:30 [INF] Handled GetUserByIdQuery
+2026-04-14 22:49:00.801 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Users.DTOs.UserResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:49:00.802 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API) in 283.5858ms
+2026-04-14 22:49:00.802 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:49:00.802 +05:30 [INF] [905ffe29-025d-44a7-a13d-34f8468763c3] GET /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 responded 200 in 284.842ms
+2026-04-14 22:49:00.802 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - 200 null application/json; charset=utf-8 285.1859ms
+2026-04-14 22:49:00.821 +05:30 [INF] Request starting HTTP/1.1 PATCH http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/deactivate - null 0
+2026-04-14 22:49:00.823 +05:30 [INF] [ef55208c-3b1b-439c-bd17-6468c1c41eab] PATCH /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/deactivate 
+2026-04-14 22:49:00.823 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.DeactivateUser (EcommerceInventory.API)'
+2026-04-14 22:49:00.836 +05:30 [INF] Route matched with {action = "DeactivateUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeactivateUser(System.Guid, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:49:00.840 +05:30 [INF] Handling DeactivateUserCommand
+2026-04-14 22:49:01.121 +05:30 [INF] Executed DbCommand (278ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+FROM users AS u
+WHERE u."DeletedAt" IS NULL AND u."Id" = @p
+LIMIT 1
+2026-04-14 22:49:02.218 +05:30 [INF] Executed DbCommand (1,095ms) [Parameters=[@p14='?' (DbType = Guid), @p0='?', @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?', @p9='?', @p10='?', @p11='?', @p12='?' (DbType = DateTime), @p13='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "CloudinaryProfileId" = @p0, "CreatedAt" = @p1, "CreatedBy" = @p2, "DeletedAt" = @p3, "Email" = @p4, "FullName" = @p5, "IsEmailVerified" = @p6, "LastLoginAt" = @p7, "PasswordHash" = @p8, "Phone" = @p9, "ProfileImageUrl" = @p10, "Status" = @p11, "UpdatedAt" = @p12, "UpdatedBy" = @p13
+WHERE "Id" = @p14;
+2026-04-14 22:49:02.218 +05:30 [INF] Handled DeactivateUserCommand
+2026-04-14 22:49:02.218 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-14 22:49:02.219 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.DeactivateUser (EcommerceInventory.API) in 1382.2412ms
+2026-04-14 22:49:02.219 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.DeactivateUser (EcommerceInventory.API)'
+2026-04-14 22:49:02.219 +05:30 [INF] [ef55208c-3b1b-439c-bd17-6468c1c41eab] PATCH /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/deactivate responded 200 in 1396.1283ms
+2026-04-14 22:49:02.219 +05:30 [INF] Request finished HTTP/1.1 PATCH http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/deactivate - 200 null application/json; charset=utf-8 1397.8745ms
+2026-04-14 22:49:02.285 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - null null
+2026-04-14 22:49:02.285 +05:30 [INF] [3aeecca5-fbda-48ea-8896-8f71a80c2c15] GET /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 
+2026-04-14 22:49:02.287 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:49:02.288 +05:30 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:49:02.293 +05:30 [INF] Handling GetUserByIdQuery
+2026-04-14 22:49:02.570 +05:30 [INF] Executed DbCommand (272ms) [Parameters=[@request_UserId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s."UserId", s."RoleId", s."AssignedAt", s."AssignedBy", s."Id", s."CreatedAt", s."Description", s."HierarchyLevel", s."IsSystemRole", s."Name", s."UpdatedAt"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = @request_UserId
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+) AS s ON u1."Id" = s."UserId"
+ORDER BY u1."Id", s."UserId", s."RoleId"
+2026-04-14 22:49:02.571 +05:30 [INF] Handled GetUserByIdQuery
+2026-04-14 22:49:02.571 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Users.DTOs.UserResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:49:02.571 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API) in 283.5271ms
+2026-04-14 22:49:02.571 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:49:02.571 +05:30 [INF] [3aeecca5-fbda-48ea-8896-8f71a80c2c15] GET /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 responded 200 in 286.5577ms
+2026-04-14 22:49:02.572 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - 200 null application/json; charset=utf-8 286.9509ms
+2026-04-14 22:49:02.586 +05:30 [INF] Request starting HTTP/1.1 PATCH http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/activate - null 0
+2026-04-14 22:49:02.586 +05:30 [INF] [70b8c81a-c532-42bf-99fc-f0f6f7590da9] PATCH /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/activate 
+2026-04-14 22:49:02.586 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.ActivateUser (EcommerceInventory.API)'
+2026-04-14 22:49:02.599 +05:30 [INF] Route matched with {action = "ActivateUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ActivateUser(System.Guid, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:49:02.602 +05:30 [INF] Handling ActivateUserCommand
+2026-04-14 22:49:03.143 +05:30 [INF] Executed DbCommand (537ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+FROM users AS u
+WHERE u."DeletedAt" IS NULL AND u."Id" = @p
+LIMIT 1
+2026-04-14 22:49:03.416 +05:30 [INF] Executed DbCommand (266ms) [Parameters=[@p14='?' (DbType = Guid), @p0='?', @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?', @p9='?', @p10='?', @p11='?', @p12='?' (DbType = DateTime), @p13='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "CloudinaryProfileId" = @p0, "CreatedAt" = @p1, "CreatedBy" = @p2, "DeletedAt" = @p3, "Email" = @p4, "FullName" = @p5, "IsEmailVerified" = @p6, "LastLoginAt" = @p7, "PasswordHash" = @p8, "Phone" = @p9, "ProfileImageUrl" = @p10, "Status" = @p11, "UpdatedAt" = @p12, "UpdatedBy" = @p13
+WHERE "Id" = @p14;
+2026-04-14 22:49:03.416 +05:30 [INF] Handled ActivateUserCommand
+2026-04-14 22:49:03.416 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-14 22:49:03.417 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.ActivateUser (EcommerceInventory.API) in 817.94ms
+2026-04-14 22:49:03.417 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.ActivateUser (EcommerceInventory.API)'
+2026-04-14 22:49:03.417 +05:30 [INF] [70b8c81a-c532-42bf-99fc-f0f6f7590da9] PATCH /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/activate responded 200 in 830.6503ms
+2026-04-14 22:49:03.417 +05:30 [INF] Request finished HTTP/1.1 PATCH http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/activate - 200 null application/json; charset=utf-8 830.9947ms
+2026-04-14 22:49:03.438 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - null null
+2026-04-14 22:49:03.438 +05:30 [INF] [b34b4c37-8d84-4c47-84e4-dedb75b246d0] GET /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 
+2026-04-14 22:49:03.439 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:49:03.439 +05:30 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:49:03.440 +05:30 [INF] Handling GetUserByIdQuery
+2026-04-14 22:49:03.736 +05:30 [INF] Executed DbCommand (296ms) [Parameters=[@request_UserId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s."UserId", s."RoleId", s."AssignedAt", s."AssignedBy", s."Id", s."CreatedAt", s."Description", s."HierarchyLevel", s."IsSystemRole", s."Name", s."UpdatedAt"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = @request_UserId
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+) AS s ON u1."Id" = s."UserId"
+ORDER BY u1."Id", s."UserId", s."RoleId"
+2026-04-14 22:49:03.737 +05:30 [INF] Handled GetUserByIdQuery
+2026-04-14 22:49:03.737 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Users.DTOs.UserResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:49:03.737 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API) in 298.2816ms
+2026-04-14 22:49:03.737 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:49:03.737 +05:30 [INF] [b34b4c37-8d84-4c47-84e4-dedb75b246d0] GET /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 responded 200 in 299.0751ms
+2026-04-14 22:49:03.738 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - 200 null application/json; charset=utf-8 299.4593ms
+2026-04-14 22:49:03.749 +05:30 [INF] Request starting HTTP/1.1 DELETE http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/roles/11111111-0000-0000-0000-000000000003 - null 0
+2026-04-14 22:49:03.749 +05:30 [INF] [669f05f5-32e5-4043-899d-43e6fefc968a] DELETE /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/roles/11111111-0000-0000-0000-000000000003 
+2026-04-14 22:49:03.749 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.RemoveRole (EcommerceInventory.API)'
+2026-04-14 22:49:03.757 +05:30 [INF] Route matched with {action = "RemoveRole", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RemoveRole(System.Guid, System.Guid, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:49:03.759 +05:30 [INF] Handling RemoveRoleCommand
+2026-04-14 22:49:04.352 +05:30 [INF] Executed DbCommand (546ms) [Parameters=[@request_UserId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = @request_UserId
+    LIMIT 1
+) AS u1
+LEFT JOIN user_roles AS u0 ON u1."Id" = u0."UserId"
+ORDER BY u1."Id", u0."UserId"
+2026-04-14 22:49:04.651 +05:30 [INF] Executed DbCommand (281ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p16='?' (DbType = Guid), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTime), @p10='?', @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime), @p15='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM user_roles
+WHERE "RoleId" = @p0 AND "UserId" = @p1;
+UPDATE users SET "CloudinaryProfileId" = @p2, "CreatedAt" = @p3, "CreatedBy" = @p4, "DeletedAt" = @p5, "Email" = @p6, "FullName" = @p7, "IsEmailVerified" = @p8, "LastLoginAt" = @p9, "PasswordHash" = @p10, "Phone" = @p11, "ProfileImageUrl" = @p12, "Status" = @p13, "UpdatedAt" = @p14, "UpdatedBy" = @p15
+WHERE "Id" = @p16;
+2026-04-14 22:49:04.958 +05:30 [INF] Handled RemoveRoleCommand
+2026-04-14 22:49:04.958 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-14 22:49:04.958 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.RemoveRole (EcommerceInventory.API) in 1201.3525ms
+2026-04-14 22:49:04.959 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.RemoveRole (EcommerceInventory.API)'
+2026-04-14 22:49:04.959 +05:30 [INF] [669f05f5-32e5-4043-899d-43e6fefc968a] DELETE /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/roles/11111111-0000-0000-0000-000000000003 responded 200 in 1209.7029ms
+2026-04-14 22:49:04.959 +05:30 [INF] Request finished HTTP/1.1 DELETE http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63/roles/11111111-0000-0000-0000-000000000003 - 200 null application/json; charset=utf-8 1210.4022ms
+2026-04-14 22:49:04.985 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - application/json 49
+2026-04-14 22:49:04.985 +05:30 [INF] [8c18c10f-b8f8-44bc-b00b-b4774b26a3e9] PUT /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 
+2026-04-14 22:49:04.986 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.UpdateUser (EcommerceInventory.API)'
+2026-04-14 22:49:04.998 +05:30 [INF] Route matched with {action = "UpdateUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(System.Guid, EcommerceInventory.Application.Features.Users.DTOs.UpdateUserDto, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:49:05.008 +05:30 [INF] Handling UpdateUserCommand
+2026-04-14 22:49:05.285 +05:30 [INF] Executed DbCommand (270ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+FROM users AS u
+WHERE u."DeletedAt" IS NULL AND u."Id" = @p
+LIMIT 1
+2026-04-14 22:49:05.573 +05:30 [INF] Executed DbCommand (287ms) [Parameters=[@p14='?' (DbType = Guid), @p0='?', @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?', @p9='?', @p10='?', @p11='?', @p12='?' (DbType = DateTime), @p13='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "CloudinaryProfileId" = @p0, "CreatedAt" = @p1, "CreatedBy" = @p2, "DeletedAt" = @p3, "Email" = @p4, "FullName" = @p5, "IsEmailVerified" = @p6, "LastLoginAt" = @p7, "PasswordHash" = @p8, "Phone" = @p9, "ProfileImageUrl" = @p10, "Status" = @p11, "UpdatedAt" = @p12, "UpdatedBy" = @p13
+WHERE "Id" = @p14;
+2026-04-14 22:49:05.573 +05:30 [INF] Handled UpdateUserCommand
+2026-04-14 22:49:05.574 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Users.DTOs.UserResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-14 22:49:05.574 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.UpdateUser (EcommerceInventory.API) in 575.2664ms
+2026-04-14 22:49:05.574 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.UpdateUser (EcommerceInventory.API)'
+2026-04-14 22:49:05.574 +05:30 [INF] [8c18c10f-b8f8-44bc-b00b-b4774b26a3e9] PUT /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 responded 200 in 588.4778ms
+2026-04-14 22:49:05.574 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - 200 null application/json; charset=utf-8 588.7981ms
+2026-04-14 22:49:05.590 +05:30 [INF] Request starting HTTP/1.1 DELETE http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - null 0
+2026-04-14 22:49:05.591 +05:30 [INF] [e319fa85-4fbe-4b19-8a6f-69242c7e743e] DELETE /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 
+2026-04-14 22:49:05.592 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.DeleteUser (EcommerceInventory.API)'
+2026-04-14 22:49:05.604 +05:30 [INF] Route matched with {action = "DeleteUser", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteUser(System.Guid, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:49:05.607 +05:30 [INF] Handling DeleteUserCommand
+2026-04-14 22:49:05.906 +05:30 [INF] Executed DbCommand (296ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+FROM users AS u
+WHERE u."DeletedAt" IS NULL AND u."Id" = @p
+LIMIT 1
+2026-04-14 22:49:06.173 +05:30 [INF] Executed DbCommand (266ms) [Parameters=[@p14='?' (DbType = Guid), @p0='?', @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?', @p9='?', @p10='?', @p11='?', @p12='?' (DbType = DateTime), @p13='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "CloudinaryProfileId" = @p0, "CreatedAt" = @p1, "CreatedBy" = @p2, "DeletedAt" = @p3, "Email" = @p4, "FullName" = @p5, "IsEmailVerified" = @p6, "LastLoginAt" = @p7, "PasswordHash" = @p8, "Phone" = @p9, "ProfileImageUrl" = @p10, "Status" = @p11, "UpdatedAt" = @p12, "UpdatedBy" = @p13
+WHERE "Id" = @p14;
+2026-04-14 22:49:06.175 +05:30 [INF] Handled DeleteUserCommand
+2026-04-14 22:49:06.175 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-14 22:49:06.175 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.DeleteUser (EcommerceInventory.API) in 570.954ms
+2026-04-14 22:49:06.176 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.DeleteUser (EcommerceInventory.API)'
+2026-04-14 22:49:06.176 +05:30 [INF] [e319fa85-4fbe-4b19-8a6f-69242c7e743e] DELETE /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 responded 200 in 584.9247ms
+2026-04-14 22:49:06.176 +05:30 [INF] Request finished HTTP/1.1 DELETE http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - 200 null application/json; charset=utf-8 585.2776ms
+2026-04-14 22:49:06.219 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - null null
+2026-04-14 22:49:06.219 +05:30 [INF] [c577e058-6b5b-4e72-bd3a-e3e5947d3241] GET /api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 
+2026-04-14 22:49:06.220 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:49:06.220 +05:30 [INF] Route matched with {action = "GetUserById", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUserById(System.Guid, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.UsersController (EcommerceInventory.API).
+2026-04-14 22:49:06.220 +05:30 [INF] Handling GetUserByIdQuery
+2026-04-14 22:49:06.819 +05:30 [INF] Executed DbCommand (597ms) [Parameters=[@request_UserId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s."UserId", s."RoleId", s."AssignedAt", s."AssignedBy", s."Id", s."CreatedAt", s."Description", s."HierarchyLevel", s."IsSystemRole", s."Name", s."UpdatedAt"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = @request_UserId
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+) AS s ON u1."Id" = s."UserId"
+ORDER BY u1."Id", s."UserId", s."RoleId"
+2026-04-14 22:49:06.821 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API) in 600.7994ms
+2026-04-14 22:49:06.821 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.UsersController.GetUserById (EcommerceInventory.API)'
+2026-04-14 22:49:06.823 +05:30 [ERR] An error occurred: Entity 'User' with ID '72dc1bfc-ec89-4a80-962b-f82c3769cf63' was not found.
+EcommerceInventory.Domain.Exceptions.NotFoundException: Entity 'User' with ID '72dc1bfc-ec89-4a80-962b-f82c3769cf63' was not found.
+   at EcommerceInventory.Application.Features.Users.Queries.GetUserById.GetUserByIdQueryHandler.Handle(GetUserByIdQuery request, CancellationToken cancellationToken) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\Features\Users\Queries\GetUserById\GetUserByIdQuery.cs:line 33
+   at EcommerceInventory.Application.Common.Behaviors.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\Common\Behaviors\ValidationBehaviour.cs:line 25
+   at EcommerceInventory.Application.Common.Behaviors.LoggingBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\Common\Behaviors\ValidationBehaviour.cs:line 66
+   at EcommerceInventory.API.Controllers.UsersController.GetUserById(Guid id, CancellationToken ct) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API\Controllers\UsersController.cs:line 78
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EcommerceInventory.API.Middleware.CorrelationIdMiddleware.InvokeAsync(HttpContext context) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API\Middleware\CorrelationIdMiddleware.cs:line 39
+   at EcommerceInventory.API.Middleware.GlobalExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API\Middleware\GlobalExceptionHandlingMiddleware.cs:line 27
+2026-04-14 22:49:06.840 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/users/72dc1bfc-ec89-4a80-962b-f82c3769cf63 - 404 null application/json 621.05ms

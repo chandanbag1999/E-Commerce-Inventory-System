@@ -22,4 +22,14 @@ public interface ITokenService
     /// Extracts principal from an expired access token (for refresh flow)
     /// </summary>
     ClaimsPrincipal? GetPrincipalFromExpiredToken(string token);
+
+    /// <summary>
+    /// Hashes a password using BCrypt
+    /// </summary>
+    string HashPassword(string password);
+
+    /// <summary>
+    /// Verifies a password against its hash
+    /// </summary>
+    bool VerifyPassword(string password, string passwordHash);
 }
