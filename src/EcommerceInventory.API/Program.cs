@@ -46,6 +46,8 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline
 app.UseHttpsRedirection();
 app.UseCors();
+app.UseAuthentication(); // Add authentication middleware
+app.UseAuthorization();
 
 // Map OpenAPI endpoint
 app.MapOpenApi();
@@ -57,7 +59,6 @@ app.MapScalarApiReference(options =>
     options.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
 });
 
-app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

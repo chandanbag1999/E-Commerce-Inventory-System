@@ -3482,8 +3482,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
-              "projectPath": "d:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj"
+            "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
+              "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj"
             },
             "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj": {
               "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj"
