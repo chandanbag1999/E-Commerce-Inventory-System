@@ -1,0 +1,790 @@
+2026-04-15 20:11:56.082 +05:30 [INF] Applying database migrations...
+2026-04-15 20:11:57.142 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:11:57.149 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:11:57.150 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:11:57.151 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:11:57.152 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:11:57.153 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:11:57.168 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:11:57.169 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:11:57.204 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:11:57.259 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:12:02.308 +05:30 [INF] Executed DbCommand (306ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:12:02.696 +05:30 [INF] Executed DbCommand (277ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-15 20:12:03.115 +05:30 [INF] Executed DbCommand (283ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-15 20:12:03.678 +05:30 [INF] Executed DbCommand (271ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-15 20:12:03.973 +05:30 [INF] Executed DbCommand (290ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:12:03.990 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-15 20:12:04.273 +05:30 [INF] Database migrations applied successfully.
+2026-04-15 20:12:04.282 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-15 20:12:05.210 +05:30 [INF] Executed DbCommand (288ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-15 20:12:05.229 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-15 20:12:05.231 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-15 20:12:05.379 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-15 20:12:05.395 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-15 20:12:05.582 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-15 20:12:05.583 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 20:12:05.584 +05:30 [INF] Hosting environment: Development
+2026-04-15 20:12:05.586 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-15 20:12:23.612 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-04-15 20:12:23.675 +05:30 [INF] [c43153d1-5115-4a04-ae43-245a5d551e1b] GET / 
+2026-04-15 20:12:23.686 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-15 20:12:26.469 +05:30 [INF] [c43153d1-5115-4a04-ae43-245a5d551e1b] GET / responded 404 in 2784.3196ms
+2026-04-15 20:12:26.535 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 404 0 null 2925.003ms
+2026-04-15 20:12:26.543 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/, Response status code: 404
+2026-04-15 20:12:30.070 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar - null null
+2026-04-15 20:12:30.088 +05:30 [INF] [a56150ab-fe17-4b4d-a3b6-fca66f54e8b1] GET /scalar 
+2026-04-15 20:12:30.107 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:12:30.187 +05:30 [INF] Executing RedirectResult, redirecting to scalar/.
+2026-04-15 20:12:30.190 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:12:30.193 +05:30 [INF] [a56150ab-fe17-4b4d-a3b6-fca66f54e8b1] GET /scalar responded 302 in 92.4157ms
+2026-04-15 20:12:30.198 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar - 302 0 null 127.7652ms
+2026-04-15 20:12:30.204 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/ - null null
+2026-04-15 20:12:30.211 +05:30 [INF] [7fff5bc6-0b71-4be8-b74d-8041a4f89c6f] GET /scalar/ 
+2026-04-15 20:12:30.222 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:12:30.473 +05:30 [INF] Write content with HTTP Response ContentType of text/html
+2026-04-15 20:12:30.475 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:12:30.478 +05:30 [INF] [7fff5bc6-0b71-4be8-b74d-8041a4f89c6f] GET /scalar/ responded 200 in 264.4029ms
+2026-04-15 20:12:30.501 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/ - 200 693 text/html 296.0772ms
+2026-04-15 20:12:30.515 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/scalar.aspnetcore.js - null null
+2026-04-15 20:12:30.520 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/scalar.js - null null
+2026-04-15 20:12:30.523 +05:30 [INF] [82c7c668-d4b6-4592-b211-9e7e1a83997a] GET /scalar/scalar.aspnetcore.js 
+2026-04-15 20:12:30.531 +05:30 [INF] CORS policy execution successful.
+2026-04-15 20:12:30.532 +05:30 [INF] [efc5789c-0e9a-46fd-a327-9643a3b86ca8] GET /scalar/scalar.js 
+2026-04-15 20:12:30.533 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-04-15 20:12:30.538 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-04-15 20:12:30.731 +05:30 [INF] Sending file with download name ''.
+2026-04-15 20:12:30.732 +05:30 [INF] Sending file with download name ''.
+2026-04-15 20:12:30.792 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-04-15 20:12:31.023 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-04-15 20:12:31.291 +05:30 [INF] [82c7c668-d4b6-4592-b211-9e7e1a83997a] GET /scalar/scalar.aspnetcore.js responded 200 in 761.4696ms
+2026-04-15 20:12:31.363 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 847.4482ms
+2026-04-15 20:12:31.340 +05:30 [INF] [efc5789c-0e9a-46fd-a327-9643a3b86ca8] GET /scalar/scalar.js responded 200 in 802.7601ms
+2026-04-15 20:12:31.543 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/scalar.js - 200 1128805 text/javascript 1022.7982ms
+2026-04-15 20:12:31.873 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/openapi/v1.json - null null
+2026-04-15 20:12:31.881 +05:30 [INF] [375403f5-967d-4bc5-a47c-311f6e0d519c] GET /openapi/v1.json 
+2026-04-15 20:12:31.887 +05:30 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-04-15 20:12:32.359 +05:30 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-04-15 20:12:32.362 +05:30 [INF] [375403f5-967d-4bc5-a47c-311f6e0d519c] GET /openapi/v1.json responded 200 in 476.1482ms
+2026-04-15 20:12:32.366 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/openapi/v1.json - 200 null application/json;charset=utf-8 492.6734ms
+2026-04-15 20:14:00.890 +05:30 [INF] Application is shutting down...
+2026-04-15 20:15:54.326 +05:30 [INF] Applying database migrations...
+2026-04-15 20:15:55.390 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:55.396 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:55.398 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:55.399 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:55.401 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:55.403 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:55.405 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:55.408 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:55.410 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:55.417 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:15:58.678 +05:30 [INF] Executed DbCommand (291ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:15:59.073 +05:30 [INF] Executed DbCommand (301ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-15 20:15:59.590 +05:30 [INF] Executed DbCommand (383ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-15 20:16:00.162 +05:30 [INF] Executed DbCommand (269ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-15 20:16:00.465 +05:30 [INF] Executed DbCommand (299ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:16:00.475 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-15 20:16:00.750 +05:30 [INF] Database migrations applied successfully.
+2026-04-15 20:16:00.757 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-15 20:16:01.413 +05:30 [INF] Executed DbCommand (269ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-15 20:16:01.437 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-15 20:16:01.438 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-15 20:16:01.529 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-15 20:16:01.550 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-15 20:16:01.646 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-15 20:16:01.647 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 20:16:01.648 +05:30 [INF] Hosting environment: Development
+2026-04-15 20:16:01.649 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-15 20:16:11.474 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar - null null
+2026-04-15 20:16:11.535 +05:30 [INF] [348edad1-6c71-43f7-aad2-5696b87e3c7d] GET /scalar 
+2026-04-15 20:16:11.545 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-15 20:16:11.764 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:16:11.777 +05:30 [INF] Executing RedirectResult, redirecting to scalar/.
+2026-04-15 20:16:11.780 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:16:11.782 +05:30 [INF] [348edad1-6c71-43f7-aad2-5696b87e3c7d] GET /scalar responded 302 in 239.6178ms
+2026-04-15 20:16:11.801 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar - 302 0 null 329.8623ms
+2026-04-15 20:16:11.811 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/ - null null
+2026-04-15 20:16:11.817 +05:30 [INF] [592d206d-f977-458a-b495-df752f77f19d] GET /scalar/ 
+2026-04-15 20:16:11.826 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:16:12.088 +05:30 [INF] Write content with HTTP Response ContentType of text/html
+2026-04-15 20:16:12.090 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:16:12.093 +05:30 [INF] [592d206d-f977-458a-b495-df752f77f19d] GET /scalar/ responded 200 in 273.8849ms
+2026-04-15 20:16:12.118 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/ - 200 693 text/html 306.8197ms
+2026-04-15 20:16:12.129 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/scalar.aspnetcore.js - null null
+2026-04-15 20:16:12.134 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/scalar.js - null null
+2026-04-15 20:16:12.138 +05:30 [INF] [ae7bd3af-f4b5-4302-8770-7cec43472f14] GET /scalar/scalar.aspnetcore.js 
+2026-04-15 20:16:12.148 +05:30 [INF] [b46b55d2-622c-4584-8571-6ff715c5f583] GET /scalar/scalar.js 
+2026-04-15 20:16:12.151 +05:30 [INF] CORS policy execution successful.
+2026-04-15 20:16:12.238 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-04-15 20:16:12.238 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-04-15 20:16:12.291 +05:30 [INF] Sending file with download name ''.
+2026-04-15 20:16:12.296 +05:30 [INF] Sending file with download name ''.
+2026-04-15 20:16:12.842 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-04-15 20:16:12.853 +05:30 [INF] [ae7bd3af-f4b5-4302-8770-7cec43472f14] GET /scalar/scalar.aspnetcore.js responded 200 in 704.4459ms
+2026-04-15 20:16:12.886 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 757.0259ms
+2026-04-15 20:16:12.914 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-04-15 20:16:12.921 +05:30 [INF] [b46b55d2-622c-4584-8571-6ff715c5f583] GET /scalar/scalar.js responded 200 in 769.5295ms
+2026-04-15 20:16:12.928 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/scalar.js - 200 1128805 text/javascript 793.8802ms
+2026-04-15 20:16:13.340 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/openapi/v1.json - null null
+2026-04-15 20:16:13.344 +05:30 [INF] [1d5c85da-f000-4201-baeb-8d165f0a03df] GET /openapi/v1.json 
+2026-04-15 20:16:13.347 +05:30 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-04-15 20:16:13.660 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/favicon.svg - null null
+2026-04-15 20:16:13.667 +05:30 [INF] [21dcda82-3cdf-430c-bd97-2272ad85851a] GET /scalar/favicon.svg 
+2026-04-15 20:16:13.670 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-04-15 20:16:13.680 +05:30 [INF] Sending file with download name ''.
+2026-04-15 20:16:13.683 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-04-15 20:16:13.685 +05:30 [INF] [21dcda82-3cdf-430c-bd97-2272ad85851a] GET /scalar/favicon.svg responded 200 in 15.5153ms
+2026-04-15 20:16:13.688 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/favicon.svg - 200 533 image/svg+xml 27.7752ms
+2026-04-15 20:16:13.766 +05:30 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-04-15 20:16:13.768 +05:30 [INF] [1d5c85da-f000-4201-baeb-8d165f0a03df] GET /openapi/v1.json responded 200 in 421.909ms
+2026-04-15 20:16:13.770 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/openapi/v1.json - 200 null application/json;charset=utf-8 430.8794ms
+2026-04-15 20:16:31.957 +05:30 [INF] Application is shutting down...
+2026-04-15 20:20:09.082 +05:30 [INF] Applying database migrations...
+2026-04-15 20:20:09.942 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:09.948 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:09.950 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:09.952 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:09.955 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:09.957 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:09.958 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:09.960 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:09.962 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:09.964 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:20:13.167 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:20:13.559 +05:30 [INF] Executed DbCommand (303ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-15 20:20:13.923 +05:30 [INF] Executed DbCommand (238ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-15 20:20:14.419 +05:30 [INF] Executed DbCommand (236ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-15 20:20:14.664 +05:30 [INF] Executed DbCommand (239ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:20:14.676 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-15 20:20:14.920 +05:30 [INF] Database migrations applied successfully.
+2026-04-15 20:20:14.928 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-15 20:20:15.559 +05:30 [INF] Executed DbCommand (340ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-15 20:20:15.581 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-15 20:20:15.584 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-15 20:20:15.652 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-15 20:20:15.669 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-15 20:20:15.747 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-15 20:20:15.749 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 20:20:15.751 +05:30 [INF] Hosting environment: Development
+2026-04-15 20:20:15.752 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-15 20:20:55.994 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/ - null null
+2026-04-15 20:20:56.040 +05:30 [INF] [de4106c6-ca37-4946-baf1-17a8c80faf51] GET /scalar/ 
+2026-04-15 20:20:56.047 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-15 20:20:56.084 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:20:56.296 +05:30 [INF] Write content with HTTP Response ContentType of text/html
+2026-04-15 20:20:56.302 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-15 20:20:56.304 +05:30 [INF] [de4106c6-ca37-4946-baf1-17a8c80faf51] GET /scalar/ responded 200 in 257.92ms
+2026-04-15 20:20:56.333 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/ - 200 693 text/html 339.818ms
+2026-04-15 20:20:56.350 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/scalar.aspnetcore.js - null null
+2026-04-15 20:20:56.350 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/scalar.js - null null
+2026-04-15 20:20:56.356 +05:30 [INF] [a2e79ff0-4e6a-44ff-aa1d-1660dbc834dc] GET /scalar/scalar.aspnetcore.js 
+2026-04-15 20:20:56.359 +05:30 [INF] [39e88894-7fba-4229-a420-dbc72bca9350] GET /scalar/scalar.js 
+2026-04-15 20:20:56.361 +05:30 [INF] CORS policy execution successful.
+2026-04-15 20:20:56.366 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-04-15 20:20:56.416 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-04-15 20:20:56.470 +05:30 [INF] Sending file with download name ''.
+2026-04-15 20:20:56.484 +05:30 [INF] Sending file with download name ''.
+2026-04-15 20:20:56.552 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-04-15 20:20:56.684 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-04-15 20:20:56.704 +05:30 [INF] [a2e79ff0-4e6a-44ff-aa1d-1660dbc834dc] GET /scalar/scalar.aspnetcore.js responded 200 in 344.2614ms
+2026-04-15 20:20:56.727 +05:30 [INF] [39e88894-7fba-4229-a420-dbc72bca9350] GET /scalar/scalar.js responded 200 in 365.4078ms
+2026-04-15 20:20:56.757 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 405.9482ms
+2026-04-15 20:20:56.775 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/scalar.js - 200 1128805 text/javascript 424.8043ms
+2026-04-15 20:20:57.195 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/openapi/v1.json - null null
+2026-04-15 20:20:57.204 +05:30 [INF] [32883a17-0a04-4efb-adcf-18bcf237c433] GET /openapi/v1.json 
+2026-04-15 20:20:57.211 +05:30 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-04-15 20:20:57.458 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/favicon.svg - null null
+2026-04-15 20:20:57.462 +05:30 [INF] [5f244fd5-e5c7-405a-b9dc-5f5145804bf9] GET /scalar/favicon.svg 
+2026-04-15 20:20:57.465 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-04-15 20:20:57.466 +05:30 [INF] Sending file with download name ''.
+2026-04-15 20:20:57.468 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-04-15 20:20:57.470 +05:30 [INF] [5f244fd5-e5c7-405a-b9dc-5f5145804bf9] GET /scalar/favicon.svg responded 200 in 5.8382ms
+2026-04-15 20:20:57.479 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/favicon.svg - 200 533 image/svg+xml 25.1111ms
+2026-04-15 20:20:57.670 +05:30 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-04-15 20:20:57.676 +05:30 [INF] [32883a17-0a04-4efb-adcf-18bcf237c433] GET /openapi/v1.json responded 200 in 465.3463ms
+2026-04-15 20:20:57.679 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/openapi/v1.json - 200 null application/json;charset=utf-8 483.5422ms
+2026-04-15 20:24:11.560 +05:30 [INF] Application is shutting down...
+2026-04-15 20:45:40.045 +05:30 [INF] Applying database migrations...
+2026-04-15 20:45:41.064 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:41.068 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:41.068 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:41.069 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:41.069 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:41.069 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:41.069 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:41.069 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:41.069 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:41.069 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:45:45.297 +05:30 [INF] Executed DbCommand (274ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:45:45.632 +05:30 [INF] Executed DbCommand (250ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-15 20:45:46.012 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-15 20:45:46.524 +05:30 [INF] Executed DbCommand (245ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-15 20:45:46.771 +05:30 [INF] Executed DbCommand (245ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:45:46.778 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-15 20:45:47.027 +05:30 [INF] Database migrations applied successfully.
+2026-04-15 20:45:47.034 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-15 20:45:47.607 +05:30 [INF] Executed DbCommand (258ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-15 20:45:47.624 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-15 20:45:47.624 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-15 20:45:47.710 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-15 20:45:47.726 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-15 20:45:47.805 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-15 20:45:47.806 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 20:45:47.806 +05:30 [INF] Hosting environment: Development
+2026-04-15 20:45:47.806 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-15 20:51:51.730 +05:30 [INF] Applying database migrations...
+2026-04-15 20:51:52.567 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:52.573 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:52.573 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:52.573 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:52.573 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:52.573 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:52.573 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:52.573 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:52.573 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:52.573 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 20:51:56.729 +05:30 [INF] Executed DbCommand (268ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:51:57.052 +05:30 [INF] Executed DbCommand (246ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-15 20:51:57.438 +05:30 [INF] Executed DbCommand (257ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-15 20:51:57.939 +05:30 [INF] Executed DbCommand (242ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-15 20:51:58.184 +05:30 [INF] Executed DbCommand (244ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 20:51:58.191 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-15 20:51:58.438 +05:30 [INF] Database migrations applied successfully.
+2026-04-15 20:51:58.442 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-15 20:51:59.014 +05:30 [INF] Executed DbCommand (249ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-15 20:51:59.036 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-15 20:51:59.036 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-15 20:51:59.115 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-15 20:51:59.131 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-15 20:51:59.213 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-15 20:51:59.213 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 20:51:59.213 +05:30 [INF] Hosting environment: Development
+2026-04-15 20:51:59.214 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-15 21:04:54.809 +05:30 [INF] Applying database migrations...
+2026-04-15 21:04:55.605 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:55.608 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:55.608 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:55.609 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:55.609 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:55.609 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:55.609 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:55.609 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:55.609 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:55.609 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 21:04:59.697 +05:30 [INF] Executed DbCommand (266ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 21:05:00.021 +05:30 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-15 21:05:00.402 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-15 21:05:00.907 +05:30 [INF] Executed DbCommand (247ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-15 21:05:01.152 +05:30 [INF] Executed DbCommand (243ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 21:05:01.157 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-15 21:05:01.402 +05:30 [INF] Database migrations applied successfully.
+2026-04-15 21:05:01.412 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-15 21:05:01.972 +05:30 [INF] Executed DbCommand (255ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-15 21:05:01.989 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-15 21:05:01.990 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-15 21:05:02.070 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-15 21:05:02.087 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-15 21:05:02.157 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-15 21:05:02.157 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 21:05:02.157 +05:30 [INF] Hosting environment: Development
+2026-04-15 21:05:02.157 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-15 22:21:54.300 +05:30 [INF] Applying database migrations...
+2026-04-15 22:21:55.264 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:21:55.268 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:21:55.268 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:21:55.268 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:21:55.268 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:21:55.268 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:21:55.268 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:21:55.268 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:21:55.268 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:21:55.268 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:22:01.609 +05:30 [INF] Executed DbCommand (310ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 22:22:02.039 +05:30 [INF] Executed DbCommand (326ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-15 22:22:02.446 +05:30 [INF] Executed DbCommand (287ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-15 22:22:03.031 +05:30 [INF] Executed DbCommand (284ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-15 22:22:03.317 +05:30 [INF] Executed DbCommand (283ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 22:22:03.328 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-15 22:22:03.623 +05:30 [INF] Database migrations applied successfully.
+2026-04-15 22:22:03.631 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-15 22:22:04.436 +05:30 [INF] Executed DbCommand (348ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-15 22:22:04.452 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-15 22:22:04.452 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-15 22:22:04.556 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-15 22:22:04.574 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-15 22:22:04.674 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-15 22:22:04.674 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 22:22:04.674 +05:30 [INF] Hosting environment: Development
+2026-04-15 22:22:04.674 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-15 22:22:09.299 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 54
+2026-04-15 22:22:09.330 +05:30 [INF] [bf202cc8-6fcc-4cdc-8084-0af0b9456207] POST /api/v1/auth/login 
+2026-04-15 22:22:09.334 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-15 22:22:11.851 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-15 22:22:11.870 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-15 22:22:11.879 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-04-15 22:22:11.924 +05:30 [INF] Handling LoginCommand
+2026-04-15 22:22:12.162 +05:30 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-15 22:22:12.835 +05:30 [INF] Executed DbCommand (608ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-15 22:22:12.849 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 975.7846ms
+2026-04-15 22:22:12.850 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-15 22:22:12.853 +05:30 [ERR] An error occurred: Invalid credentials
+EcommerceInventory.Domain.Exceptions.UnauthorizedException: Invalid credentials
+   at EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\Features\Auth\Commands\Login\LoginCommandValidator.cs:line 57
+   at EcommerceInventory.Application.Common.Behaviors.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\Common\Behaviors\ValidationBehaviour.cs:line 44
+   at EcommerceInventory.Application.Common.Behaviors.LoggingBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.Application\Common\Behaviors\ValidationBehaviour.cs:line 66
+   at EcommerceInventory.API.Controllers.AuthController.Login(LoginCommand command, CancellationToken ct) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API\Controllers\AuthController.cs:line 68
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EcommerceInventory.API.Middleware.CorrelationIdMiddleware.InvokeAsync(HttpContext context) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API\Middleware\CorrelationIdMiddleware.cs:line 39
+   at EcommerceInventory.API.Middleware.GlobalExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API\Middleware\GlobalExceptionHandlingMiddleware.cs:line 27
+2026-04-15 22:22:12.879 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 401 null application/json 3581.6999ms
+2026-04-15 22:22:42.976 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-15 22:22:42.981 +05:30 [INF] [0a7a8005-5295-45b9-8ffe-d279531eae43] POST /api/v1/auth/login 
+2026-04-15 22:22:42.983 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-15 22:22:42.983 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-15 22:22:42.988 +05:30 [INF] Handling LoginCommand
+2026-04-15 22:22:43.287 +05:30 [INF] Executed DbCommand (290ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-15 22:22:45.697 +05:30 [INF] Executed DbCommand (297ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-15 22:22:45.999 +05:30 [INF] Executed DbCommand (286ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-15 22:22:46.001 +05:30 [INF] Handled LoginCommand
+2026-04-15 22:22:46.005 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:22:46.022 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 3038.6676ms
+2026-04-15 22:22:46.022 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-15 22:22:46.022 +05:30 [INF] [0a7a8005-5295-45b9-8ffe-d279531eae43] POST /api/v1/auth/login responded 200 in 3041.4202ms
+2026-04-15 22:22:46.023 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 3046.8735ms
+2026-04-15 22:23:15.136 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/warehouses - null null
+2026-04-15 22:23:15.136 +05:30 [INF] [d257ddd6-5cef-40fe-83b5-eab64a93c441] GET /api/v1/warehouses 
+2026-04-15 22:23:15.186 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.WarehousesController.GetAll (EcommerceInventory.API)'
+2026-04-15 22:23:15.192 +05:30 [INF] Route matched with {action = "GetAll", controller = "Warehouses"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.WarehousesController (EcommerceInventory.API).
+2026-04-15 22:23:15.194 +05:30 [INF] Handling GetAllWarehousesQuery
+2026-04-15 22:23:15.532 +05:30 [INF] Executed DbCommand (286ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT w."Id", w."Code", w."CreatedAt", w."CreatedBy", w."DeletedAt", w."IsActive", w."ManagerId", w."Name", w."Phone", w."UpdatedAt", w."UpdatedBy", w.address_city, w.address_country, w.address_pincode, w.address_state, w.address_street, u0."Id", u0."CloudinaryProfileId", u0."CreatedAt", u0."CreatedBy", u0."DeletedAt", u0."Email", u0."FullName", u0."IsEmailVerified", u0."LastLoginAt", u0."PasswordHash", u0."Phone", u0."ProfileImageUrl", u0."Status", u0."UpdatedAt", u0."UpdatedBy"
+FROM warehouses AS w
+LEFT JOIN (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL
+) AS u0 ON w."ManagerId" = u0."Id"
+WHERE w."DeletedAt" IS NULL
+ORDER BY w."Name"
+2026-04-15 22:23:15.534 +05:30 [INF] Handled GetAllWarehousesQuery
+2026-04-15 22:23:15.534 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[System.Collections.Generic.List`1[[EcommerceInventory.Application.Features.Warehouses.DTOs.WarehouseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-15 22:23:15.552 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.WarehousesController.GetAll (EcommerceInventory.API) in 360.4666ms
+2026-04-15 22:23:15.552 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.WarehousesController.GetAll (EcommerceInventory.API)'
+2026-04-15 22:23:15.553 +05:30 [INF] [d257ddd6-5cef-40fe-83b5-eab64a93c441] GET /api/v1/warehouses responded 200 in 415.9405ms
+2026-04-15 22:23:15.557 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/warehouses - 200 null application/json; charset=utf-8 420.4641ms
+2026-04-15 22:23:54.218 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/warehouses - application/json 126
+2026-04-15 22:23:54.219 +05:30 [INF] [1523b26c-fc15-439d-a529-6eb730f575b8] POST /api/v1/warehouses 
+2026-04-15 22:23:54.223 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.WarehousesController.Create (EcommerceInventory.API)'
+2026-04-15 22:23:54.229 +05:30 [INF] Route matched with {action = "Create", controller = "Warehouses"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(EcommerceInventory.Application.Features.Warehouses.DTOs.CreateWarehouseDto, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.WarehousesController (EcommerceInventory.API).
+2026-04-15 22:23:54.241 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-04-15 22:23:54.262 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.WarehousesController.Create (EcommerceInventory.API) in 32.3691ms
+2026-04-15 22:23:54.262 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.WarehousesController.Create (EcommerceInventory.API)'
+2026-04-15 22:23:54.262 +05:30 [INF] [1523b26c-fc15-439d-a529-6eb730f575b8] POST /api/v1/warehouses responded 400 in 42.8906ms
+2026-04-15 22:23:54.262 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/warehouses - 400 null application/problem+json; charset=utf-8 43.8564ms
+2026-04-15 22:24:28.667 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/warehouses - application/json 142
+2026-04-15 22:24:28.667 +05:30 [INF] [206af0ad-1cae-4057-ab06-a550be5e527a] POST /api/v1/warehouses 
+2026-04-15 22:24:28.669 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.WarehousesController.Create (EcommerceInventory.API)'
+2026-04-15 22:24:28.670 +05:30 [INF] Route matched with {action = "Create", controller = "Warehouses"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(EcommerceInventory.Application.Features.Warehouses.DTOs.CreateWarehouseDto, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.WarehousesController (EcommerceInventory.API).
+2026-04-15 22:24:28.681 +05:30 [INF] Handling CreateWarehouseCommand
+2026-04-15 22:24:28.978 +05:30 [INF] Executed DbCommand (282ms) [Parameters=[@ToUpper='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM warehouses AS w
+    WHERE w."DeletedAt" IS NULL AND w."Code" = @ToUpper AND w."DeletedAt" IS NULL)
+2026-04-15 22:24:29.305 +05:30 [INF] Executed DbCommand (285ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (DbType = DateTime), @p5='?' (DbType = Boolean), @p6='?' (DbType = Guid), @p7='?', @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO warehouses ("Id", "Code", "CreatedAt", "CreatedBy", "DeletedAt", "IsActive", "ManagerId", "Name", "Phone", "UpdatedAt", "UpdatedBy")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-04-15 22:24:30.102 +05:30 [INF] Handled CreateWarehouseCommand
+2026-04-15 22:24:30.103 +05:30 [INF] Executing CreatedResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Warehouses.DTOs.WarehouseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:24:30.112 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.WarehousesController.Create (EcommerceInventory.API) in 1441.8172ms
+2026-04-15 22:24:30.112 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.WarehousesController.Create (EcommerceInventory.API)'
+2026-04-15 22:24:30.112 +05:30 [INF] [206af0ad-1cae-4057-ab06-a550be5e527a] POST /api/v1/warehouses responded 201 in 1444.9573ms
+2026-04-15 22:24:30.112 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/warehouses - 201 null application/json; charset=utf-8 1445.4395ms
+2026-04-15 22:24:59.951 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/categories - null null
+2026-04-15 22:24:59.951 +05:30 [INF] [b01cab0b-9da9-437f-b18e-eef684871c01] GET /api/v1/categories 
+2026-04-15 22:24:59.951 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.CategoriesController.GetAll (EcommerceInventory.API)'
+2026-04-15 22:24:59.960 +05:30 [INF] Route matched with {action = "GetAll", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.CategoriesController (EcommerceInventory.API).
+2026-04-15 22:24:59.962 +05:30 [INF] Handling GetAllCategoriesQuery
+2026-04-15 22:25:00.273 +05:30 [INF] Executed DbCommand (291ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CloudinaryId", c."CreatedAt", c."CreatedBy", c."DeletedAt", c."Description", c."ImageUrl", c."IsActive", c."Name", c."ParentId", c."Slug", c."SortOrder", c."UpdatedAt", c."UpdatedBy"
+FROM categories AS c
+WHERE c."DeletedAt" IS NULL AND c."IsActive"
+ORDER BY c."SortOrder", c."Name"
+2026-04-15 22:25:00.275 +05:30 [INF] Handled GetAllCategoriesQuery
+2026-04-15 22:25:00.276 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[System.Collections.Generic.IReadOnlyList`1[[EcommerceInventory.Application.Features.Categories.DTOs.CategoryDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-15 22:25:00.280 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.CategoriesController.GetAll (EcommerceInventory.API) in 319.2896ms
+2026-04-15 22:25:00.280 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.CategoriesController.GetAll (EcommerceInventory.API)'
+2026-04-15 22:25:00.280 +05:30 [INF] [b01cab0b-9da9-437f-b18e-eef684871c01] GET /api/v1/categories responded 200 in 329.4011ms
+2026-04-15 22:25:00.280 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/categories - 200 null application/json; charset=utf-8 329.8274ms
+2026-04-15 22:26:35.707 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/categories - application/json 57
+2026-04-15 22:26:35.708 +05:30 [INF] [029e25e2-d418-4b4f-9f1f-a8862357d4bf] POST /api/v1/categories 
+2026-04-15 22:26:35.708 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.CategoriesController.Create (EcommerceInventory.API)'
+2026-04-15 22:26:35.716 +05:30 [INF] Route matched with {action = "Create", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(EcommerceInventory.Application.Features.Categories.DTOs.CreateCategoryDto, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.CategoriesController (EcommerceInventory.API).
+2026-04-15 22:26:35.730 +05:30 [INF] Handling CreateCategoryCommand
+2026-04-15 22:26:36.332 +05:30 [INF] Executed DbCommand (566ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."CloudinaryId", c."CreatedAt", c."CreatedBy", c."DeletedAt", c."Description", c."ImageUrl", c."IsActive", c."Name", c."ParentId", c."Slug", c."SortOrder", c."UpdatedAt", c."UpdatedBy"
+FROM categories AS c
+WHERE c."DeletedAt" IS NULL AND c."Id" = @p
+LIMIT 1
+2026-04-15 22:26:36.361 +05:30 [INF] Handled CreateCategoryCommand
+2026-04-15 22:26:36.361 +05:30 [INF] Executing CreatedResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Categories.DTOs.CategoryDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:26:36.364 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.CategoriesController.Create (EcommerceInventory.API) in 647.9612ms
+2026-04-15 22:26:36.364 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.CategoriesController.Create (EcommerceInventory.API)'
+2026-04-15 22:26:36.364 +05:30 [INF] [029e25e2-d418-4b4f-9f1f-a8862357d4bf] POST /api/v1/categories responded 201 in 656.5737ms
+2026-04-15 22:26:36.364 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/categories - 201 null application/json; charset=utf-8 657.065ms
+2026-04-15 22:26:36.613 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/products - application/json 205
+2026-04-15 22:26:36.613 +05:30 [INF] [cc0a2647-c03c-4288-95ff-565c5dc9c826] POST /api/v1/products 
+2026-04-15 22:26:36.614 +05:30 [INF] Executing endpoint '415 HTTP Unsupported Media Type'
+2026-04-15 22:26:36.614 +05:30 [INF] Executed endpoint '415 HTTP Unsupported Media Type'
+2026-04-15 22:26:36.614 +05:30 [INF] [cc0a2647-c03c-4288-95ff-565c5dc9c826] POST /api/v1/products responded 415 in 0.4147ms
+2026-04-15 22:26:36.614 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/products - 415 0 null 0.803ms
+2026-04-15 22:26:36.616 +05:30 [INF] Connection id "0HNKR1TAMA208", Request id "0HNKR1TAMA208:00000002": the application completed without reading the entire request body.
+2026-04-15 22:26:37.113 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/warehouses - application/json null
+2026-04-15 22:26:37.113 +05:30 [INF] [33287067-10e8-42f7-868c-51b9b8338baf] GET /api/v1/warehouses 
+2026-04-15 22:26:37.114 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.WarehousesController.GetAll (EcommerceInventory.API)'
+2026-04-15 22:26:37.114 +05:30 [INF] Route matched with {action = "GetAll", controller = "Warehouses"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.WarehousesController (EcommerceInventory.API).
+2026-04-15 22:26:37.115 +05:30 [INF] Handling GetAllWarehousesQuery
+2026-04-15 22:26:37.397 +05:30 [INF] Executed DbCommand (280ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT w."Id", w."Code", w."CreatedAt", w."CreatedBy", w."DeletedAt", w."IsActive", w."ManagerId", w."Name", w."Phone", w."UpdatedAt", w."UpdatedBy", w.address_city, w.address_country, w.address_pincode, w.address_state, w.address_street, u0."Id", u0."CloudinaryProfileId", u0."CreatedAt", u0."CreatedBy", u0."DeletedAt", u0."Email", u0."FullName", u0."IsEmailVerified", u0."LastLoginAt", u0."PasswordHash", u0."Phone", u0."ProfileImageUrl", u0."Status", u0."UpdatedAt", u0."UpdatedBy"
+FROM warehouses AS w
+LEFT JOIN (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL
+) AS u0 ON w."ManagerId" = u0."Id"
+WHERE w."DeletedAt" IS NULL
+ORDER BY w."Name"
+2026-04-15 22:26:37.399 +05:30 [INF] Handled GetAllWarehousesQuery
+2026-04-15 22:26:37.399 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[System.Collections.Generic.List`1[[EcommerceInventory.Application.Features.Warehouses.DTOs.WarehouseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-15 22:26:37.399 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.WarehousesController.GetAll (EcommerceInventory.API) in 285.0118ms
+2026-04-15 22:26:37.399 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.WarehousesController.GetAll (EcommerceInventory.API)'
+2026-04-15 22:26:37.399 +05:30 [INF] [33287067-10e8-42f7-868c-51b9b8338baf] GET /api/v1/warehouses responded 200 in 285.8351ms
+2026-04-15 22:26:37.399 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/warehouses - 200 null application/json; charset=utf-8 286.1932ms
+2026-04-15 22:26:37.413 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/stocks/adjust - application/json 188
+2026-04-15 22:26:37.413 +05:30 [INF] [7a747fb4-fb95-4f9b-8687-116c61ebd96b] POST /api/v1/stocks/adjust 
+2026-04-15 22:26:37.413 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.StocksController.AdjustStock (EcommerceInventory.API)'
+2026-04-15 22:26:37.420 +05:30 [INF] Route matched with {action = "AdjustStock", controller = "Stocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AdjustStock(EcommerceInventory.Application.Features.Stocks.DTOs.AdjustStockDto, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.StocksController (EcommerceInventory.API).
+2026-04-15 22:26:37.436 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-04-15 22:26:37.437 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.StocksController.AdjustStock (EcommerceInventory.API) in 16.1953ms
+2026-04-15 22:26:37.437 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.StocksController.AdjustStock (EcommerceInventory.API)'
+2026-04-15 22:26:37.437 +05:30 [INF] [7a747fb4-fb95-4f9b-8687-116c61ebd96b] POST /api/v1/stocks/adjust responded 400 in 23.7726ms
+2026-04-15 22:26:37.437 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/stocks/adjust - 400 null application/problem+json; charset=utf-8 24.0889ms
+2026-04-15 22:26:37.451 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders - application/json 366
+2026-04-15 22:26:37.451 +05:30 [INF] [1dd1036c-f69b-43bd-a60e-175b10a150db] POST /api/v1/sales-orders 
+2026-04-15 22:26:37.451 +05:30 [INF] [1dd1036c-f69b-43bd-a60e-175b10a150db] POST /api/v1/sales-orders responded 404 in 0.3672ms
+2026-04-15 22:26:37.451 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders - 404 0 null 0.7566ms
+2026-04-15 22:26:37.452 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5255/api/v1/sales-orders, Response status code: 404
+2026-04-15 22:26:37.472 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders//submit - application/json 2
+2026-04-15 22:26:37.473 +05:30 [INF] [0fe5dcab-13a4-4fe0-8d2f-2544b3fcbc4e] POST /api/v1/sales-orders//submit 
+2026-04-15 22:26:37.473 +05:30 [INF] [0fe5dcab-13a4-4fe0-8d2f-2544b3fcbc4e] POST /api/v1/sales-orders//submit responded 404 in 0.311ms
+2026-04-15 22:26:37.473 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders//submit - 404 0 null 0.6721ms
+2026-04-15 22:26:37.473 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5255/api/v1/sales-orders//submit, Response status code: 404
+2026-04-15 22:26:37.474 +05:30 [INF] Connection id "0HNKR1TAMA208", Request id "0HNKR1TAMA208:00000006": the application completed without reading the entire request body.
+2026-04-15 22:26:37.493 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders//approve - application/json 2
+2026-04-15 22:26:37.494 +05:30 [INF] [32a93fb3-91a8-4a03-940c-e6e30a0b899a] POST /api/v1/sales-orders//approve 
+2026-04-15 22:26:37.495 +05:30 [INF] [32a93fb3-91a8-4a03-940c-e6e30a0b899a] POST /api/v1/sales-orders//approve responded 404 in 0.5069ms
+2026-04-15 22:26:37.495 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders//approve - 404 0 null 1.4482ms
+2026-04-15 22:26:37.495 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5255/api/v1/sales-orders//approve, Response status code: 404
+2026-04-15 22:26:37.495 +05:30 [INF] Connection id "0HNKR1TAMA208", Request id "0HNKR1TAMA208:00000007": the application completed without reading the entire request body.
+2026-04-15 22:26:37.514 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/stocks?productId=&warehouseId=53600ccc-66ee-423d-b1ab-73263dd298f8 - application/json null
+2026-04-15 22:26:37.514 +05:30 [INF] [4eeaf52c-b05b-44e4-873e-0ec704782b25] GET /api/v1/stocks ?productId=&warehouseId=53600ccc-66ee-423d-b1ab-73263dd298f8
+2026-04-15 22:26:37.515 +05:30 [INF] [4eeaf52c-b05b-44e4-873e-0ec704782b25] GET /api/v1/stocks responded 404 in 0.2511ms
+2026-04-15 22:26:37.515 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/stocks?productId=&warehouseId=53600ccc-66ee-423d-b1ab-73263dd298f8 - 404 0 null 0.5035ms
+2026-04-15 22:26:37.515 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/api/v1/stocks, Response status code: 404
+2026-04-15 22:26:37.525 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders//ship - application/json 2
+2026-04-15 22:26:37.526 +05:30 [INF] [8495d721-d73e-4833-bd10-c9553fc6fe18] POST /api/v1/sales-orders//ship 
+2026-04-15 22:26:37.526 +05:30 [INF] [8495d721-d73e-4833-bd10-c9553fc6fe18] POST /api/v1/sales-orders//ship responded 404 in 0.2807ms
+2026-04-15 22:26:37.526 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders//ship - 404 0 null 0.5284ms
+2026-04-15 22:26:37.526 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5255/api/v1/sales-orders//ship, Response status code: 404
+2026-04-15 22:26:37.526 +05:30 [INF] Connection id "0HNKR1TAMA208", Request id "0HNKR1TAMA208:00000009": the application completed without reading the entire request body.
+2026-04-15 22:26:37.547 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/stocks?productId=&warehouseId=53600ccc-66ee-423d-b1ab-73263dd298f8 - application/json null
+2026-04-15 22:26:37.547 +05:30 [INF] [2d9b58bf-b295-4729-bc66-a2e188ec381f] GET /api/v1/stocks ?productId=&warehouseId=53600ccc-66ee-423d-b1ab-73263dd298f8
+2026-04-15 22:26:37.548 +05:30 [INF] [2d9b58bf-b295-4729-bc66-a2e188ec381f] GET /api/v1/stocks responded 404 in 0.2901ms
+2026-04-15 22:26:37.548 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/stocks?productId=&warehouseId=53600ccc-66ee-423d-b1ab-73263dd298f8 - 404 0 null 0.61ms
+2026-04-15 22:26:37.548 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/api/v1/stocks, Response status code: 404
+2026-04-15 22:26:37.558 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders//deliver - application/json 2
+2026-04-15 22:26:37.558 +05:30 [INF] [f68ac526-b27e-4525-b9e6-7a1298f46b2f] POST /api/v1/sales-orders//deliver 
+2026-04-15 22:26:37.559 +05:30 [INF] [f68ac526-b27e-4525-b9e6-7a1298f46b2f] POST /api/v1/sales-orders//deliver responded 404 in 0.2595ms
+2026-04-15 22:26:37.559 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/sales-orders//deliver - 404 0 null 0.5175ms
+2026-04-15 22:26:37.559 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5255/api/v1/sales-orders//deliver, Response status code: 404
+2026-04-15 22:26:37.559 +05:30 [INF] Connection id "0HNKR1TAMA208", Request id "0HNKR1TAMA208:0000000B": the application completed without reading the entire request body.
+2026-04-15 22:26:37.578 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders - application/json null
+2026-04-15 22:26:37.578 +05:30 [INF] [7f7daecb-2461-450d-a389-8ab74c81bd08] GET /api/v1/sales-orders 
+2026-04-15 22:26:37.579 +05:30 [INF] [7f7daecb-2461-450d-a389-8ab74c81bd08] GET /api/v1/sales-orders responded 404 in 0.3079ms
+2026-04-15 22:26:37.579 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders - 404 0 null 0.572ms
+2026-04-15 22:26:37.579 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/api/v1/sales-orders, Response status code: 404
+2026-04-15 22:26:37.589 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders/ - application/json null
+2026-04-15 22:26:37.589 +05:30 [INF] [7b92fe6e-6009-4124-991e-1f03cd529161] GET /api/v1/sales-orders/ 
+2026-04-15 22:26:37.589 +05:30 [INF] [7b92fe6e-6009-4124-991e-1f03cd529161] GET /api/v1/sales-orders/ responded 404 in 0.2488ms
+2026-04-15 22:26:37.590 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders/ - 404 0 null 0.4999ms
+2026-04-15 22:26:37.590 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/api/v1/sales-orders/, Response status code: 404
+2026-04-15 22:27:02.737 +05:30 [INF] Applying database migrations...
+2026-04-15 22:27:03.764 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:03.767 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:03.768 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:03.768 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:03.768 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:03.768 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:03.768 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:03.768 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:03.768 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:03.768 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-15 22:27:07.302 +05:30 [INF] Executed DbCommand (290ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 22:27:07.726 +05:30 [INF] Executed DbCommand (350ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-15 22:27:08.117 +05:30 [INF] Executed DbCommand (270ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-15 22:27:08.706 +05:30 [INF] Executed DbCommand (268ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-15 22:27:08.981 +05:30 [INF] Executed DbCommand (271ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-15 22:27:08.991 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-15 22:27:09.265 +05:30 [INF] Database migrations applied successfully.
+2026-04-15 22:27:09.273 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-15 22:27:09.852 +05:30 [INF] Executed DbCommand (267ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-15 22:27:09.868 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-15 22:27:09.868 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-15 22:27:09.942 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-15 22:27:09.957 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-15 22:27:10.030 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-15 22:27:10.031 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 22:27:10.031 +05:30 [INF] Hosting environment: Development
+2026-04-15 22:27:10.031 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-15 22:27:25.935 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders - null null
+2026-04-15 22:27:25.965 +05:30 [INF] [30b09ef8-3ad2-4a55-9b8f-0c047c370d36] GET /api/v1/sales-orders 
+2026-04-15 22:27:25.969 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-15 22:27:26.046 +05:30 [INF] [30b09ef8-3ad2-4a55-9b8f-0c047c370d36] GET /api/v1/sales-orders responded 404 in 78.251ms
+2026-04-15 22:27:26.050 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders - 404 0 null 117.0266ms
+2026-04-15 22:27:26.051 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/api/v1/sales-orders, Response status code: 404
+2026-04-15 22:28:04.177 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders - null null
+2026-04-15 22:28:04.179 +05:30 [INF] [f2e26375-bbba-49d0-9d3f-ed20f91bbc80] GET /api/v1/sales-orders 
+2026-04-15 22:28:04.181 +05:30 [INF] [f2e26375-bbba-49d0-9d3f-ed20f91bbc80] GET /api/v1/sales-orders responded 404 in 1.8574ms
+2026-04-15 22:28:04.182 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders - 404 0 null 4.3656ms
+2026-04-15 22:28:04.182 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/api/v1/sales-orders, Response status code: 404
+2026-04-15 22:28:19.649 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - application/json 67
+2026-04-15 22:28:19.651 +05:30 [INF] [b1cf7aa4-fd38-4510-b13e-06532e4646bb] POST /api/v1/auth/login 
+2026-04-15 22:28:19.659 +05:30 [INF] Executing endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-15 22:28:19.678 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EcommerceInventory.Application.Features.Auth.Commands.Login.LoginCommand, System.Threading.CancellationToken) on controller EcommerceInventory.API.Controllers.AuthController (EcommerceInventory.API).
+2026-04-15 22:28:19.683 +05:30 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-04-15 22:28:19.729 +05:30 [INF] Handling LoginCommand
+2026-04-15 22:28:19.990 +05:30 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-15 22:28:20.335 +05:30 [INF] Executed DbCommand (280ms) [Parameters=[@ToLower='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u1."Id", u1."CloudinaryProfileId", u1."CreatedAt", u1."CreatedBy", u1."DeletedAt", u1."Email", u1."FullName", u1."IsEmailVerified", u1."LastLoginAt", u1."PasswordHash", u1."Phone", u1."ProfileImageUrl", u1."Status", u1."UpdatedAt", u1."UpdatedBy", s0."UserId", s0."RoleId", s0."AssignedAt", s0."AssignedBy", s0."Id", s0."CreatedAt", s0."Description", s0."HierarchyLevel", s0."IsSystemRole", s0."Name", s0."UpdatedAt", s0."RoleId0", s0."PermissionId", s0."Id0", s0."CreatedAt0", s0."Description0", s0."Module", s0."Name0", s0."UpdatedAt0"
+FROM (
+    SELECT u."Id", u."CloudinaryProfileId", u."CreatedAt", u."CreatedBy", u."DeletedAt", u."Email", u."FullName", u."IsEmailVerified", u."LastLoginAt", u."PasswordHash", u."Phone", u."ProfileImageUrl", u."Status", u."UpdatedAt", u."UpdatedBy"
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Email" = @ToLower
+    LIMIT 1
+) AS u1
+LEFT JOIN (
+    SELECT u0."UserId", u0."RoleId", u0."AssignedAt", u0."AssignedBy", r."Id", r."CreatedAt", r."Description", r."HierarchyLevel", r."IsSystemRole", r."Name", r."UpdatedAt", s."RoleId" AS "RoleId0", s."PermissionId", s."Id" AS "Id0", s."CreatedAt" AS "CreatedAt0", s."Description" AS "Description0", s."Module", s."Name" AS "Name0", s."UpdatedAt" AS "UpdatedAt0"
+    FROM user_roles AS u0
+    INNER JOIN roles AS r ON u0."RoleId" = r."Id"
+    LEFT JOIN (
+        SELECT r0."RoleId", r0."PermissionId", p."Id", p."CreatedAt", p."Description", p."Module", p."Name", p."UpdatedAt"
+        FROM role_permissions AS r0
+        INNER JOIN permissions AS p ON r0."PermissionId" = p."Id"
+    ) AS s ON r."Id" = s."RoleId"
+) AS s0 ON u1."Id" = s0."UserId"
+ORDER BY u1."Id", s0."UserId", s0."RoleId", s0."Id", s0."RoleId0", s0."PermissionId"
+2026-04-15 22:28:21.605 +05:30 [INF] Executed DbCommand (275ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO refresh_tokens ("Id", "CreatedAt", "DeviceInfo", "ExpiresAt", "IsRevoked", "ReplacedBy", "RevokedAt", "Token", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-04-15 22:28:21.894 +05:30 [INF] Executed DbCommand (271ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+UPDATE users SET "LastLoginAt" = @p0, "UpdatedAt" = @p1
+WHERE "Id" = @p2;
+2026-04-15 22:28:21.897 +05:30 [INF] Handled LoginCommand
+2026-04-15 22:28:21.904 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceInventory.Application.Common.Models.ApiResponse`1[[EcommerceInventory.Application.Features.Auth.DTOs.LoginResponseDto, EcommerceInventory.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:28:21.949 +05:30 [INF] Executed action EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API) in 2265.8758ms
+2026-04-15 22:28:21.950 +05:30 [INF] Executed endpoint 'EcommerceInventory.API.Controllers.AuthController.Login (EcommerceInventory.API)'
+2026-04-15 22:28:21.959 +05:30 [INF] [b1cf7aa4-fd38-4510-b13e-06532e4646bb] POST /api/v1/auth/login responded 200 in 2308.012ms
+2026-04-15 22:28:21.962 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5255/api/v1/auth/login - 200 null application/json; charset=utf-8 2312.4566ms
+2026-04-15 22:29:21.743 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders - null null
+2026-04-15 22:29:21.743 +05:30 [INF] [9839f5b0-1bc4-49ee-bfa2-9c133f86e167] GET /api/v1/sales-orders 
+2026-04-15 22:29:21.744 +05:30 [INF] [9839f5b0-1bc4-49ee-bfa2-9c133f86e167] GET /api/v1/sales-orders responded 404 in 0.4106ms
+2026-04-15 22:29:21.744 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/api/v1/sales-orders - 404 0 null 0.9195ms
+2026-04-15 22:29:21.744 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/api/v1/sales-orders, Response status code: 404

@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceInventory.API.Controllers;
 
+[ApiController]
 [Authorize]
 [Route("api/v1/[controller]")]
 public class ProductsController : ControllerBase

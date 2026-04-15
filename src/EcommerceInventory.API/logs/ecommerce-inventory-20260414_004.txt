@@ -545,3 +545,97 @@ SELECT EXISTS (
 2026-04-14 23:34:00.744 +05:30 [INF] Application started. Press Ctrl+C to shut down.
 2026-04-14 23:34:00.744 +05:30 [INF] Hosting environment: Development
 2026-04-14 23:34:00.744 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-14 23:45:08.924 +05:30 [INF] Applying database migrations...
+2026-04-14 23:45:09.678 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'EmailVerificationToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:09.684 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'PasswordResetToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:09.686 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'ProductImage'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:09.687 +05:30 [WRN] Entity 'Supplier' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:09.689 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'PurchaseOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:09.691 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'RefreshToken'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:09.692 +05:30 [WRN] Entity 'Warehouse' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrder'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:09.694 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'SalesOrderItem'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:09.696 +05:30 [WRN] Entity 'Product' has a global query filter defined and is the required end of a relationship with the entity 'Stock'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:09.698 +05:30 [WRN] Entity 'User' has a global query filter defined and is the required end of a relationship with the entity 'UserRole'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-04-14 23:45:12.974 +05:30 [INF] Executed DbCommand (300ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 23:45:13.331 +05:30 [INF] Executed DbCommand (273ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-14 23:45:13.727 +05:30 [INF] Executed DbCommand (273ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-04-14 23:45:14.282 +05:30 [INF] Executed DbCommand (268ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-04-14 23:45:14.557 +05:30 [INF] Executed DbCommand (268ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-04-14 23:45:14.569 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-14 23:45:14.847 +05:30 [INF] Database migrations applied successfully.
+2026-04-14 23:45:14.857 +05:30 [INF] Running SuperAdmin seeder...
+2026-04-14 23:45:15.419 +05:30 [INF] Executed DbCommand (267ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM users AS u
+    WHERE u."DeletedAt" IS NULL AND u."Id" = '31111111-0000-0000-0000-000000000001')
+2026-04-14 23:45:15.441 +05:30 [INF] SuperAdmin user already exists, skipping seed.
+2026-04-14 23:45:15.445 +05:30 [INF] SuperAdmin seeder completed.
+2026-04-14 23:45:15.518 +05:30 [INF] Starting Ecommerce Inventory API...
+2026-04-14 23:45:15.536 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-14 23:45:15.611 +05:30 [INF] Now listening on: http://localhost:5255
+2026-04-14 23:45:15.613 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-14 23:45:15.614 +05:30 [INF] Hosting environment: Development
+2026-04-14 23:45:15.616 +05:30 [INF] Content root path: D:\CodeSpace\Temporary-Field\EcommerceInventorySystem-Backend\src\EcommerceInventory.API
+2026-04-14 23:45:27.971 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/ - null null
+2026-04-14 23:45:28.039 +05:30 [INF] [9980cb6c-31ac-493b-a174-973ae991c0f2] GET / 
+2026-04-14 23:45:28.049 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-14 23:45:28.103 +05:30 [INF] [9980cb6c-31ac-493b-a174-973ae991c0f2] GET / responded 404 in 58.1203ms
+2026-04-14 23:45:28.115 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/ - 404 0 null 146.281ms
+2026-04-14 23:45:28.139 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5255/, Response status code: 404
+2026-04-14 23:45:36.198 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar - null null
+2026-04-14 23:45:36.210 +05:30 [INF] [b324945e-8a2d-48d5-b552-eeb5fad0b58e] GET /scalar 
+2026-04-14 23:45:36.222 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-14 23:45:36.236 +05:30 [INF] Executing RedirectResult, redirecting to scalar/.
+2026-04-14 23:45:36.238 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-14 23:45:36.241 +05:30 [INF] [b324945e-8a2d-48d5-b552-eeb5fad0b58e] GET /scalar responded 302 in 25.65ms
+2026-04-14 23:45:36.246 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar - 302 0 null 47.8606ms
+2026-04-14 23:45:36.255 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/ - null null
+2026-04-14 23:45:36.264 +05:30 [INF] [b977bc0c-1e61-4742-83d4-75508af4afb7] GET /scalar/ 
+2026-04-14 23:45:36.272 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-14 23:45:36.487 +05:30 [INF] Write content with HTTP Response ContentType of text/html
+2026-04-14 23:45:36.490 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2026-04-14 23:45:36.492 +05:30 [INF] [b977bc0c-1e61-4742-83d4-75508af4afb7] GET /scalar/ responded 200 in 223.4527ms
+2026-04-14 23:45:36.503 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/ - 200 693 text/html 247.9585ms
+2026-04-14 23:45:36.524 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/scalar.js - null null
+2026-04-14 23:45:36.525 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/scalar.aspnetcore.js - null null
+2026-04-14 23:45:36.532 +05:30 [INF] [f8930db5-1939-4c17-9103-bef57ef6f310] GET /scalar/scalar.js 
+2026-04-14 23:45:36.537 +05:30 [INF] [dbf39d71-bd82-47e3-96dd-bb3e4a93a3ea] GET /scalar/scalar.aspnetcore.js 
+2026-04-14 23:45:36.538 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2026-04-14 23:45:36.541 +05:30 [INF] CORS policy execution successful.
+2026-04-14 23:45:36.544 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-04-14 23:45:36.554 +05:30 [INF] Sending file with download name ''.
+2026-04-14 23:45:36.554 +05:30 [INF] Sending file with download name ''.
+2026-04-14 23:45:36.573 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2026-04-14 23:45:36.690 +05:30 [INF] [dbf39d71-bd82-47e3-96dd-bb3e4a93a3ea] GET /scalar/scalar.aspnetcore.js responded 200 in 149.8863ms
+2026-04-14 23:45:36.684 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2026-04-14 23:45:36.787 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/scalar.aspnetcore.js - 200 1111 text/javascript 261.5289ms
+2026-04-14 23:45:36.790 +05:30 [INF] [f8930db5-1939-4c17-9103-bef57ef6f310] GET /scalar/scalar.js responded 200 in 252.0835ms
+2026-04-14 23:45:36.814 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/scalar.js - 200 1128805 text/javascript 290.3443ms
+2026-04-14 23:45:37.404 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/openapi/v1.json - null null
+2026-04-14 23:45:37.410 +05:30 [INF] [caacc674-fc0c-4b42-b517-b5c705bd23ef] GET /openapi/v1.json 
+2026-04-14 23:45:37.415 +05:30 [INF] Executing endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-04-14 23:45:37.744 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5255/scalar/favicon.svg - null null
+2026-04-14 23:45:37.753 +05:30 [INF] [99b3c928-c5cb-4cc2-b1b8-cd828d2b8b72] GET /scalar/favicon.svg 
+2026-04-14 23:45:37.756 +05:30 [INF] Executing endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-04-14 23:45:37.758 +05:30 [INF] Sending file with download name ''.
+2026-04-14 23:45:37.760 +05:30 [INF] Executed endpoint 'HTTP: GET /scalar/favicon.svg'
+2026-04-14 23:45:37.766 +05:30 [INF] [99b3c928-c5cb-4cc2-b1b8-cd828d2b8b72] GET /scalar/favicon.svg responded 200 in 10.0218ms
+2026-04-14 23:45:37.772 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/scalar/favicon.svg - 200 533 image/svg+xml 27.9805ms
+2026-04-14 23:45:37.823 +05:30 [INF] Executed endpoint 'HTTP: GET /openapi/{documentName}.json'
+2026-04-14 23:45:37.825 +05:30 [INF] [caacc674-fc0c-4b42-b517-b5c705bd23ef] GET /openapi/v1.json responded 200 in 410.9586ms
+2026-04-14 23:45:37.830 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5255/openapi/v1.json - 200 null application/json;charset=utf-8 425.7964ms
+2026-04-14 23:47:32.877 +05:30 [INF] Application is shutting down...
