@@ -4,78 +4,69 @@ using EcommerceInventory.Domain.ValueObjects;
 
 namespace EcommerceInventory.Domain.Entities;
 
-/// <summary>
-/// Supplier entity - vendor/supplier information
-/// </summary>
-public class Supplier : AuditableEntity, ISoftDelete
+public class Supplier : BaseEntity, ISoftDelete
 {
-    public string Name { get; set; } = string.Empty;
-    public string? ContactName { get; set; }
-    public string? Email { get; set; }
-    public string? Phone { get; set; }
-    public Address? Address { get; set; }
-    public string? GstNumber { get; set; }
-    public bool IsActive { get; set; } = true;
-    public DateTime? DeletedAt { get; set; }
+    public string   Name        { get; private set; } = string.Empty;
+    public string?  ContactName { get; private set; }
+    public string?  Email       { get; private set; }
+    public string?  Phone       { get; private set; }
+    public Address? Address     { get; private set; }
+    public string?  GstNumber   { get; private set; }
+    public bool     IsActive    { get; private set; } = true;
+    public DateTime? DeletedAt  { get; set; }
+    public bool     IsDeleted   => DeletedAt.HasValue;
 
-    // Navigation properties
     public ICollection<PurchaseOrder> PurchaseOrders { get; set; } = new List<PurchaseOrder>();
 
-    /// <summary>
-    /// Factory method to create a new supplier
-    /// </summary>
-    public static Supplier Create(
-        string name,
-        string? contactName = null,
-        string? email = null,
-        string? phone = null,
-        Address? address = null,
-        string? gstNumber = null)
+    protected Supplier() { }
+
+    public static Supplier Create(string name, string? contactName = null,
+                                   string? email = null, string? phone = null,
+                                   Address? address = null, string? gstNumber = null)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new DomainException("Supplier name cannot be empty");
+            throw new DomainException("Supplier name is required.");
 
         return new Supplier
         {
-            Id = Guid.NewGuid(),
-            Name = name.Trim(),
+            Name        = name.Trim(),
             ContactName = contactName?.Trim(),
-            Email = email?.Trim().ToLower(),
-            Phone = phone?.Trim(),
-            Address = address,
-            GstNumber = gstNumber?.Trim().ToUpper(),
-            IsActive = true,
-            CreatedAt = DateTime.UtcNow
+            Email       = email?.Trim().ToLower(),
+            Phone       = phone?.Trim(),
+            Address     = address,
+            GstNumber   = gstNumber?.Trim(),
+            IsActive    = true
         };
     }
 
-    /// <summary>
-    /// Updates supplier information
-    /// </summary>
-    public void Update(
-        string name,
-        string? contactName = null,
-        string? email = null,
-        string? phone = null,
-        Address? address = null,
-        string? gstNumber = null)
+    public void Update(string name, string? contactName, string? email,
+                       string? phone, Address? address, string? gstNumber)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new DomainException("Supplier name cannot be empty");
+            throw new DomainException("Supplier name is required.");
 
-        Name = name.Trim();
+        Name        = name.Trim();
         ContactName = contactName?.Trim();
-        Email = email?.Trim().ToLower();
-        Phone = phone?.Trim();
-        Address = address;
-        GstNumber = gstNumber?.Trim().ToUpper();
+        Email       = email?.Trim().ToLower();
+        Phone       = phone?.Trim();
+        Address     = address;
+        GstNumber   = gstNumber?.Trim();
+        UpdatedAt   = DateTime.UtcNow;
+    }
+
+    public void Activate()
+    {
+        IsActive  = true;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    /// <summary>
-    /// Soft deletes the supplier
-    /// </summary>
-    public void Delete()
+    public void Deactivate()
+    {
+        IsActive  = false;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void SoftDelete()
     {
         DeletedAt = DateTime.UtcNow;
         UpdatedAt = DateTime.UtcNow;

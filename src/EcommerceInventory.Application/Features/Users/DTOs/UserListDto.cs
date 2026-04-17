@@ -1,0 +1,14 @@
+namespace EcommerceInventory.Application.Features.Users.DTOs;
+
+public class UserListDto
+{
+    public Guid    Id              { get; set; }
+    public string  FullName        { get; set; } = string.Empty;
+    public string  Email           { get; set; } = string.Empty;
+    public string? Phone           { get; set; }
+    public string? ProfileImageUrl { get; set; }
+    public string  Status          { get; set; } = string.Empty;
+    public bool    IsEmailVerified { get; set; }
+    public List<string> Roles      { get; set; } = new();
+    public DateTime CreatedAt      { get; set; }
+}

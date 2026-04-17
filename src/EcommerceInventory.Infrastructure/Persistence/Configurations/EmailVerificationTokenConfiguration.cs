@@ -9,22 +9,13 @@ public class EmailVerificationTokenConfiguration : IEntityTypeConfiguration<Emai
     public void Configure(EntityTypeBuilder<EmailVerificationToken> builder)
     {
         builder.ToTable("email_verification_tokens");
-
-        builder.HasKey(evt => evt.Id);
-
-        builder.Property(evt => evt.TokenHash)
-            .HasMaxLength(500)
-            .IsRequired();
-
-        builder.Property(evt => evt.ExpiresAt)
-            .IsRequired();
-
-        builder.Property(evt => evt.IsUsed)
-            .IsRequired();
-
-        builder.HasOne(evt => evt.User)
-            .WithMany()
-            .HasForeignKey(evt => evt.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasKey(t => t.Id);
+        builder.Property(t => t.Id).HasColumnName("id").HasDefaultValueSql("gen_random_uuid()");
+        builder.Property(t => t.UserId).HasColumnName("user_id").IsRequired();
+        builder.Property(t => t.TokenHash).HasColumnName("token_hash").HasMaxLength(500).IsRequired();
+        builder.Property(t => t.ExpiresAt).HasColumnName("expires_at").IsRequired();
+        builder.Property(t => t.IsUsed).HasColumnName("is_used").HasDefaultValue(false).IsRequired();
+        builder.Property(t => t.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("now()").IsRequired();
+        builder.Ignore(t => t.UpdatedAt);
     }
 }

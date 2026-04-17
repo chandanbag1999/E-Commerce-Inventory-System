@@ -2,84 +2,90 @@ using EcommerceInventory.Domain.Entities;
 using EcommerceInventory.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using BCrypt.Net;
 
 namespace EcommerceInventory.Infrastructure.Persistence.Seed;
 
-/// <summary>
-/// Seeds the SuperAdmin user with a default password
-/// This runs once on first migration to ensure there's always an admin account
-/// </summary>
 public static class SuperAdminSeeder
 {
-    // Fixed GUIDs for SuperAdmin user and related records
-    private static readonly Guid SuperAdminRoleId = Guid.Parse("11111111-0000-0000-0000-000000000001");
-    private static readonly Guid SuperAdminUserId = Guid.Parse("31111111-0000-0000-0000-000000000001");
-
-    /// <summary>
-    /// Seeds the SuperAdmin user if it doesn't exist
-    /// </summary>
-    public static async Task SeedSuperAdminAsync(IServiceProvider serviceProvider)
+    public static async Task SeedAsync(
+        AppDbContext context,
+        IConfiguration configuration,
+        ILogger logger)
     {
-        using var scope = serviceProvider.CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        var logger = scope.ServiceProvider.GetRequiredService<ILoggerFactory>().CreateLogger("SuperAdminSeeder");
-        var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
-
-        // Check if SuperAdmin already exists
-        var superAdminExists = await context.Users.AnyAsync(u => u.Id == SuperAdminUserId);
-        if (superAdminExists)
+        try
         {
-            logger.LogInformation("SuperAdmin user already exists, skipping seed.");
-            return;
+            var fullName = configuration["SuperAdmin:FullName"]
+                           ?? "System Administrator";
+            var email    = configuration["SuperAdmin:Email"]
+                           ?? "superadmin@system.com";
+            var password = configuration["SuperAdmin:Password"]
+                           ?? "SuperAdmin@123";
+            var phone    = configuration["SuperAdmin:Phone"]
+                           ?? "";
+
+            var superAdminRoleId = Guid.Parse(
+                "11111111-0000-0000-0000-000000000001");
+
+            // Check if SuperAdmin user already exists
+            var existingUser = await context.Users
+                .FirstOrDefaultAsync(u => u.Email == email.ToLower().Trim());
+
+            if (existingUser != null)
+            {
+                logger.LogInformation(
+                    "SuperAdmin user already exists: {Email}", email);
+                return;
+            }
+
+            // Check role exists
+            var superAdminRole = await context.Roles
+                .FirstOrDefaultAsync(r => r.Id == superAdminRoleId);
+
+            if (superAdminRole == null)
+            {
+                logger.LogWarning(
+                    "SuperAdmin role not found. " +
+                    "Make sure migrations have been applied.");
+                return;
+            }
+
+            // Create user via factory method
+            var passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            var superAdminUser = User.Create(
+                fullName, email, passwordHash,
+                string.IsNullOrWhiteSpace(phone) ? null : phone);
+
+            // Override the auto-generated Id with fixed seed Id
+            superAdminUser.Id = Guid.Parse(
+                "33333333-0000-0000-0000-000000000001");
+
+            // Mark email as verified
+            superAdminUser.VerifyEmail();
+
+            await context.Users.AddAsync(superAdminUser);
+            await context.SaveChangesAsync();
+
+            // Assign SuperAdmin role
+            var userRole = new UserRole
+            {
+                UserId     = superAdminUser.Id,
+                RoleId     = superAdminRoleId,
+                AssignedAt = DateTime.UtcNow,
+                AssignedBy = superAdminUser.Id
+            };
+
+            await context.UserRoles.AddAsync(userRole);
+            await context.SaveChangesAsync();
+
+            logger.LogInformation(
+                "SuperAdmin user seeded successfully. Email: {Email}", email);
         }
-
-        logger.LogInformation("Seeding SuperAdmin user...");
-
-        // Get settings from configuration
-        var superAdminSettings = configuration.GetSection("SuperAdmin");
-        var email = superAdminSettings["Email"] ?? "superadmin@ecommerce.local";
-        var password = superAdminSettings["Password"] ?? "SuperAdmin@123!";
-        var fullName = superAdminSettings["FullName"] ?? "Super Administrator";
-        var phone = superAdminSettings["Phone"];
-
-        // Create the SuperAdmin user
-        // Note: We need to hash the password using the same method as the application
-        // For seeding, we'll use a simple BCrypt hash (or whatever the app uses)
-        var passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
-
-        var seedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
-        var superAdminUser = new User
+        catch (Exception ex)
         {
-            Id = SuperAdminUserId,
-            FullName = fullName,
-            Email = email.ToLower(),
-            PasswordHash = passwordHash,
-            Phone = phone,
-            Status = UserStatus.Active,
-            IsEmailVerified = true, // Auto-verify SuperAdmin
-            LastLoginAt = null,
-            CreatedAt = seedDate,
-            UpdatedAt = seedDate
-        };
-
-        context.Users.Add(superAdminUser);
-
-        // Assign SuperAdmin role to the user
-        var userRole = new UserRole
-        {
-            UserId = SuperAdminUserId,
-            RoleId = SuperAdminRoleId,
-            AssignedAt = seedDate,
-            AssignedBy = null
-        };
-
-        context.UserRoles.Add(userRole);
-
-        await context.SaveChangesAsync();
-
-        logger.LogInformation("SuperAdmin user '{Email}' created successfully with SuperAdmin role.", email);
+            logger.LogError(ex, "Error seeding SuperAdmin user.");
+            throw;
+        }
     }
 }

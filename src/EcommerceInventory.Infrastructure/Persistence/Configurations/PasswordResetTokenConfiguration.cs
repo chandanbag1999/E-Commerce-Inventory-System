@@ -9,22 +9,13 @@ public class PasswordResetTokenConfiguration : IEntityTypeConfiguration<Password
     public void Configure(EntityTypeBuilder<PasswordResetToken> builder)
     {
         builder.ToTable("password_reset_tokens");
-
-        builder.HasKey(prt => prt.Id);
-
-        builder.Property(prt => prt.TokenHash)
-            .HasMaxLength(500)
-            .IsRequired();
-
-        builder.Property(prt => prt.ExpiresAt)
-            .IsRequired();
-
-        builder.Property(prt => prt.IsUsed)
-            .IsRequired();
-
-        builder.HasOne(prt => prt.User)
-            .WithMany()
-            .HasForeignKey(prt => prt.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasKey(t => t.Id);
+        builder.Property(t => t.Id).HasColumnName("id").HasDefaultValueSql("gen_random_uuid()");
+        builder.Property(t => t.UserId).HasColumnName("user_id").IsRequired();
+        builder.Property(t => t.TokenHash).HasColumnName("token_hash").HasMaxLength(500).IsRequired();
+        builder.Property(t => t.ExpiresAt).HasColumnName("expires_at").IsRequired();
+        builder.Property(t => t.IsUsed).HasColumnName("is_used").HasDefaultValue(false).IsRequired();
+        builder.Property(t => t.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("now()").IsRequired();
+        builder.Ignore(t => t.UpdatedAt);
     }
 }

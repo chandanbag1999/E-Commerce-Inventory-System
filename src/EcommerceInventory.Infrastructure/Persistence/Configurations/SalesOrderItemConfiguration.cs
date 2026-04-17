@@ -9,29 +9,17 @@ public class SalesOrderItemConfiguration : IEntityTypeConfiguration<SalesOrderIt
     public void Configure(EntityTypeBuilder<SalesOrderItem> builder)
     {
         builder.ToTable("sales_order_items");
+        builder.HasKey(i => i.Id);
+        builder.Property(i => i.Id).HasColumnName("id").HasDefaultValueSql("gen_random_uuid()");
+        builder.Property(i => i.SalesOrderId).HasColumnName("sales_order_id").IsRequired();
+        builder.Property(i => i.ProductId).HasColumnName("product_id").IsRequired();
+        builder.Property(i => i.Quantity).HasColumnName("quantity").IsRequired();
+        builder.Property(i => i.UnitPrice).HasColumnName("unit_price").HasColumnType("numeric(18,2)").IsRequired();
+        builder.Property(i => i.Discount).HasColumnName("discount").HasColumnType("numeric(18,2)").HasDefaultValue(0m).IsRequired();
+        builder.Ignore(i => i.LineTotal);
+        builder.Ignore(i => i.UpdatedAt);
+        builder.Ignore(i => i.CreatedAt);
 
-        builder.HasKey(soi => soi.Id);
-
-        builder.Property(soi => soi.Quantity)
-            .IsRequired();
-
-        builder.Property(soi => soi.UnitPrice)
-            .HasColumnType("numeric(18,2)")
-            .IsRequired();
-
-        builder.Property(soi => soi.Discount)
-            .HasColumnType("numeric(18,2)")
-            .IsRequired()
-            .HasDefaultValue(0);
-
-        builder.HasOne(soi => soi.SalesOrder)
-            .WithMany(so => so.Items)
-            .HasForeignKey(soi => soi.SalesOrderId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasOne(soi => soi.Product)
-            .WithMany(p => p.SalesOrderItems)
-            .HasForeignKey(soi => soi.ProductId)
-            .OnDelete(DeleteBehavior.Restrict);
+        builder.HasOne(i => i.Product).WithMany().HasForeignKey(i => i.ProductId).OnDelete(DeleteBehavior.Restrict);
     }
 }

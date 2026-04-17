@@ -9,27 +9,17 @@ public class PurchaseOrderItemConfiguration : IEntityTypeConfiguration<PurchaseO
     public void Configure(EntityTypeBuilder<PurchaseOrderItem> builder)
     {
         builder.ToTable("purchase_order_items");
+        builder.HasKey(i => i.Id);
+        builder.Property(i => i.Id).HasColumnName("id").HasDefaultValueSql("gen_random_uuid()");
+        builder.Property(i => i.PurchaseOrderId).HasColumnName("purchase_order_id").IsRequired();
+        builder.Property(i => i.ProductId).HasColumnName("product_id").IsRequired();
+        builder.Property(i => i.QuantityOrdered).HasColumnName("quantity_ordered").IsRequired();
+        builder.Property(i => i.QuantityReceived).HasColumnName("quantity_received").HasDefaultValue(0).IsRequired();
+        builder.Property(i => i.UnitCost).HasColumnName("unit_cost").HasColumnType("numeric(18,2)").IsRequired();
+        builder.Ignore(i => i.TotalCost);
+        builder.Ignore(i => i.UpdatedAt);
+        builder.Ignore(i => i.CreatedAt);
 
-        builder.HasKey(poi => poi.Id);
-
-        builder.Property(poi => poi.QuantityOrdered)
-            .IsRequired();
-
-        builder.Property(poi => poi.QuantityReceived)
-            .IsRequired();
-
-        builder.Property(poi => poi.UnitCost)
-            .HasColumnType("numeric(18,2)")
-            .IsRequired();
-
-        builder.HasOne(poi => poi.PurchaseOrder)
-            .WithMany(po => po.Items)
-            .HasForeignKey(poi => poi.PurchaseOrderId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasOne(poi => poi.Product)
-            .WithMany(p => p.PurchaseOrderItems)
-            .HasForeignKey(poi => poi.ProductId)
-            .OnDelete(DeleteBehavior.Restrict);
+        builder.HasOne(i => i.Product).WithMany().HasForeignKey(i => i.ProductId).OnDelete(DeleteBehavior.Restrict);
     }
 }

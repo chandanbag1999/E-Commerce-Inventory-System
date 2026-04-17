@@ -4,122 +4,101 @@ using EcommerceInventory.Domain.Exceptions;
 
 namespace EcommerceInventory.Domain.Entities;
 
-
-// Product entity representing an item in the inventory
-public class Product : AuditableEntity, ISoftDelete
+public class Product : BaseEntity, ISoftDelete
 {
-    public Guid CategoryId { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string Slug { get; set; } = string.Empty;
-    public string? Description { get; set; }
-    public string Sku { get; set; } = string.Empty;
-    public string? Barcode { get; set; }
-    public decimal UnitPrice { get; set; } = 0;
-    public decimal CostPrice { get; set; } = 0;
-    public int ReorderLevel { get; set; } = 0;
-    public int ReorderQty { get; set; } = 0;
-    public ProductStatus Status { get; set; } = ProductStatus.Active;
-    public decimal? WeightKg { get; set; }
-    public DateTime? DeletedAt { get; set; }
+    public Guid          CategoryId    { get; private set; }
+    public string        Name          { get; private set; } = string.Empty;
+    public string        Slug          { get; private set; } = string.Empty;
+    public string?       Description   { get; private set; }
+    public string        Sku           { get; private set; } = string.Empty;
+    public string?       Barcode       { get; private set; }
+    public decimal       UnitPrice     { get; private set; }
+    public decimal       CostPrice     { get; private set; }
+    public int           ReorderLevel  { get; private set; } = 0;
+    public int           ReorderQty    { get; private set; } = 0;
+    public ProductStatus Status        { get; private set; } = ProductStatus.Active;
+    public decimal?      WeightKg      { get; private set; }
+    public Guid?         CreatedBy     { get; private set; }
+    public DateTime?     DeletedAt     { get; set; }
+    public bool          IsDeleted     => DeletedAt.HasValue;
 
-    // Navigation properties
-    public Category Category { get; set; } = null!;
-    public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
-    public ICollection<Stock> Stocks { get; set; } = new List<Stock>();
-    public ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; } = new List<PurchaseOrderItem>();
-    public ICollection<SalesOrderItem> SalesOrderItems { get; set; } = new List<SalesOrderItem>();
+    public Category                 Category { get; set; } = null!;
+    public ICollection<ProductImage> Images  { get; set; } = new List<ProductImage>();
+    public ICollection<Stock>        Stocks  { get; set; } = new List<Stock>();
 
+    protected Product() { }
 
-    // Factory method to create a new product with validation
-    public static Product Create(
-        Guid categoryId,
-        string name,
-        string sku,
-        decimal unitPrice,
-        decimal costPrice,
-        string? description = null,
-        int reorderLevel = 0,
-        int reorderQty = 0,
-        Guid? createdBy = null)
+    public static Product Create(Guid categoryId, string name, string slug,
+                                  string sku, decimal unitPrice, decimal costPrice,
+                                  string? description = null, int reorderLevel = 0,
+                                  int reorderQty = 0, string? barcode = null,
+                                  decimal? weightKg = null, Guid? createdBy = null)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new DomainException("Product name cannot be empty");
-        
+            throw new DomainException("Product name is required.");
         if (string.IsNullOrWhiteSpace(sku))
-            throw new DomainException("Product SKU cannot be empty");
-        
+            throw new DomainException("SKU is required.");
         if (unitPrice < 0)
-            throw new DomainException("Unit price must be >= 0");
-        
+            throw new DomainException("Unit price cannot be negative.");
         if (costPrice < 0)
-            throw new DomainException("Cost price must be >= 0");
+            throw new DomainException("Cost price cannot be negative.");
 
         return new Product
         {
-            Id = Guid.NewGuid(),
-            CategoryId = categoryId,
-            Name = name.Trim(),
-            Sku = sku.Trim().ToUpper(),
-            Slug = GenerateSlug(name, sku),
-            Description = description?.Trim(),
-            UnitPrice = unitPrice,
-            CostPrice = costPrice,
+            CategoryId   = categoryId,
+            Name         = name.Trim(),
+            Slug         = slug.Trim().ToLower(),
+            Sku          = sku.Trim().ToUpper(),
+            Description  = description?.Trim(),
+            UnitPrice    = unitPrice,
+            CostPrice    = costPrice,
             ReorderLevel = reorderLevel,
-            ReorderQty = reorderQty,
-            Status = ProductStatus.Active,
-            CreatedBy = createdBy,
-            CreatedAt = DateTime.UtcNow
+            ReorderQty   = reorderQty,
+            Barcode      = barcode?.Trim(),
+            WeightKg     = weightKg,
+            CreatedBy    = createdBy,
+            Status       = ProductStatus.Active
         };
     }
 
-    private static string GenerateSlug(string name, string sku)
-    {
-        var nameSlug = name.Trim().ToLower().Replace(" ", "-");
-        var skuSuffix = sku.Substring(Math.Min(sku.Length, 4)).ToLower();
-        return $"{nameSlug}-{skuSuffix}";
-    }
-
-    // Method to update product details with validation
-    public void Update(
-        string name,
-        decimal unitPrice,
-        decimal costPrice,
-        string? description = null,
-        int reorderLevel = 0,
-        int reorderQty = 0,
-        decimal? weightKg = null)
+    public void Update(Guid categoryId, string name, string? description,
+                       decimal unitPrice, decimal costPrice, int reorderLevel,
+                       int reorderQty, string? barcode, decimal? weightKg)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new DomainException("Product name cannot be empty");
+            throw new DomainException("Product name is required.");
+        if (unitPrice < 0)
+            throw new DomainException("Unit price cannot be negative.");
+        if (costPrice < 0)
+            throw new DomainException("Cost price cannot be negative.");
 
-        Name = name.Trim();
-        UnitPrice = unitPrice;
-        CostPrice = costPrice;
-        Description = description?.Trim();
+        CategoryId   = categoryId;
+        Name         = name.Trim();
+        Description  = description?.Trim();
+        UnitPrice    = unitPrice;
+        CostPrice    = costPrice;
         ReorderLevel = reorderLevel;
-        ReorderQty = reorderQty;
-        WeightKg = weightKg;
-        UpdatedAt = DateTime.UtcNow;
+        ReorderQty   = reorderQty;
+        Barcode      = barcode?.Trim();
+        WeightKg     = weightKg;
+        UpdatedAt    = DateTime.UtcNow;
     }
 
-    // Method to soft delete the product
-    public void Delete()
-    {
-        DeletedAt = DateTime.UtcNow;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
-    // Method to activate the product
     public void Activate()
     {
-        Status = ProductStatus.Active;
+        Status    = ProductStatus.Active;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    // Method to deactivate the product
-    public void Deactivate()
+    public void Discontinue()
     {
-        Status = ProductStatus.Inactive;
+        Status    = ProductStatus.Discontinued;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void SoftDelete()
+    {
+        DeletedAt = DateTime.UtcNow;
         UpdatedAt = DateTime.UtcNow;
     }
 }

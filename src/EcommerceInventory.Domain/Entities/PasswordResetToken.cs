@@ -2,28 +2,31 @@ using EcommerceInventory.Domain.Common;
 
 namespace EcommerceInventory.Domain.Entities;
 
-
-// Password reset token for secure password recovery
 public class PasswordResetToken : BaseEntity
 {
-    public Guid UserId { get; set; }
-    public string TokenHash { get; set; } = string.Empty;
+    public Guid     UserId    { get; set; }
+    public string   TokenHash { get; set; } = string.Empty;
     public DateTime ExpiresAt { get; set; }
-    public bool IsUsed { get; set; } = false;
-    
+    public bool     IsUsed    { get; set; } = false;
 
-    // Navigation property
     public User User { get; set; } = null!;
 
-    
-    public void MarkAsUsed()
+    protected PasswordResetToken() { }
+
+    public static PasswordResetToken Create(Guid userId, string tokenHash, DateTime expiresAt)
     {
-        IsUsed = true;
+        return new PasswordResetToken
+        {
+            UserId    = userId,
+            TokenHash = tokenHash,
+            ExpiresAt = expiresAt
+        };
     }
 
-    
-    public bool IsExpired()
+    public bool IsExpired => DateTime.UtcNow >= ExpiresAt;
+
+    public void MarkUsed()
     {
-        return DateTime.UtcNow > ExpiresAt;
+        IsUsed = true;
     }
 }

@@ -4,72 +4,69 @@ using EcommerceInventory.Domain.Exceptions;
 
 namespace EcommerceInventory.Domain.Entities;
 
-// PurchaseOrder entity representing a purchase order in the system
-public class PurchaseOrder : AuditableEntity
+public class PurchaseOrder : BaseEntity
 {
-    public string PoNumber { get; set; } = string.Empty;
-    public Guid SupplierId { get; set; }
-    public Guid WarehouseId { get; set; }
-    public OrderStatus Status { get; set; } = OrderStatus.Draft;
-    public decimal TotalAmount { get; set; } = 0;
-    public string? Notes { get; set; }
-    public DateTime? ExpectedDeliveryAt { get; set; }
-    public Guid? ApprovedBy { get; set; }
-    public DateTime? ApprovedAt { get; set; }
-    public DateTime? ReceivedAt { get; set; }
+    public string      PoNumber           { get; private set; } = string.Empty;
+    public Guid        SupplierId         { get; private set; }
+    public Guid        WarehouseId        { get; private set; }
+    public OrderStatus Status             { get; private set; } = OrderStatus.Draft;
+    public decimal     TotalAmount        { get; private set; } = 0;
+    public string?     Notes              { get; private set; }
+    public Guid        CreatedBy          { get; private set; }
+    public Guid?       ApprovedBy         { get; private set; }
+    public DateTime?   ApprovedAt         { get; private set; }
+    public DateTime?   ExpectedDeliveryAt { get; private set; }
+    public DateTime?   ReceivedAt         { get; private set; }
 
-    // Navigation properties
-    public Supplier Supplier { get; set; } = null!;
-    public Warehouse Warehouse { get; set; } = null!;
-    public ICollection<PurchaseOrderItem> Items { get; set; } = new List<PurchaseOrderItem>();
+    public Supplier                   Supplier  { get; set; } = null!;
+    public Warehouse                  Warehouse { get; set; } = null!;
+    public ICollection<PurchaseOrderItem> Items { get; private set; } = new List<PurchaseOrderItem>();
 
-    // Factory method to create a new purchase order with validation
-    public static PurchaseOrder Create(
-        string poNumber,
-        Guid supplierId,
-        Guid warehouseId,
-        Guid createdBy,
-        string? notes = null)
+    protected PurchaseOrder() { }
+
+    public static PurchaseOrder Create(string poNumber, Guid supplierId,
+                                        Guid warehouseId, Guid createdBy,
+                                        string? notes = null)
     {
         if (string.IsNullOrWhiteSpace(poNumber))
-            throw new DomainException("PO number cannot be empty");
+            throw new DomainException("PO Number is required.");
 
         return new PurchaseOrder
         {
-            Id = Guid.NewGuid(),
-            PoNumber = poNumber,
-            SupplierId = supplierId,
+            PoNumber    = poNumber,
+            SupplierId  = supplierId,
             WarehouseId = warehouseId,
-            Status = OrderStatus.Draft,
-            TotalAmount = 0,
-            Notes = notes?.Trim(),
-            CreatedBy = createdBy,
-            CreatedAt = DateTime.UtcNow
+            CreatedBy   = createdBy,
+            Notes       = notes?.Trim(),
+            Status      = OrderStatus.Draft
         };
     }
 
-    // Method to add an item to the purchase order
+    public void SetExpectedDelivery(DateTime? expectedAt)
+    {
+        ExpectedDeliveryAt = expectedAt;
+        UpdatedAt          = DateTime.UtcNow;
+    }
+
     public void AddItem(Guid productId, int quantityOrdered, decimal unitCost)
     {
         if (Status != OrderStatus.Draft)
-            throw new BusinessRuleViolationException("Can only add items to Draft orders");
-
+            throw new BusinessRuleViolationException("Items can only be added to Draft orders.");
         if (quantityOrdered <= 0)
-            throw new DomainException("Quantity must be greater than 0");
-
+            throw new DomainException("Quantity must be greater than zero.");
         if (unitCost < 0)
-            throw new DomainException("Unit cost must be >= 0");
+            throw new DomainException("Unit cost cannot be negative.");
 
         var item = PurchaseOrderItem.Create(Id, productId, quantityOrdered, unitCost);
         Items.Add(item);
         RecalculateTotal();
+        UpdatedAt = DateTime.UtcNow;
     }
 
-    // Method to remove an item from the purchase order
     public void RemoveItem(Guid itemId)
     {
         if (Status != OrderStatus.Draft)
-            throw new BusinessRuleViolationException("Can only remove items from Draft orders");
+            throw new BusinessRuleViolationException("Items can only be removed from Draft orders.");
 
         var item = Items.FirstOrDefault(i => i.Id == itemId);
         if (item == null)
@@ -77,68 +74,61 @@ public class PurchaseOrder : AuditableEntity
 
         Items.Remove(item);
         RecalculateTotal();
+        UpdatedAt = DateTime.UtcNow;
     }
 
-   // Method to update an item in the purchase order
     public void Submit()
     {
         if (Status != OrderStatus.Draft)
-            throw new BusinessRuleViolationException("Only Draft orders can be submitted");
-
+            throw new BusinessRuleViolationException("Only Draft orders can be submitted.");
         if (!Items.Any())
-            throw new BusinessRuleViolationException("Cannot submit an order with no items");
+            throw new BusinessRuleViolationException("Cannot submit an order with no items.");
 
-        Status = OrderStatus.Submitted;
+        Status    = OrderStatus.Submitted;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    // Method to approve the purchase order
     public void Approve(Guid approvedBy)
     {
         if (Status != OrderStatus.Submitted)
-            throw new BusinessRuleViolationException("Only Submitted orders can be approved");
+            throw new BusinessRuleViolationException("Only Submitted orders can be approved.");
 
-        Status = OrderStatus.Approved;
+        Status     = OrderStatus.Approved;
         ApprovedBy = approvedBy;
         ApprovedAt = DateTime.UtcNow;
-        UpdatedAt = DateTime.UtcNow;
+        UpdatedAt  = DateTime.UtcNow;
     }
 
-    // Method to reject the purchase order
     public void Reject()
     {
         if (Status != OrderStatus.Submitted)
-            throw new BusinessRuleViolationException("Only Submitted orders can be rejected");
+            throw new BusinessRuleViolationException("Only Submitted orders can be rejected.");
 
-        Status = OrderStatus.Rejected;
+        Status    = OrderStatus.Rejected;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    // Method to mark the purchase order as received
     public void MarkReceived()
     {
         if (Status != OrderStatus.Approved)
-            throw new BusinessRuleViolationException("Only Approved orders can be received");
+            throw new BusinessRuleViolationException("Only Approved orders can be received.");
 
-        Status = OrderStatus.Received;
+        Status     = OrderStatus.Received;
         ReceivedAt = DateTime.UtcNow;
-        UpdatedAt = DateTime.UtcNow;
+        UpdatedAt  = DateTime.UtcNow;
     }
 
-    // Method to cancel the purchase order
     public void Cancel()
     {
         if (Status == OrderStatus.Received)
-            throw new BusinessRuleViolationException("Cannot cancel a received order");
+            throw new BusinessRuleViolationException("Received orders cannot be cancelled.");
 
-        Status = OrderStatus.Cancelled;
+        Status    = OrderStatus.Cancelled;
         UpdatedAt = DateTime.UtcNow;
     }
 
-   // Private method to recalculate the total amount of the purchase order
     private void RecalculateTotal()
     {
         TotalAmount = Items.Sum(i => i.QuantityOrdered * i.UnitCost);
-        UpdatedAt = DateTime.UtcNow;
     }
 }

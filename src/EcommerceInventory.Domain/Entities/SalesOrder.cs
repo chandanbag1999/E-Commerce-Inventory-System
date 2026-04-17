@@ -1,88 +1,80 @@
 using EcommerceInventory.Domain.Common;
 using EcommerceInventory.Domain.Enums;
 using EcommerceInventory.Domain.Exceptions;
+using EcommerceInventory.Domain.ValueObjects;
 
 namespace EcommerceInventory.Domain.Entities;
 
-// Sales Order entity representing a customer's order for products
-public class SalesOrder : AuditableEntity
+public class SalesOrder : BaseEntity
 {
-    public string SoNumber { get; set; } = string.Empty;
-    public string CustomerName { get; set; } = "Walk-in Customer";
-    public string? CustomerEmail { get; set; }
-    public string? CustomerPhone { get; set; }
-    public Guid WarehouseId { get; set; }
-    public OrderStatus Status { get; set; } = OrderStatus.Draft;
-    public decimal Subtotal { get; set; } = 0;
-    public decimal TotalAmount { get; set; } = 0;
-    public string? Notes { get; set; }
-    public string? ShippingAddressJson { get; set; }
-    public Guid? ApprovedBy { get; set; }
-    public DateTime? ApprovedAt { get; set; }
-    public DateTime? ShippedAt { get; set; }
-    public DateTime? DeliveredAt { get; set; }
+    public string   SoNumber          { get; private set; } = string.Empty;
+    public string   CustomerName      { get; private set; } = "Walk-in Customer";
+    public string?  CustomerEmail     { get; private set; }
+    public string?  CustomerPhone     { get; private set; }
+    public Guid     WarehouseId       { get; private set; }
+    public OrderStatus Status         { get; private set; } = OrderStatus.Draft;
+    public decimal  Subtotal          { get; private set; } = 0;
+    public decimal  TotalAmount       { get; private set; } = 0;
+    public string?  Notes             { get; private set; }
+    public Address? ShippingAddress   { get; private set; }
+    public Guid     CreatedBy         { get; private set; }
+    public Guid?    ApprovedBy        { get; private set; }
+    public DateTime? ApprovedAt       { get; private set; }
+    public DateTime? ShippedAt        { get; private set; }
+    public DateTime? DeliveredAt      { get; private set; }
 
-    // Navigation properties
-    public Warehouse Warehouse { get; set; } = null!;
-    public ICollection<SalesOrderItem> Items { get; set; } = new List<SalesOrderItem>();
+    public Warehouse                Warehouse { get; set; } = null!;
+    public ICollection<SalesOrderItem> Items { get; private set; } = new List<SalesOrderItem>();
 
-    // Factory method to create a new sales order with validation
-    public static SalesOrder Create(
-        string soNumber,
-        Guid warehouseId,
-        Guid createdBy,
-        string? customerName = null,
-        string? customerEmail = null,
-        string? customerPhone = null,
-        string? notes = null,
-        string? shippingAddressJson = null)
+    protected SalesOrder() { }
+
+    public static SalesOrder Create(string soNumber, Guid warehouseId, Guid createdBy,
+                                     string customerName = "Walk-in Customer",
+                                     string? customerEmail = null,
+                                     string? customerPhone = null,
+                                     string? notes = null,
+                                     Address? shippingAddress = null)
     {
         if (string.IsNullOrWhiteSpace(soNumber))
-            throw new DomainException("SO number cannot be empty");
+            throw new DomainException("SO Number is required.");
 
         return new SalesOrder
         {
-            Id = Guid.NewGuid(),
-            SoNumber = soNumber,
-            WarehouseId = warehouseId,
-            CustomerName = customerName?.Trim() ?? "Walk-in Customer",
-            CustomerEmail = customerEmail?.Trim(),
-            CustomerPhone = customerPhone?.Trim(),
-            Status = OrderStatus.Draft,
-            Subtotal = 0,
-            TotalAmount = 0,
-            Notes = notes?.Trim(),
-            ShippingAddressJson = shippingAddressJson,
-            CreatedBy = createdBy,
-            CreatedAt = DateTime.UtcNow
+            SoNumber        = soNumber,
+            WarehouseId     = warehouseId,
+            CreatedBy       = createdBy,
+            CustomerName    = string.IsNullOrWhiteSpace(customerName)
+                                ? "Walk-in Customer"
+                                : customerName.Trim(),
+            CustomerEmail   = customerEmail?.Trim().ToLower(),
+            CustomerPhone   = customerPhone?.Trim(),
+            Notes           = notes?.Trim(),
+            ShippingAddress = shippingAddress,
+            Status          = OrderStatus.Draft
         };
     }
 
-    /// Adds an item to the sales order
     public void AddItem(Guid productId, int quantity, decimal unitPrice, decimal discount = 0)
     {
         if (Status != OrderStatus.Draft)
-            throw new BusinessRuleViolationException("Can only add items to Draft orders");
-
+            throw new BusinessRuleViolationException("Items can only be added to Draft orders.");
         if (quantity <= 0)
-            throw new DomainException("Quantity must be greater than 0");
-
+            throw new DomainException("Quantity must be greater than zero.");
         if (unitPrice < 0)
-            throw new DomainException("Unit price must be >= 0");
-
+            throw new DomainException("Unit price cannot be negative.");
         if (discount < 0)
-            throw new DomainException("Discount must be >= 0");
+            throw new DomainException("Discount cannot be negative.");
 
         var item = SalesOrderItem.Create(Id, productId, quantity, unitPrice, discount);
         Items.Add(item);
         RecalculateTotal();
+        UpdatedAt = DateTime.UtcNow;
     }
 
-    /// Removes an item from the sales order
     public void RemoveItem(Guid itemId)
     {
         if (Status != OrderStatus.Draft)
-            throw new BusinessRuleViolationException("Can only remove items from Draft orders");
+            throw new BusinessRuleViolationException("Items can only be removed from Draft orders.");
 
         var item = Items.FirstOrDefault(i => i.Id == itemId);
         if (item == null)
@@ -90,76 +82,63 @@ public class SalesOrder : AuditableEntity
 
         Items.Remove(item);
         RecalculateTotal();
+        UpdatedAt = DateTime.UtcNow;
     }
 
-    /// Submits the sales order for approval
     public void Submit()
     {
         if (Status != OrderStatus.Draft)
-            throw new BusinessRuleViolationException("Only Draft orders can be submitted");
-
+            throw new BusinessRuleViolationException("Only Draft orders can be submitted.");
         if (!Items.Any())
-            throw new BusinessRuleViolationException("Cannot submit an order with no items");
+            throw new BusinessRuleViolationException("Cannot submit an order with no items.");
 
-        Status = OrderStatus.Submitted;
+        Status    = OrderStatus.Submitted;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    /// Approves the sales order
     public void Approve(Guid approvedBy)
     {
         if (Status != OrderStatus.Submitted)
-            throw new BusinessRuleViolationException("Only Submitted orders can be approved");
+            throw new BusinessRuleViolationException("Only Submitted orders can be approved.");
 
-        Status = OrderStatus.Approved;
+        Status     = OrderStatus.Approved;
         ApprovedBy = approvedBy;
         ApprovedAt = DateTime.UtcNow;
-        UpdatedAt = DateTime.UtcNow;
+        UpdatedAt  = DateTime.UtcNow;
     }
 
-   /// Ships the sales order
     public void Ship()
     {
         if (Status != OrderStatus.Approved)
-            throw new BusinessRuleViolationException("Only Approved orders can be shipped");
+            throw new BusinessRuleViolationException("Only Approved orders can be shipped.");
 
-        Status = OrderStatus.Shipped;
+        Status    = OrderStatus.Shipped;
         ShippedAt = DateTime.UtcNow;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    /// <summary>
-    /// Marks the order as delivered
-    /// </summary>
     public void Deliver()
     {
         if (Status != OrderStatus.Shipped)
-            throw new BusinessRuleViolationException("Only Shipped orders can be delivered");
+            throw new BusinessRuleViolationException("Only Shipped orders can be delivered.");
 
-        Status = OrderStatus.Delivered;
+        Status      = OrderStatus.Delivered;
         DeliveredAt = DateTime.UtcNow;
-        UpdatedAt = DateTime.UtcNow;
+        UpdatedAt   = DateTime.UtcNow;
     }
 
-    /// <summary>
-    /// Cancels the sales order
-    /// </summary>
     public void Cancel()
     {
         if (Status == OrderStatus.Shipped || Status == OrderStatus.Delivered)
-            throw new BusinessRuleViolationException("Cannot cancel shipped or delivered orders");
+            throw new BusinessRuleViolationException("Cannot cancel shipped or delivered orders.");
 
-        Status = OrderStatus.Cancelled;
+        Status    = OrderStatus.Cancelled;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    /// <summary>
-    /// Recalculates subtotal and total from all items
-    /// </summary>
     private void RecalculateTotal()
     {
-        Subtotal = Items.Sum(i => i.Quantity * i.UnitPrice);
+        Subtotal    = Items.Sum(i => i.Quantity * i.UnitPrice);
         TotalAmount = Items.Sum(i => (i.Quantity * i.UnitPrice) - i.Discount);
-        UpdatedAt = DateTime.UtcNow;
     }
 }

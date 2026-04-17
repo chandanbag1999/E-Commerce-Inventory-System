@@ -1,11 +1,6 @@
 namespace EcommerceInventory.Domain.Exceptions;
 
-/// <summary>
-/// Thrown when a business rule is violated
-/// </summary>
-public class BusinessRuleViolationException : DomainException
+public class BusinessRuleViolationException : Exception
 {
-    public BusinessRuleViolationException(string message) : base(message)
-    {
-    }
+    public BusinessRuleViolationException(string message) : base(message) { }
 }

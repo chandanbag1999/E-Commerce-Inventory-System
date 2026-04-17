@@ -1,96 +1,64 @@
 using EcommerceInventory.Application.Common.Interfaces;
 using EcommerceInventory.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Storage;
+using EcommerceInventory.Infrastructure.Persistence.Repositories;
 
 namespace EcommerceInventory.Infrastructure.Persistence;
 
-/// <summary>
-/// Unit of Work implementation - coordinates database operations and transactions
-/// </summary>
 public class UnitOfWork : IUnitOfWork
 {
     private readonly AppDbContext _context;
-    private IDbContextTransaction? _currentTransaction;
-    private bool _disposed;
+
+    public IGenericRepository<User>                   Users                   { get; }
+    public IGenericRepository<Role>                   Roles                   { get; }
+    public IGenericRepository<Permission>             Permissions             { get; }
+    public IGenericRepository<RefreshToken>           RefreshTokens           { get; }
+    public IGenericRepository<PasswordResetToken>     PasswordResetTokens     { get; }
+    public IGenericRepository<EmailVerificationToken> EmailVerificationTokens { get; }
+    public IGenericRepository<Category>               Categories              { get; }
+    public IGenericRepository<Product>                Products                { get; }
+    public IGenericRepository<ProductImage>           ProductImages           { get; }
+    public IGenericRepository<Warehouse>              Warehouses              { get; }
+    public IGenericRepository<Stock>                  Stocks                  { get; }
+    public IGenericRepository<StockMovement>          StockMovements          { get; }
+    public IGenericRepository<Supplier>               Suppliers               { get; }
+    public IGenericRepository<PurchaseOrder>          PurchaseOrders          { get; }
+    public IGenericRepository<PurchaseOrderItem>      PurchaseOrderItems      { get; }
+    public IGenericRepository<SalesOrder>             SalesOrders             { get; }
+    public IGenericRepository<SalesOrderItem>         SalesOrderItems         { get; }
 
     public UnitOfWork(AppDbContext context)
     {
-        _context = context;
+        _context                = context;
+        Users                   = new GenericRepository<User>(context);
+        Roles                   = new GenericRepository<Role>(context);
+        Permissions             = new GenericRepository<Permission>(context);
+        RefreshTokens           = new GenericRepository<RefreshToken>(context);
+        PasswordResetTokens     = new GenericRepository<PasswordResetToken>(context);
+        EmailVerificationTokens = new GenericRepository<EmailVerificationToken>(context);
+        Categories              = new GenericRepository<Category>(context);
+        Products                = new GenericRepository<Product>(context);
+        ProductImages           = new GenericRepository<ProductImage>(context);
+        Warehouses              = new GenericRepository<Warehouse>(context);
+        Stocks                  = new GenericRepository<Stock>(context);
+        StockMovements          = new GenericRepository<StockMovement>(context);
+        Suppliers               = new GenericRepository<Supplier>(context);
+        PurchaseOrders          = new GenericRepository<PurchaseOrder>(context);
+        PurchaseOrderItems      = new GenericRepository<PurchaseOrderItem>(context);
+        SalesOrders             = new GenericRepository<SalesOrder>(context);
+        SalesOrderItems         = new GenericRepository<SalesOrderItem>(context);
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        return await _context.SaveChangesAsync(cancellationToken);
-    }
+    public async Task<int> SaveChangesAsync(CancellationToken ct = default)
+        => await _context.SaveChangesAsync(ct);
 
-    public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
-    {
-        if (_currentTransaction != null)
-        {
-            return;
-        }
+    public async Task BeginTransactionAsync(CancellationToken ct = default)
+        => await _context.Database.BeginTransactionAsync(ct);
 
-        _currentTransaction = await _context.Database.BeginTransactionAsync(cancellationToken);
-    }
+    public async Task CommitTransactionAsync(CancellationToken ct = default)
+        => await _context.Database.CommitTransactionAsync(ct);
 
-    public async Task CommitTransactionAsync(CancellationToken cancellationToken = default)
-    {
-        try
-        {
-            await _context.SaveChangesAsync(cancellationToken);
+    public async Task RollbackTransactionAsync(CancellationToken ct = default)
+        => await _context.Database.RollbackTransactionAsync(ct);
 
-            if (_currentTransaction != null)
-            {
-                await _currentTransaction.CommitAsync(cancellationToken);
-            }
-        }
-        catch
-        {
-            await RollbackTransactionAsync(cancellationToken);
-            throw;
-        }
-        finally
-        {
-            if (_currentTransaction != null)
-            {
-                _currentTransaction.Dispose();
-                _currentTransaction = null;
-            }
-        }
-    }
-
-    public async Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
-    {
-        try
-        {
-            if (_currentTransaction != null)
-            {
-                await _currentTransaction.RollbackAsync(cancellationToken);
-            }
-        }
-        finally
-        {
-            if (_currentTransaction != null)
-            {
-                _currentTransaction.Dispose();
-                _currentTransaction = null;
-            }
-        }
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!_disposed && disposing)
-        {
-            _currentTransaction?.Dispose();
-            _context.Dispose();
-            _disposed = true;
-        }
-    }
+    public void Dispose() => _context.Dispose();
 }

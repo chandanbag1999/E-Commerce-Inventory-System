@@ -1,11 +1,10 @@
 using EcommerceInventory.Application.Common.Interfaces;
-using EcommerceInventory.Application.Common.Settings;
 using EcommerceInventory.Infrastructure.Identity;
 using EcommerceInventory.Infrastructure.Persistence;
 using EcommerceInventory.Infrastructure.Persistence.Repositories;
 using EcommerceInventory.Infrastructure.Services;
+using EcommerceInventory.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,74 +13,77 @@ using System.Text;
 
 namespace EcommerceInventory.Infrastructure;
 
-/// <summary>
-/// Extension method to register all Infrastructure services
-/// </summary>
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructureServices(
+    public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        // Register DbContext
+        services.Configure<JwtSettings>(
+            configuration.GetSection("JwtSettings"));
+        services.Configure<EmailSettings>(
+            configuration.GetSection("EmailSettings"));
+        services.Configure<CloudinarySettings>(
+            configuration.GetSection("CloudinarySettings"));
+        services.Configure<AppSettings>(
+            configuration.GetSection("AppSettings"));
+
         services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(
                 configuration.GetConnectionString("DefaultConnection"),
-                npgsqlOptions =>
-                {
-                    npgsqlOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
-                    npgsqlOptions.EnableRetryOnFailure(
-                        maxRetryCount: 3,
-                        maxRetryDelay: TimeSpan.FromSeconds(30),
-                        errorCodesToAdd: null);
-                }));
+                npgsql => npgsql.MigrationsAssembly(
+                    typeof(AppDbContext).Assembly.FullName)
+            )
+        );
 
-        // Register Unit of Work
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
-        // Register Generic Repository
-        services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
-
-        // Register Settings from configuration
-        services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
-        services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
-        services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
-
-        // Register Services
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<ICloudinaryService, CloudinaryService>();
         services.AddScoped<IDateTimeService, DateTimeService>();
 
-        // Register Current User Service
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
 
-        // Register JWT Authentication
-        var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
-        if (jwtSettings != null)
+        var jwtSettings = configuration
+                              .GetSection("JwtSettings")
+                              .Get<JwtSettings>()!;
+
+        services.AddAuthentication(options =>
         {
-            services.AddAuthentication(options =>
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
+                ValidateIssuer           = true,
+                ValidateAudience         = true,
+                ValidateLifetime         = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer              = jwtSettings.Issuer,
+                ValidAudience            = jwtSettings.Audience,
+                IssuerSigningKey         = new SymmetricSecurityKey(
+                                               Encoding.UTF8.GetBytes(
+                                                   jwtSettings.SecretKey)),
+                ClockSkew                = TimeSpan.Zero
+            };
+
+            options.Events = new JwtBearerEvents
             {
-                options.TokenValidationParameters = new TokenValidationParameters
+                OnAuthenticationFailed = context =>
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtSettings.Issuer,
-                    ValidAudience = jwtSettings.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(jwtSettings.SecretKey)),
-                    ClockSkew = TimeSpan.Zero
-                };
-            });
-        }
+                    if (context.Exception is SecurityTokenExpiredException)
+                        context.Response.Headers["Token-Expired"] = "true";
+                    return Task.CompletedTask;
+                }
+            };
+        });
+
+        services.AddAuthorizationBuilder();
 
         return services;
     }

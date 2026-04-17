@@ -1,12 +1,10 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using EcommerceInventory.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 
 namespace EcommerceInventory.Infrastructure.Identity;
 
-/// <summary>
-/// Service to extract current user information from HTTP context
-/// </summary>
 public class CurrentUserService : ICurrentUserService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
@@ -16,34 +14,26 @@ public class CurrentUserService : ICurrentUserService
         _httpContextAccessor = httpContextAccessor;
     }
 
+    private ClaimsPrincipal? User => _httpContextAccessor.HttpContext?.User;
+
+    public bool IsAuthenticated => User?.Identity?.IsAuthenticated ?? false;
+
     public Guid? UserId
     {
         get
         {
-            var userIdClaim = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
-            return userIdClaim != null ? Guid.Parse(userIdClaim) : null;
+            var userIdStr = User?.FindFirstValue("userId")
+                         ?? User?.FindFirstValue(JwtRegisteredClaimNames.Sub)
+                         ?? User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Guid.TryParse(userIdStr, out var id) ? id : null;
         }
     }
 
-    public string? Email => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email);
+    public string? Email => User?.FindFirstValue(JwtRegisteredClaimNames.Email) ?? User?.FindFirstValue(ClaimTypes.Email);
+    public string? FullName => User?.FindFirstValue("fullName") ?? User?.FindFirstValue(ClaimTypes.Name);
+    public IEnumerable<string> Roles => User?.FindAll(ClaimTypes.Role).Select(c => c.Value) ?? Enumerable.Empty<string>();
+    public IEnumerable<string> Permissions => User?.FindAll("permission").Select(c => c.Value) ?? Enumerable.Empty<string>();
 
-    public IList<string> Roles => 
-        _httpContextAccessor.HttpContext?.User?.FindAll(ClaimTypes.Role).Select(c => c.Value).ToList() 
-        ?? new List<string>();
-
-    public IList<string> Permissions => 
-        _httpContextAccessor.HttpContext?.User?.FindAll("permission").Select(c => c.Value).ToList() 
-        ?? new List<string>();
-
-    public bool IsAuthenticated => _httpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated ?? false;
-
-    public bool HasPermission(string permission)
-    {
-        return Permissions.Contains(permission, StringComparer.OrdinalIgnoreCase);
-    }
-
-    public bool HasRole(string role)
-    {
-        return Roles.Contains(role, StringComparer.OrdinalIgnoreCase);
-    }
+    public bool HasPermission(string permission) => Permissions.Contains(permission, StringComparer.OrdinalIgnoreCase);
+    public bool HasRole(string role) => Roles.Contains(role, StringComparer.OrdinalIgnoreCase);
 }

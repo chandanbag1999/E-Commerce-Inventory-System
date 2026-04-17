@@ -4,106 +4,105 @@ using EcommerceInventory.Domain.Exceptions;
 
 namespace EcommerceInventory.Domain.Entities;
 
-/// <summary>
-/// User entity - represents a system user
-/// </summary>
-public class User : AuditableEntity, ISoftDelete
+public class User : BaseEntity, ISoftDelete
 {
-    public string FullName { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-    public string PasswordHash { get; set; } = string.Empty;
-    public string? Phone { get; set; }
-    public string? ProfileImageUrl { get; set; }
-    public string? CloudinaryProfileId { get; set; }
-    public UserStatus Status { get; set; } = UserStatus.Active;
-    public bool IsEmailVerified { get; set; } = false;
-    public DateTime? LastLoginAt { get; set; }
-    public DateTime? DeletedAt { get; set; }
+    public string FullName             { get; private set; } = string.Empty;
+    public string Email                { get; private set; } = string.Empty;
+    public string PasswordHash         { get; private set; } = string.Empty;
+    public string? Phone               { get; private set; }
+    public string? ProfileImageUrl     { get; private set; }
+    public string? CloudinaryProfileId { get; private set; }
+    public UserStatus Status           { get; private set; } = UserStatus.Active;
+    public bool IsEmailVerified        { get; private set; } = false;
+    public DateTime? LastLoginAt       { get; private set; }
+    public DateTime? DeletedAt         { get; set; }
+    public bool IsDeleted              => DeletedAt.HasValue;
 
-    // Navigation properties
-    public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
-    public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+    public ICollection<UserRole>             UserRoles             { get; private set; } = new List<UserRole>();
+    public ICollection<RefreshToken>         RefreshTokens         { get; private set; } = new List<RefreshToken>();
+    public ICollection<PasswordResetToken>   PasswordResetTokens   { get; private set; } = new List<PasswordResetToken>();
+    public ICollection<EmailVerificationToken> EmailVerificationTokens { get; private set; } = new List<EmailVerificationToken>();
 
-    /// <summary>
-    /// Factory method to create a new user
-    /// </summary>
-    public static User Create(
-        string fullName,
-        string email,
-        string passwordHash,
-        string? phone = null)
+    public User() { }
+
+    public static User Create(string fullName, string email, string passwordHash, string? phone = null)
     {
         if (string.IsNullOrWhiteSpace(fullName))
-            throw new DomainException("Full name cannot be empty");
-        
+            throw new DomainException("Full name is required.");
         if (string.IsNullOrWhiteSpace(email))
-            throw new DomainException("Email cannot be empty");
+            throw new DomainException("Email is required.");
+        if (string.IsNullOrWhiteSpace(passwordHash))
+            throw new DomainException("Password hash is required.");
 
         return new User
         {
-            Id = Guid.NewGuid(),
-            FullName = fullName.Trim(),
-            Email = email.Trim().ToLower(),
+            FullName     = fullName.Trim(),
+            Email        = email.Trim().ToLower(),
             PasswordHash = passwordHash,
-            Phone = phone?.Trim(),
-            Status = UserStatus.Active,
-            IsEmailVerified = false,
-            CreatedAt = DateTime.UtcNow
+            Phone        = phone?.Trim(),
+            Status       = UserStatus.Active
         };
     }
 
-    /// <summary>
-    /// Records a login by updating last_login_at
-    /// </summary>
+    public void UpdateProfile(string fullName, string? phone)
+    {
+        if (string.IsNullOrWhiteSpace(fullName))
+            throw new DomainException("Full name is required.");
+
+        FullName  = fullName.Trim();
+        Phone     = phone?.Trim();
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void SetProfileImage(string imageUrl, string cloudinaryId)
+    {
+        ProfileImageUrl     = imageUrl;
+        CloudinaryProfileId = cloudinaryId;
+        UpdatedAt           = DateTime.UtcNow;
+    }
+
+    public void VerifyEmail()
+    {
+        IsEmailVerified = true;
+        UpdatedAt       = DateTime.UtcNow;
+    }
+
+    public void ChangePassword(string newPasswordHash)
+    {
+        if (string.IsNullOrWhiteSpace(newPasswordHash))
+            throw new DomainException("Password hash is required.");
+
+        PasswordHash = newPasswordHash;
+        UpdatedAt    = DateTime.UtcNow;
+    }
+
+    public void Activate()
+    {
+        Status    = UserStatus.Active;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void Deactivate()
+    {
+        Status    = UserStatus.Inactive;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void Suspend()
+    {
+        Status    = UserStatus.Suspended;
+        UpdatedAt = DateTime.UtcNow;
+    }
+
     public void RecordLogin()
     {
         LastLoginAt = DateTime.UtcNow;
-        UpdatedAt = DateTime.UtcNow;
+        UpdatedAt   = DateTime.UtcNow;
     }
 
-    /// <summary>
-    /// Sets profile image information
-    /// </summary>
-    public void SetProfileImage(string imageUrl, string cloudinaryId)
-    {
-        ProfileImageUrl = imageUrl;
-        CloudinaryProfileId = cloudinaryId;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
-    /// Activates the user account
-    /// </summary>
-    public void Activate()
-    {
-        Status = UserStatus.Active;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
-    /// Deactivates the user account
-    /// </summary>
-    public void Deactivate()
-    {
-        Status = UserStatus.Inactive;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
-    /// Soft deletes the user
-    /// </summary>
-    public void Delete()
+    public void SoftDelete()
     {
         DeletedAt = DateTime.UtcNow;
-        UpdatedAt = DateTime.UtcNow;
-    }
-
-    /// <summary>
-    /// Updates password hash
-    /// </summary>
-    public void UpdatePassword(string newPasswordHash)
-    {
-        PasswordHash = newPasswordHash;
         UpdatedAt = DateTime.UtcNow;
     }
 }

@@ -3,74 +3,81 @@ using EcommerceInventory.Domain.Exceptions;
 
 namespace EcommerceInventory.Domain.Entities;
 
-// Category entity - hierarchical product categorization with self-referencing FK
-public class Category : AuditableEntity, ISoftDelete
+public class Category : BaseEntity, ISoftDelete
 {
-    public string Name { get; set; } = string.Empty;
-    public string Slug { get; set; } = string.Empty;
-    public string? Description { get; set; }
-    public string? ImageUrl { get; set; }
-    public string? CloudinaryId { get; set; }
-    public Guid? ParentId { get; set; }
-    public bool IsActive { get; set; } = true;
-    public int SortOrder { get; set; } = 0;
-    public DateTime? DeletedAt { get; set; }
+    public string  Name          { get; private set; } = string.Empty;
+    public string  Slug          { get; private set; } = string.Empty;
+    public string? Description   { get; private set; }
+    public string? ImageUrl      { get; private set; }
+    public string? CloudinaryId  { get; private set; }
+    public Guid?   ParentId      { get; private set; }
+    public bool    IsActive      { get; private set; } = true;
+    public int     SortOrder     { get; private set; } = 0;
+    public DateTime? DeletedAt   { get; set; }
+    public bool    IsDeleted     => DeletedAt.HasValue;
 
-    // Navigation properties
-    public Category? Parent { get; set; }
-    public ICollection<Category> Children { get; set; } = new List<Category>();
-    public ICollection<Product> Products { get; set; } = new List<Product>();
+    public Category?              Parent   { get; set; }
+    public ICollection<Category>  Children { get; set; } = new List<Category>();
+    public ICollection<Product>   Products { get; set; } = new List<Product>();
 
-   
-    public static Category Create(
-        string name,
-        string slug,
-        string? description = null,
-        Guid? parentId = null)
+    protected Category() { }
+
+    public static Category Create(string name, string slug,
+                                   string? description = null,
+                                   Guid? parentId = null)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new DomainException("Category name cannot be empty");
-        
+            throw new DomainException("Category name is required.");
         if (string.IsNullOrWhiteSpace(slug))
-            throw new DomainException("Category slug cannot be empty");
+            throw new DomainException("Slug is required.");
 
         return new Category
         {
-            Id = Guid.NewGuid(),
-            Name = name.Trim(),
-            Slug = slug.Trim().ToLower(),
+            Name        = name.Trim(),
+            Slug        = slug.Trim().ToLower(),
             Description = description?.Trim(),
-            ParentId = parentId,
-            IsActive = true,
-            SortOrder = 0,
-            CreatedAt = DateTime.UtcNow
+            ParentId    = parentId,
+            IsActive    = true
         };
     }
 
-   
+    public void Update(string name, string? description, Guid? parentId)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new DomainException("Category name is required.");
+
+        Name        = name.Trim();
+        Description = description?.Trim();
+        ParentId    = parentId;
+        UpdatedAt   = DateTime.UtcNow;
+    }
+
     public void SetImage(string imageUrl, string cloudinaryId)
     {
-        ImageUrl = imageUrl;
+        ImageUrl     = imageUrl;
         CloudinaryId = cloudinaryId;
+        UpdatedAt    = DateTime.UtcNow;
+    }
+
+    public void SetSortOrder(int order)
+    {
+        SortOrder = order;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    
     public void Activate()
     {
-        IsActive = true;
+        IsActive  = true;
         UpdatedAt = DateTime.UtcNow;
     }
 
-   
     public void Deactivate()
     {
-        IsActive = false;
+        IsActive  = false;
         UpdatedAt = DateTime.UtcNow;
     }
 
-   
-    public void Delete()
+    public void SoftDelete()
     {
         DeletedAt = DateTime.UtcNow;
         UpdatedAt = DateTime.UtcNow;

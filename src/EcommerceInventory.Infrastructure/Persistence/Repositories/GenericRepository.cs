@@ -4,53 +4,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceInventory.Infrastructure.Persistence.Repositories;
 
-/// <summary>
-/// Generic repository implementation with common CRUD operations
-/// </summary>
-public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
     protected readonly AppDbContext _context;
-    protected readonly DbSet<TEntity> _dbSet;
+    protected readonly DbSet<T> _dbSet;
 
     public GenericRepository(AppDbContext context)
     {
         _context = context;
-        _dbSet = context.Set<TEntity>();
+        _dbSet   = context.Set<T>();
     }
 
-    public virtual async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
-    {
-        return await _dbSet.FindAsync(new object[] { id }, cancellationToken: cancellationToken);
-    }
+    public IQueryable<T> Query()
+        => _dbSet.AsQueryable();
 
-    public virtual async Task<IReadOnlyList<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
-    {
-        return await _dbSet.ToListAsync(cancellationToken);
-    }
+    public async Task<T?> GetByIdAsync(Guid id, CancellationToken ct = default)
+        => await _dbSet.FindAsync(new object[] { id }, ct);
 
-    public virtual IQueryable<TEntity> Query()
-    {
-        return _dbSet.AsQueryable();
-    }
+    public async Task<IReadOnlyList<T>> GetAllAsync(CancellationToken ct = default)
+        => await _dbSet.ToListAsync(ct);
 
-    public virtual async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
-    {
-        await _dbSet.AddAsync(entity, cancellationToken);
-    }
+    public async Task AddAsync(T entity, CancellationToken ct = default)
+        => await _dbSet.AddAsync(entity, ct);
 
-    public virtual void Update(TEntity entity)
-    {
-        _dbSet.Update(entity);
-    }
+    public void Update(T entity)
+        => _dbSet.Update(entity);
 
-    public virtual void Delete(TEntity entity)
-    {
-        _dbSet.Remove(entity);
-    }
+    public void Remove(T entity)
+        => _dbSet.Remove(entity);
 
-    public virtual async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default)
-    {
-        var entity = await GetByIdAsync(id, cancellationToken);
-        return entity != null;
-    }
+    public async Task<bool> ExistsAsync(Guid id, CancellationToken ct = default)
+        => await _dbSet.AnyAsync(e => e.Id == id, ct);
 }
