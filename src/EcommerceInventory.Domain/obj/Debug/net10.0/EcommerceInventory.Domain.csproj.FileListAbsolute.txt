@@ -9,3 +9,4 @@ D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInven
 D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInventory.Domain\obj\Debug\net10.0\refint\EcommerceInventory.Domain.dll
 D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInventory.Domain\obj\Debug\net10.0\EcommerceInventory.Domain.pdb
 D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInventory.Domain\obj\Debug\net10.0\ref\EcommerceInventory.Domain.dll
+D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInventory.Domain\obj\Debug\net10.0\EcommerceInventory.Domain.sourcelink.json

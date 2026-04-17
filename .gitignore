@@ -23,3 +23,7 @@ logs/
 .DS_Store
 Thumbs.db
 
+# Codebase Snapshots
+codebase_snapshot.txt
+backup_codebase.py
+

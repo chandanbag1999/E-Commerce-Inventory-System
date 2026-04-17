@@ -17,3 +17,4 @@ D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInven
 D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\EcommerceInventory.Infrastructure.pdb
 D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\EcommerceInventory.Infrastructure.genruntimeconfig.cache
 D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\ref\EcommerceInventory.Infrastructure.dll
+D:\CodeSpace\Temporary-Field\Dot-Net\EcommerceInventorySystem\src\EcommerceInventory.Infrastructure\obj\Debug\net10.0\EcommerceInventory.Infrastructure.sourcelink.json
