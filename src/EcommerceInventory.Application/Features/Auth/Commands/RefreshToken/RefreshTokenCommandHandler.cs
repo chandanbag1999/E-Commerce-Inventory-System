@@ -1,130 +1,104 @@
-using System.Security.Claims;
 using EcommerceInventory.Application.Common.Interfaces;
-using EcommerceInventory.Application.Common.Models;
+using EcommerceInventory.Application.Common.Settings;
 using EcommerceInventory.Application.Features.Auth.DTOs;
-using EcommerceInventory.Domain.Entities;
 using EcommerceInventory.Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace EcommerceInventory.Application.Features.Auth.Commands.RefreshToken;
 
-public class RefreshTokenCommandHandler : IRequestHandler<RefreshTokenCommand, Result<LoginResponseDto>>
+public class RefreshTokenCommandHandler
+    : IRequestHandler<RefreshTokenCommand, TokenDto>
 {
-    private readonly IRepository<User> _userRepository;
-    private readonly IRepository<Domain.Entities.RefreshToken> _refreshTokenRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly ITokenService _tokenService;
+    private readonly IUnitOfWork      _uow;
+    private readonly ITokenService    _tokenService;
+    private readonly IDateTimeService _dateTime;
+    private readonly JwtSettings      _jwtSettings;
 
-    public RefreshTokenCommandHandler(
-        IRepository<User> userRepository,
-        IRepository<Domain.Entities.RefreshToken> refreshTokenRepository,
-        IUnitOfWork unitOfWork,
-        ITokenService tokenService)
+    public RefreshTokenCommandHandler(IUnitOfWork uow,
+                                       ITokenService tokenService,
+                                       IDateTimeService dateTime,
+                                       IOptions<JwtSettings> jwtSettings)
     {
-        _userRepository = userRepository;
-        _refreshTokenRepository = refreshTokenRepository;
-        _unitOfWork = unitOfWork;
+        _uow          = uow;
         _tokenService = tokenService;
+        _dateTime     = dateTime;
+        _jwtSettings  = jwtSettings.Value;
     }
 
-    public async Task<Result<LoginResponseDto>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+    public async Task<TokenDto> Handle(
+        RefreshTokenCommand request,
+        CancellationToken cancellationToken)
     {
-        // Extract principal from expired access token
         var principal = _tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
-        var userIdClaim = principal?.FindFirst(ClaimTypes.NameIdentifier);
-        if (userIdClaim == null)
-        {
-            throw new UnauthorizedException("Invalid access token");
-        }
+        if (principal == null)
+            throw new UnauthorizedException("Invalid access token.");
 
-        var userId = Guid.Parse(userIdClaim.Value);
+        var userIdStr = principal.FindFirst("userId")?.Value
+                     ?? principal.FindFirst("sub")?.Value;
 
-        // Find the refresh token in database
-        var storedToken = await _refreshTokenRepository.Query()
-            .FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken && rt.UserId == userId, cancellationToken);
+        if (!Guid.TryParse(userIdStr, out var userId))
+            throw new UnauthorizedException("Invalid access token.");
+
+        var storedToken = await _uow.RefreshTokens.Query()
+            .FirstOrDefaultAsync(
+                rt => rt.Token == request.RefreshToken && rt.UserId == userId,
+                cancellationToken);
 
         if (storedToken == null)
-        {
-            throw new UnauthorizedException("Invalid refresh token");
-        }
+            throw new UnauthorizedException("Invalid refresh token.");
 
-        // Check for reuse attack
         if (storedToken.IsRevoked)
         {
-            // Revoke ALL tokens for this user (security measure)
-            await RevokeAllUserRefreshTokensAsync(userId, cancellationToken);
-            throw new UnauthorizedException("Security alert: session terminated. Please login again.");
+            var allTokens = await _uow.RefreshTokens.Query()
+                .Where(rt => rt.UserId == userId && !rt.IsRevoked)
+                .ToListAsync(cancellationToken);
+            foreach (var token in allTokens)
+                token.Revoke();
+            await _uow.SaveChangesAsync(cancellationToken);
+            throw new UnauthorizedException("Security alert: refresh token reuse detected. All sessions terminated.");
         }
 
-        // Check expiry
-        if (storedToken.ExpiresAt < DateTime.UtcNow)
-        {
-            throw new UnauthorizedException("Refresh token expired. Please login again.");
-        }
+        if (storedToken.IsExpired)
+            throw new UnauthorizedException("Refresh token has expired. Please login again.");
 
-        // Revoke old token (rotation)
-        var newRefreshToken = _tokenService.GenerateRefreshToken(userId);
-        storedToken.Revoke(newRefreshToken.Token);
-
-        // Re-fetch user with fresh roles/permissions
-        var user = await _userRepository.Query()
+        var user = await _uow.Users.Query()
             .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
                     .ThenInclude(r => r.RolePermissions)
                         .ThenInclude(rp => rp.Permission)
             .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
 
-        if (user == null)
-        {
-            throw new UnauthorizedException("User not found");
-        }
+        if (user == null || user.IsDeleted)
+            throw new UnauthorizedException("User not found.");
 
-        // Generate new tokens
-        var roles = user.UserRoles.Select(ur => ur.Role.Name).ToList();
+        var roles = user.UserRoles.Select(ur => ur.Role.Name).Distinct().ToList();
         var permissions = user.UserRoles
             .SelectMany(ur => ur.Role.RolePermissions)
             .Select(rp => rp.Permission.Name)
-            .Distinct()
-            .ToList();
+            .Distinct().ToList();
 
-        var newAccessToken = _tokenService.GenerateAccessToken(user, roles, permissions);
+        var newAccessToken  = _tokenService.GenerateAccessToken(user, roles, permissions);
+        var newRefreshToken = _tokenService.GenerateRefreshToken();
 
-        // Save new refresh token
-        await _refreshTokenRepository.AddAsync(newRefreshToken, cancellationToken);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        storedToken.Revoke(replacedBy: newRefreshToken);
 
-        var response = new LoginResponseDto
+        var newTokenEntity = Domain.Entities.RefreshToken.Create(
+            userId:     userId,
+            token:      newRefreshToken,
+            expiresAt:  _dateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpDays),
+            deviceInfo: storedToken.DeviceInfo);
+
+        await _uow.RefreshTokens.AddAsync(newTokenEntity, cancellationToken);
+        await _uow.SaveChangesAsync(cancellationToken);
+
+        return new TokenDto
         {
-            AccessToken = newAccessToken,
-            RefreshToken = newRefreshToken.Token,
-            ExpiresIn = 900,
-            TokenType = "Bearer",
-            User = new UserInfoDto
-            {
-                Id = user.Id,
-                FullName = user.FullName,
-                Email = user.Email,
-                Roles = roles,
-                Permissions = permissions,
-                IsEmailVerified = user.IsEmailVerified
-            }
+            AccessToken  = newAccessToken,
+            RefreshToken = newRefreshToken,
+            ExpiresIn    = _jwtSettings.AccessTokenExpMinutes * 60,
+            TokenType    = "Bearer"
         };
-
-        return Result<LoginResponseDto>.SuccessResult(response);
-    }
-
-    private async Task RevokeAllUserRefreshTokensAsync(Guid userId, CancellationToken cancellationToken)
-    {
-        var userTokens = await _refreshTokenRepository.Query()
-            .Where(rt => rt.UserId == userId && !rt.IsRevoked)
-            .ToListAsync(cancellationToken);
-
-        foreach (var token in userTokens)
-        {
-            token.Revoke();
-        }
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

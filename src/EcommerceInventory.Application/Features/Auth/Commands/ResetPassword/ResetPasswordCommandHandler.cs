@@ -1,67 +1,54 @@
 using EcommerceInventory.Application.Common.Interfaces;
-using EcommerceInventory.Application.Common.Models;
-using EcommerceInventory.Domain.Entities;
 using EcommerceInventory.Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
 
 namespace EcommerceInventory.Application.Features.Auth.Commands.ResetPassword;
 
-public class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand, Result>
+public class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand, bool>
 {
-    private readonly IRepository<User> _userRepository;
-    private readonly IRepository<PasswordResetToken> _resetTokenRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _uow;
 
-    public ResetPasswordCommandHandler(
-        IRepository<User> userRepository,
-        IRepository<PasswordResetToken> resetTokenRepository,
-        IUnitOfWork unitOfWork)
+    public ResetPasswordCommandHandler(IUnitOfWork uow)
     {
-        _userRepository = userRepository;
-        _resetTokenRepository = resetTokenRepository;
-        _unitOfWork = unitOfWork;
+        _uow = uow;
     }
 
-    public async Task<Result> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.Query()
-            .FirstOrDefaultAsync(u => u.Email == request.Email.ToLower(), cancellationToken);
+        var tokens = await _uow.PasswordResetTokens.Query()
+            .Include(t => t.User)
+            .Where(t => !t.IsUsed && t.ExpiresAt > DateTime.UtcNow)
+            .ToListAsync(cancellationToken);
 
-        if (user == null)
+        Domain.Entities.PasswordResetToken? matchedToken = null;
+        foreach (var t in tokens)
         {
-            throw new NotFoundException("User not found");
+            try
+            {
+                if (BCrypt.Net.BCrypt.Verify(request.Token, t.TokenHash))
+                {
+                    matchedToken = t;
+                    break;
+                }
+            }
+            catch { }
         }
 
-        var tokenHash = HashToken(request.Token);
-        var resetToken = await _resetTokenRepository.Query()
-            .FirstOrDefaultAsync(t => t.TokenHash == tokenHash && t.UserId == user.Id && !t.IsUsed, cancellationToken);
+        if (matchedToken == null)
+            throw new DomainException("Invalid or expired reset token.");
 
-        if (resetToken == null)
-        {
-            throw new UnauthorizedException("Invalid or expired reset token");
-        }
+        var newHash = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
+        matchedToken.User.ChangePassword(newHash);
+        matchedToken.MarkUsed();
 
-        if (resetToken.IsExpired())
-        {
-            throw new UnauthorizedException("Reset token has expired");
-        }
+        var refreshTokens = await _uow.RefreshTokens.Query()
+            .Where(rt => rt.UserId == matchedToken.UserId && !rt.IsRevoked)
+            .ToListAsync(cancellationToken);
+        foreach (var rt in refreshTokens)
+            rt.Revoke();
 
-        // Update password
-        var newPasswordHash = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
-        user.UpdatePassword(newPasswordHash);
-        resetToken.MarkAsUsed();
-
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-        return Result.SuccessResult("Password reset successful");
-    }
-
-    private static string HashToken(string token)
-    {
-        using var sha256 = SHA256.Create();
-        var hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(token));
-        return Convert.ToBase64String(hashedBytes);
+        await _uow.SaveChangesAsync(cancellationToken);
+        return true;
     }
 }

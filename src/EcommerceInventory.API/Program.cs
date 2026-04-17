@@ -1,146 +1,122 @@
-using EcommerceInventory.API.Extensions;
 using EcommerceInventory.API.Middleware;
-using EcommerceInventory.Application.DependencyInjections;
+using EcommerceInventory.Application;
 using EcommerceInventory.Infrastructure;
 using EcommerceInventory.Infrastructure.Persistence;
+using EcommerceInventory.Infrastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
-using Scalar.AspNetCore;
 using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// ─────────────────────────────────────────────
-// Serilog Configuration
-// ─────────────────────────────────────────────
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
-    .WriteTo.File("logs/ecommerce-inventory-.txt", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
+    .CreateBootstrapLogger();
 
-builder.Host.UseSerilog((context, loggerConfig) =>
+try
 {
-    loggerConfig
-        .ReadFrom.Configuration(context.Configuration)
+    var builder = WebApplication.CreateBuilder(args);
+
+    builder.Host.UseSerilog((ctx, lc) => lc
+        .ReadFrom.Configuration(ctx.Configuration)
         .WriteTo.Console()
-        .WriteTo.File("logs/ecommerce-inventory-.txt", rollingInterval: RollingInterval.Day);
-});
+        .WriteTo.File("logs/log-.txt",
+                      rollingInterval: RollingInterval.Day,
+                      retainedFileCountLimit: 7)
+        .Enrich.FromLogContext()
+    );
 
-// ─────────────────────────────────────────────
-// Application Layer Services (MediatR, AutoMapper, Validators)
-// ─────────────────────────────────────────────
-builder.Services.AddApplicationServices();
+    builder.Services.AddApplication(builder.Configuration);
+    builder.Services.AddInfrastructure(builder.Configuration);
 
-// ─────────────────────────────────────────────
-// Infrastructure Layer Services (DbContext, Repositories, JWT Auth, Services)
-// ─────────────────────────────────────────────
-builder.Services.AddInfrastructureServices(builder.Configuration);
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
 
-// ─────────────────────────────────────────────
-// API Layer Services
-// ─────────────────────────────────────────────
-
-// Permission Authorization (handler + policies for all 41 permissions)
-builder.Services.AddPermissionAuthorization();
-
-// Register all permission policies dynamically
-var allPermissions = new[]
-{
-    "Users.View", "Users.Create", "Users.Edit", "Users.Delete", "Users.AssignRole",
-    "Roles.View",
-    "Categories.View", "Categories.Create", "Categories.Edit", "Categories.Delete",
-    "Products.View", "Products.Create", "Products.Edit", "Products.Delete",
-    "Warehouses.View", "Warehouses.Create", "Warehouses.Edit", "Warehouses.Delete",
-    "Stocks.View", "Stocks.Adjust",
-    "Suppliers.View", "Suppliers.Create", "Suppliers.Edit", "Suppliers.Delete",
-    "PurchaseOrders.View", "PurchaseOrders.Create", "PurchaseOrders.Approve",
-    "PurchaseOrders.Receive", "PurchaseOrders.Cancel",
-    "SalesOrders.View", "SalesOrders.Create", "SalesOrders.Approve",
-    "SalesOrders.Ship", "SalesOrders.Deliver", "SalesOrders.Cancel"
-};
-
-builder.Services.AddPermissionPolicies(allPermissions);
-
-// Controllers + OpenAPI
-builder.Services.AddControllers();
-builder.Services.AddOpenApi();
-
-// CORS (already registered in Infrastructure, but keeping explicit here)
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
+    builder.Services.AddSwaggerGen(c =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        c.SwaggerDoc("v1", new()
+        {
+            Title       = "Ecommerce Inventory API",
+            Version     = "v1",
+            Description = "Enterprise Ecommerce Inventory Management System API"
+        });
+
+        c.AddSecurityDefinition("Bearer", new()
+        {
+            Name         = "Authorization",
+            Type         = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+            Scheme       = "Bearer",
+            BearerFormat = "JWT",
+            In           = Microsoft.OpenApi.Models.ParameterLocation.Header,
+            Description  = "Enter your JWT token"
+        });
+
+        c.AddSecurityRequirement(new()
+        {
+            {
+                new()
+                {
+                    Reference = new()
+                    {
+                        Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                        Id   = "Bearer"
+                    }
+                },
+                Array.Empty<string>()
+            }
+        });
     });
-});
 
-// ─────────────────────────────────────────────
-// Build the application
-// ─────────────────────────────────────────────
-var app = builder.Build();
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAll", policy =>
+            policy.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
+    });
 
-// ─────────────────────────────────────────────
-// Auto-apply migrations on startup
-// ─────────────────────────────────────────────
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    Log.Information("Applying database migrations...");
-    await db.Database.MigrateAsync();
-    Log.Information("Database migrations applied successfully.");
+    var app = builder.Build();
+
+    // ── Database Migration + SuperAdmin Seed
+    using (var scope = app.Services.CreateScope())
+    {
+        var db            = scope.ServiceProvider
+                                 .GetRequiredService<AppDbContext>();
+        var configuration = scope.ServiceProvider
+                                 .GetRequiredService<IConfiguration>();
+        var logger        = scope.ServiceProvider
+                                 .GetRequiredService<ILogger<Program>>();
+
+        // 1. Apply all pending EF migrations
+        await db.Database.MigrateAsync();
+        Log.Information("Database migration applied successfully.");
+
+        // 2. Seed SuperAdmin user (only if not exists)
+        await SuperAdminSeeder.SeedAsync(db, configuration, logger);
+        Log.Information("SuperAdmin seeding completed.");
+    }
+
+    app.UseSerilogRequestLogging();
+    app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                          "Ecommerce Inventory API v1");
+        c.RoutePrefix = string.Empty;
+    });
+
+    app.UseCors("AllowAll");
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.MapControllers();
+
+    Log.Information("Application starting...");
+    app.Run();
 }
-
-// ─────────────────────────────────────────────
-// Seed SuperAdmin (if enabled in configuration)
-// ─────────────────────────────────────────────
-var enableSeeder = app.Configuration.GetValue<bool>("AppSettings:EnableSuperAdminSeeder");
-if (enableSeeder)
+catch (Exception ex)
 {
-    Log.Information("Running SuperAdmin seeder...");
-    await EcommerceInventory.Infrastructure.Persistence.Seed.SuperAdminSeeder.SeedSuperAdminAsync(app.Services);
-    Log.Information("SuperAdmin seeder completed.");
+    Log.Fatal(ex, "Application startup failed.");
 }
-
-// ─────────────────────────────────────────────
-// Middleware Pipeline (order matters!)
-// ─────────────────────────────────────────────
-
-// 1. Global Exception Handler — MUST be first to catch all errors
-app.UseGlobalExceptionHandler();
-
-// 2. Correlation ID — adds tracing ID to every request
-app.UseCorrelationId();
-
-// 3. HTTPS Redirection
-app.UseHttpsRedirection();
-
-// 4. CORS
-app.UseCors();
-
-// 5. Authentication — validates JWT tokens
-app.UseAuthentication();
-
-// 6. Authorization — checks policies/permissions
-app.UseAuthorization();
-
-// ─────────────────────────────────────────────
-// Endpoints
-// ─────────────────────────────────────────────
-
-// OpenAPI schema endpoint
-app.MapOpenApi();
-
-// Scalar API documentation (with JWT Bearer auth support)
-app.MapScalarApiReference(options =>
+finally
 {
-    options.WithTitle("Ecommerce Inventory API");
-    options.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
-    // Scalar automatically detects JWT auth from the OpenAPI schema
-});
-
-// Map all API controllers
-app.MapControllers();
-
-Log.Information("Starting Ecommerce Inventory API...");
-app.Run();
+    Log.CloseAndFlush();
+}

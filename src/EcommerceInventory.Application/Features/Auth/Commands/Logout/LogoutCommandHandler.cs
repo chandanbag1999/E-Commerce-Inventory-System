@@ -1,38 +1,30 @@
 using EcommerceInventory.Application.Common.Interfaces;
-using EcommerceInventory.Application.Common.Models;
-using EcommerceInventory.Domain.Entities;
-using EcommerceInventory.Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceInventory.Application.Features.Auth.Commands.Logout;
 
-public class LogoutCommandHandler : IRequestHandler<LogoutCommand, Result>
+public class LogoutCommandHandler : IRequestHandler<LogoutCommand, bool>
 {
-    private readonly IRepository<Domain.Entities.RefreshToken> _refreshTokenRepository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _uow;
 
-    public LogoutCommandHandler(
-        IRepository<Domain.Entities.RefreshToken> refreshTokenRepository,
-        IUnitOfWork unitOfWork)
+    public LogoutCommandHandler(IUnitOfWork uow)
     {
-        _refreshTokenRepository = refreshTokenRepository;
-        _unitOfWork = unitOfWork;
+        _uow = uow;
     }
 
-    public async Task<Result> Handle(LogoutCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(LogoutCommand request, CancellationToken cancellationToken)
     {
-        var token = await _refreshTokenRepository.Query()
-            .FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken && rt.UserId == request.UserId, cancellationToken);
+        var token = await _uow.RefreshTokens.Query()
+            .FirstOrDefaultAsync(
+                rt => rt.Token == request.RefreshToken && rt.UserId == request.UserId,
+                cancellationToken);
 
-        if (token == null)
-        {
-            throw new UnauthorizedException("Invalid refresh token");
-        }
+        if (token == null || token.IsRevoked)
+            return true;
 
         token.Revoke();
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-        return Result.SuccessResult("Logout successful");
+        await _uow.SaveChangesAsync(cancellationToken);
+        return true;
     }
 }

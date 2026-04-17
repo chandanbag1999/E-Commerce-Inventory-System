@@ -1,4 +1,3 @@
-using EcommerceInventory.API.Authorization;
 using EcommerceInventory.Application.Common.Models;
 using EcommerceInventory.Application.Features.SalesOrders.Commands.AddSalesOrderItem;
 using EcommerceInventory.Application.Features.SalesOrders.Commands.ApproveSalesOrder;
@@ -11,119 +10,137 @@ using EcommerceInventory.Application.Features.SalesOrders.Commands.SubmitSalesOr
 using EcommerceInventory.Application.Features.SalesOrders.DTOs;
 using EcommerceInventory.Application.Features.SalesOrders.Queries.GetAllSalesOrders;
 using EcommerceInventory.Application.Features.SalesOrders.Queries.GetSalesOrderById;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceInventory.API.Controllers;
 
-[ApiController]
 [Authorize]
-[Route("api/v1/[controller]")]
-public class SalesOrdersController : ControllerBase
+public class SalesOrdersController : BaseApiController
 {
-    private readonly IMediator _mediator;
-
-    public SalesOrdersController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
-    [HasPermission("SalesOrders.View")]
+    // GET /api/v1/sales-orders
     [HttpGet]
-    public async Task<IActionResult> GetAll(CancellationToken ct)
+    public async Task<IActionResult> GetAll(
+        [FromQuery] GetAllSalesOrdersQuery query,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetAllSalesOrdersQuery(), ct);
-        return Ok(new ApiResponse<List<SalesOrderListDto>>(true, result.Data!));
+        var result = await Mediator.Send(query, ct);
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    [HasPermission("SalesOrders.View")]
+    // GET /api/v1/sales-orders/{id}
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetSalesOrderByIdQuery(id), ct);
-        return result.Success ? Ok(new ApiResponse<SalesOrderDto>(true, result.Data!)) : NotFound(new ApiResponse<object>(false, result.Message!));
+        var result = await Mediator.Send(
+            new GetSalesOrderByIdQuery { Id = id }, ct);
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    [HasPermission("SalesOrders.Create")]
+    // POST /api/v1/sales-orders
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateSalesOrderDto dto, CancellationToken ct)
+    public async Task<IActionResult> Create(
+        [FromBody] CreateSalesOrderCommand command,
+        CancellationToken ct)
     {
-        var command = new CreateSalesOrderCommand
-        {
-            WarehouseId = dto.WarehouseId,
-            CustomerName = dto.CustomerName,
-            CustomerEmail = dto.CustomerEmail,
-            CustomerPhone = dto.CustomerPhone,
-            Notes = dto.Notes,
-            ShippingAddressJson = dto.ShippingAddressJson,
-            Items = dto.Items.Select(i => new CreateSalesOrderItemDto(i.ProductId, i.Quantity, i.UnitPrice, i.Discount)).ToList()
-        };
-        var result = await _mediator.Send(command, ct);
-        return result.Success ? Created(string.Empty, new ApiResponse<SalesOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(command, ct);
+        return StatusCode(201, ApiResponse<object>.Ok(
+            result, "Sales order created successfully."));
     }
 
-    [HasPermission("SalesOrders.Create")]
+    // POST /api/v1/sales-orders/{id}/items
     [HttpPost("{id:guid}/items")]
-    public async Task<IActionResult> AddItem(Guid id, [FromBody] AddSalesOrderItemDto dto, CancellationToken ct)
+    public async Task<IActionResult> AddItem(
+        Guid id,
+        [FromBody] AddSalesOrderItemRequest request,
+        CancellationToken ct)
     {
         var command = new AddSalesOrderItemCommand
         {
             SalesOrderId = id,
-            ProductId = dto.ProductId,
-            Quantity = dto.Quantity,
-            UnitPrice = dto.UnitPrice,
-            Discount = dto.Discount
+            ProductId    = request.ProductId,
+            Quantity     = request.Quantity,
+            UnitPrice    = request.UnitPrice,
+            Discount     = request.Discount
         };
-        var result = await _mediator.Send(command, ct);
-        return result.Success ? Ok(new ApiResponse<SalesOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(command, ct);
+        return Ok(ApiResponse<object>.Ok(result, "Item added successfully."));
     }
 
-    [HasPermission("SalesOrders.Create")]
+    // DELETE /api/v1/sales-orders/{id}/items/{itemId}
     [HttpDelete("{id:guid}/items/{itemId:guid}")]
-    public async Task<IActionResult> RemoveItem(Guid id, Guid itemId, CancellationToken ct)
+    public async Task<IActionResult> RemoveItem(
+        Guid id, Guid itemId, CancellationToken ct)
     {
-        var result = await _mediator.Send(new RemoveSalesOrderItemCommand(id, itemId), ct);
-        return result.Success ? Ok(new ApiResponse<SalesOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new RemoveSalesOrderItemCommand
+            {
+                SalesOrderId = id,
+                ItemId       = itemId
+            }, ct);
+        return Ok(ApiResponse<object>.Ok(result, "Item removed successfully."));
     }
 
-    [HasPermission("SalesOrders.Create")]
+    // POST /api/v1/sales-orders/{id}/submit
     [HttpPost("{id:guid}/submit")]
     public async Task<IActionResult> Submit(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new SubmitSalesOrderCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<SalesOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new SubmitSalesOrderCommand { Id = id }, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Sales order submitted successfully."));
     }
 
-    [HasPermission("SalesOrders.Approve")]
+    // POST /api/v1/sales-orders/{id}/approve
     [HttpPost("{id:guid}/approve")]
     public async Task<IActionResult> Approve(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new ApproveSalesOrderCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<SalesOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new ApproveSalesOrderCommand { Id = id }, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Sales order approved. Stock reserved."));
     }
 
-    [HasPermission("SalesOrders.Ship")]
+    // POST /api/v1/sales-orders/{id}/ship
     [HttpPost("{id:guid}/ship")]
     public async Task<IActionResult> Ship(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new ShipSalesOrderCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<SalesOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new ShipSalesOrderCommand { Id = id }, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Sales order shipped. Stock deducted."));
     }
 
-    [HasPermission("SalesOrders.Deliver")]
+    // POST /api/v1/sales-orders/{id}/deliver
     [HttpPost("{id:guid}/deliver")]
     public async Task<IActionResult> Deliver(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new DeliverSalesOrderCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<SalesOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new DeliverSalesOrderCommand { Id = id }, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Sales order marked as delivered."));
     }
 
-    [HasPermission("SalesOrders.Cancel")]
+    // POST /api/v1/sales-orders/{id}/cancel
     [HttpPost("{id:guid}/cancel")]
-    public async Task<IActionResult> Cancel(Guid id, CancellationToken ct)
+    public async Task<IActionResult> Cancel(
+        Guid id,
+        [FromBody] CancelSalesOrderRequest? request,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(new CancelSalesOrderCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<SalesOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new CancelSalesOrderCommand
+            {
+                Id     = id,
+                Reason = request?.Reason
+            }, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Sales order cancelled."));
     }
+}
+
+// Request body DTOs for controller
+public class CancelSalesOrderRequest
+{
+    public string? Reason { get; set; }
 }

@@ -1,4 +1,3 @@
-using EcommerceInventory.API.Authorization;
 using EcommerceInventory.Application.Common.Models;
 using EcommerceInventory.Application.Features.PurchaseOrders.Commands.AddPurchaseOrderItem;
 using EcommerceInventory.Application.Features.PurchaseOrders.Commands.ApprovePurchaseOrder;
@@ -11,121 +10,151 @@ using EcommerceInventory.Application.Features.PurchaseOrders.Commands.SubmitPurc
 using EcommerceInventory.Application.Features.PurchaseOrders.DTOs;
 using EcommerceInventory.Application.Features.PurchaseOrders.Queries.GetAllPurchaseOrders;
 using EcommerceInventory.Application.Features.PurchaseOrders.Queries.GetPurchaseOrderById;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceInventory.API.Controllers;
 
-[ApiController]
 [Authorize]
-[Route("api/v1/[controller]")]
-public class PurchaseOrdersController : ControllerBase
+public class PurchaseOrdersController : BaseApiController
 {
-    private readonly IMediator _mediator;
-
-    public PurchaseOrdersController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
-    [HasPermission("PurchaseOrders.View")]
+    // GET /api/v1/purchase-orders
     [HttpGet]
-    public async Task<IActionResult> GetAll(CancellationToken ct)
+    public async Task<IActionResult> GetAll(
+        [FromQuery] GetAllPurchaseOrdersQuery query,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetAllPurchaseOrdersQuery(), ct);
-        return Ok(new ApiResponse<List<PurchaseOrderListDto>>(true, result.Data!));
+        var result = await Mediator.Send(query, ct);
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    [HasPermission("PurchaseOrders.View")]
+    // GET /api/v1/purchase-orders/{id}
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetPurchaseOrderByIdQuery(id), ct);
-        return result.Success ? Ok(new ApiResponse<PurchaseOrderDto>(true, result.Data!)) : NotFound(new ApiResponse<object>(false, result.Message!));
+        var result = await Mediator.Send(
+            new GetPurchaseOrderByIdQuery { Id = id }, ct);
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    [HasPermission("PurchaseOrders.Create")]
+    // POST /api/v1/purchase-orders
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreatePurchaseOrderDto dto, CancellationToken ct)
+    public async Task<IActionResult> Create(
+        [FromBody] CreatePurchaseOrderCommand command,
+        CancellationToken ct)
     {
-        var command = new CreatePurchaseOrderCommand
-        {
-            SupplierId = dto.SupplierId,
-            WarehouseId = dto.WarehouseId,
-            ExpectedDeliveryAt = dto.ExpectedDeliveryAt,
-            Notes = dto.Notes,
-            Items = dto.Items.Select(i => new CreatePurchaseOrderItemDto(i.ProductId, i.QuantityOrdered, i.UnitCost)).ToList()
-        };
-        var result = await _mediator.Send(command, ct);
-        return result.Success ? Created(string.Empty, new ApiResponse<PurchaseOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(command, ct);
+        return StatusCode(201, ApiResponse<object>.Ok(
+            result, "Purchase order created successfully."));
     }
 
-    [HasPermission("PurchaseOrders.Create")]
+    // POST /api/v1/purchase-orders/{id}/items
     [HttpPost("{id:guid}/items")]
-    public async Task<IActionResult> AddItem(Guid id, [FromBody] AddPurchaseOrderItemDto dto, CancellationToken ct)
+    public async Task<IActionResult> AddItem(
+        Guid id,
+        [FromBody] AddPurchaseOrderItemRequest request,
+        CancellationToken ct)
     {
         var command = new AddPurchaseOrderItemCommand
         {
             PurchaseOrderId = id,
-            ProductId = dto.ProductId,
-            QuantityOrdered = dto.QuantityOrdered,
-            UnitCost = dto.UnitCost
+            ProductId       = request.ProductId,
+            QuantityOrdered = request.QuantityOrdered,
+            UnitCost        = request.UnitCost
         };
-        var result = await _mediator.Send(command, ct);
-        return result.Success ? Ok(new ApiResponse<PurchaseOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(command, ct);
+        return Ok(ApiResponse<object>.Ok(result, "Item added successfully."));
     }
 
-    [HasPermission("PurchaseOrders.Create")]
+    // DELETE /api/v1/purchase-orders/{id}/items/{itemId}
     [HttpDelete("{id:guid}/items/{itemId:guid}")]
-    public async Task<IActionResult> RemoveItem(Guid id, Guid itemId, CancellationToken ct)
+    public async Task<IActionResult> RemoveItem(
+        Guid id, Guid itemId, CancellationToken ct)
     {
-        var result = await _mediator.Send(new RemovePurchaseOrderItemCommand(id, itemId), ct);
-        return result.Success ? Ok(new ApiResponse<PurchaseOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new RemovePurchaseOrderItemCommand
+            {
+                PurchaseOrderId = id,
+                ItemId          = itemId
+            }, ct);
+        return Ok(ApiResponse<object>.Ok(result, "Item removed successfully."));
     }
 
-    [HasPermission("PurchaseOrders.Create")]
+    // POST /api/v1/purchase-orders/{id}/submit
     [HttpPost("{id:guid}/submit")]
     public async Task<IActionResult> Submit(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new SubmitPurchaseOrderCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<PurchaseOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new SubmitPurchaseOrderCommand { Id = id }, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Purchase order submitted successfully."));
     }
 
-    [HasPermission("PurchaseOrders.Approve")]
+    // POST /api/v1/purchase-orders/{id}/approve
     [HttpPost("{id:guid}/approve")]
     public async Task<IActionResult> Approve(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new ApprovePurchaseOrderCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<PurchaseOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new ApprovePurchaseOrderCommand { Id = id }, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Purchase order approved successfully."));
     }
 
-    [HasPermission("PurchaseOrders.Approve")]
+    // POST /api/v1/purchase-orders/{id}/reject
     [HttpPost("{id:guid}/reject")]
-    public async Task<IActionResult> Reject(Guid id, CancellationToken ct)
+    public async Task<IActionResult> Reject(
+        Guid id,
+        [FromBody] RejectPurchaseOrderCommand command,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(new RejectPurchaseOrderCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<PurchaseOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        command.Id = id;
+        var result = await Mediator.Send(command, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Purchase order rejected."));
     }
 
-    [HasPermission("PurchaseOrders.Receive")]
+    // POST /api/v1/purchase-orders/{id}/receive
     [HttpPost("{id:guid}/receive")]
-    public async Task<IActionResult> Receive(Guid id, [FromBody] ReceivePurchaseOrderDto dto, CancellationToken ct)
+    public async Task<IActionResult> Receive(
+        Guid id,
+        [FromBody] ReceivePurchaseOrderRequest request,
+        CancellationToken ct)
     {
         var command = new ReceivePurchaseOrderCommand
         {
-            PurchaseOrderId = id,
-            Items = dto.Items.Select(i => new ReceivePurchaseOrderItemDto(i.ItemId, i.QuantityReceived)).ToList()
+            Id    = id,
+            Items = request.Items
         };
-        var result = await _mediator.Send(command, ct);
-        return result.Success ? Ok(new ApiResponse<PurchaseOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(command, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Purchase order received. Stock updated successfully."));
     }
 
-    [HasPermission("PurchaseOrders.Cancel")]
+    // POST /api/v1/purchase-orders/{id}/cancel
     [HttpPost("{id:guid}/cancel")]
-    public async Task<IActionResult> Cancel(Guid id, CancellationToken ct)
+    public async Task<IActionResult> Cancel(
+        Guid id,
+        [FromBody] CancelPurchaseOrderRequest? request,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(new CancelPurchaseOrderCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<PurchaseOrderDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(
+            new CancelPurchaseOrderCommand
+            {
+                Id     = id,
+                Reason = request?.Reason
+            }, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Purchase order cancelled."));
     }
+}
+
+// Request body DTOs for controller
+public class ReceivePurchaseOrderRequest
+{
+    public List<ReceivePurchaseOrderItemRequest> Items { get; set; } = new();
+}
+
+public class CancelPurchaseOrderRequest
+{
+    public string? Reason { get; set; }
 }

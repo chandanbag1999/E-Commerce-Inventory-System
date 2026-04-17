@@ -1,2 +1,25 @@
+# Build
+bin/
+obj/
+*.user
+
+# VS
+.vs/
+*.suo
+
+# Publish
+publish/
+*.pubxml.user
+
+# Env
 appsettings.json
-QWEN.md
+*.env
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+

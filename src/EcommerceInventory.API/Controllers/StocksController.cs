@@ -1,67 +1,55 @@
-using EcommerceInventory.API.Authorization;
 using EcommerceInventory.Application.Common.Models;
 using EcommerceInventory.Application.Features.Stocks.Commands.AdjustStock;
-using EcommerceInventory.Application.Features.Stocks.DTOs;
 using EcommerceInventory.Application.Features.Stocks.Queries.GetLowStockAlerts;
 using EcommerceInventory.Application.Features.Stocks.Queries.GetStockByProduct;
 using EcommerceInventory.Application.Features.Stocks.Queries.GetStockByWarehouse;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceInventory.API.Controllers;
 
-[ApiController]
 [Authorize]
-[Route("api/v1/[controller]")]
-public class StocksController : ControllerBase
+public class StocksController : BaseApiController
 {
-    private readonly IMediator _mediator;
-
-    public StocksController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
-    [HasPermission("Stocks.View")]
+    // GET /api/v1/stocks/product/{productId}
     [HttpGet("product/{productId:guid}")]
-    public async Task<IActionResult> GetByProduct(Guid productId, CancellationToken ct)
+    public async Task<IActionResult> GetByProduct(
+        Guid productId, CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetStockByProductQuery(productId), ct);
-        return Ok(new ApiResponse<List<StockDto>>(true, result.Data!));
+        var result = await Mediator.Send(
+            new GetStockByProductQuery { ProductId = productId }, ct);
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    [HasPermission("Stocks.View")]
+    // GET /api/v1/stocks/warehouse/{warehouseId}
     [HttpGet("warehouse/{warehouseId:guid}")]
-    public async Task<IActionResult> GetByWarehouse(Guid warehouseId, CancellationToken ct)
+    public async Task<IActionResult> GetByWarehouse(
+        Guid warehouseId, CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetStockByWarehouseQuery(warehouseId), ct);
-        return Ok(new ApiResponse<List<StockDto>>(true, result.Data!));
+        var result = await Mediator.Send(
+            new GetStockByWarehouseQuery { WarehouseId = warehouseId }, ct);
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    [HasPermission("Stocks.View")]
+    // GET /api/v1/stocks/low-stock-alerts
     [HttpGet("low-stock-alerts")]
-    public async Task<IActionResult> GetLowStockAlerts(CancellationToken ct)
+    public async Task<IActionResult> GetLowStockAlerts(
+        [FromQuery] Guid? warehouseId,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetLowStockAlertsQuery(), ct);
-        return Ok(new ApiResponse<List<LowStockAlertDto>>(true, result.Data!));
+        var result = await Mediator.Send(
+            new GetLowStockAlertsQuery { WarehouseId = warehouseId }, ct);
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    [HasPermission("Stocks.Adjust")]
+    // POST /api/v1/stocks/adjust
     [HttpPost("adjust")]
-    public async Task<IActionResult> AdjustStock([FromBody] AdjustStockDto dto, CancellationToken ct)
+    public async Task<IActionResult> Adjust(
+        [FromBody] AdjustStockCommand command,
+        CancellationToken ct)
     {
-        var command = new AdjustStockCommand
-        {
-            ProductId = dto.ProductId,
-            WarehouseId = dto.WarehouseId,
-            AdjustmentType = dto.AdjustmentType,
-            Quantity = dto.Quantity,
-            Reason = dto.Reason
-        };
-        var result = await _mediator.Send(command, ct);
-        return result.Success 
-            ? Ok(new ApiResponse<AdjustStockResponseDto>(true, result.Data!, result.Message)) 
-            : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        var result = await Mediator.Send(command, ct);
+        return Ok(ApiResponse<object>.Ok(
+            result, "Stock adjusted successfully."));
     }
 }

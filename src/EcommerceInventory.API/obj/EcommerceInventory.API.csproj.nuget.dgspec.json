@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.API\\EcommerceInventory.API.csproj": {}
+    "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.API\\EcommerceInventory.API.csproj": {}
   },
   "projects": {
-    "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.API\\EcommerceInventory.API.csproj": {
+    "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.API\\EcommerceInventory.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.API\\EcommerceInventory.API.csproj",
+        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.API\\EcommerceInventory.API.csproj",
         "projectName": "EcommerceInventory.API",
-        "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.API\\EcommerceInventory.API.csproj",
+        "projectPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.API\\EcommerceInventory.API.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.API\\obj\\",
+        "outputPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
-                "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj"
+              "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
+                "projectPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj"
               },
-              "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj": {
-                "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj"
+              "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj": {
+                "projectPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj"
               }
             }
           }
@@ -57,23 +57,23 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[10.0.5, )"
+              "version": "[9.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.5, )"
-            },
-            "Scalar.AspNetCore": {
-              "target": "Package",
-              "version": "[2.13.11, )"
+              "version": "[9.0.4, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[9.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[9.0.1, )"
             }
           },
           "imports": [
@@ -513,14 +513,14 @@
         }
       }
     },
-    "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
+    "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj",
+        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj",
         "projectName": "EcommerceInventory.Application",
-        "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj",
+        "projectPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\obj\\",
+        "outputPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -541,8 +541,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
-                "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
+              "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
+                "projectPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
               }
             }
           }
@@ -565,31 +565,43 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[16.1.1, )"
+              "version": "[13.0.1, )"
             },
             "BCrypt.Net-Next": {
               "target": "Package",
-              "version": "[4.1.0, )"
+              "version": "[4.0.3, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.11.0, )"
             },
             "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
-              "version": "[12.1.1, )"
+              "version": "[11.11.0, )"
             },
             "MediatR": {
               "target": "Package",
-              "version": "[14.1.0, )"
-            },
-            "Microsoft.AspNetCore.Http.Abstractions": {
-              "target": "Package",
-              "version": "[2.3.9, )"
+              "version": "[12.4.1, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[10.0.5, )"
+              "version": "[9.0.4, )"
             },
-            "System.IdentityModel.Tokens.Jwt": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
-              "version": "[8.17.0, )"
+              "version": "[10.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[10.0.0, )"
             }
           },
           "imports": [
@@ -886,14 +898,14 @@
         }
       }
     },
-    "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
+    "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj",
+        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj",
         "projectName": "EcommerceInventory.Domain",
-        "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj",
+        "projectPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\obj\\",
+        "outputPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1225,14 +1237,14 @@
         }
       }
     },
-    "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj": {
+    "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
+        "projectUniqueName": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
         "projectName": "EcommerceInventory.Infrastructure",
-        "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
+        "projectPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Infrastructure\\EcommerceInventory.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Infrastructure\\obj\\",
+        "outputPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1253,11 +1265,11 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
-                "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj"
+              "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj": {
+                "projectPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Application\\EcommerceInventory.Application.csproj"
               },
-              "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
-                "projectPath": "D:\\CodeSpace\\Temporary-Field\\EcommerceInventorySystem-Backend\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
+              "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj": {
+                "projectPath": "D:\\CodeSpace\\Temporary-Field\\Dot-Net\\EcommerceInventorySystem\\src\\EcommerceInventory.Domain\\EcommerceInventory.Domain.csproj"
               }
             }
           }
@@ -1278,35 +1290,55 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "BCrypt.Net-Next": {
               "target": "Package",
-              "version": "[4.1.0, )"
+              "version": "[4.0.3, )"
             },
             "CloudinaryDotNet": {
               "target": "Package",
-              "version": "[1.28.0, )"
+              "version": "[1.27.1, )"
             },
             "MailKit": {
               "target": "Package",
-              "version": "[4.15.1, )"
+              "version": "[4.12.0, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[10.0.5, )"
+              "version": "[9.0.4, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.5, )"
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[9.0.4, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.17.0, )"
+              "version": "[8.9.0, )"
             }
           },
           "imports": [

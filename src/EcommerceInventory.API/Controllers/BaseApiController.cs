@@ -1,62 +1,32 @@
-using EcommerceInventory.Application.Common.Interfaces;
 using EcommerceInventory.Application.Common.Models;
-using Microsoft.AspNetCore.Authorization;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceInventory.API.Controllers;
 
-/// <summary>
-/// Base API controller with common helper methods
-/// </summary>
 [ApiController]
 [Route("api/v1/[controller]")]
+[Produces("application/json")]
 public abstract class BaseApiController : ControllerBase
 {
-    protected ICurrentUserService CurrentUser => HttpContext.RequestServices.GetRequiredService<ICurrentUserService>();
+    private ISender? _mediator;
 
-    /// <summary>
-    /// Returns a success response with data
-    /// </summary>
-    protected IActionResult Success<T>(T data, string? message = null)
-    {
-        return Ok(new ApiResponse<T>(true, data, message));
-    }
+    protected ISender Mediator
+        => _mediator ??= HttpContext.RequestServices
+                                    .GetRequiredService<ISender>();
 
-    /// <summary>
-    /// Returns a created resource response
-    /// </summary>
-    protected IActionResult Created<T>(string routeName, object routeValues, T data, string? message = null)
-    {
-        var response = new ApiResponse<T>(true, data, message);
-        return CreatedAtRoute(routeName, routeValues, response);
-    }
+    protected ActionResult<ApiResponse<T>> OkResponse<T>(
+        T data, string? message = null)
+        => Ok(ApiResponse<T>.Ok(data, message));
 
-    /// <summary>
-    /// Returns a bad request response
-    /// </summary>
-    protected IActionResult BadRequest(string message)
-    {
-        return base.BadRequest(new ApiResponse<object>(false, message));
-    }
+    protected ActionResult<ApiResponse<T>> CreatedResponse<T>(
+        T data, string? message = null)
+        => StatusCode(201, ApiResponse<T>.Ok(data, message));
 
-    /// <summary>
-    /// Returns a not found response
-    /// </summary>
-    protected IActionResult NotFound(string message)
-    {
-        return base.NotFound(new ApiResponse<object>(false, message));
-    }
+    protected ActionResult<ApiResponse<T>> NotFoundResponse<T>(
+        string message)
+        => NotFound(ApiResponse<T>.Fail(message));
 
-    /// <summary>
-    /// Returns the current user ID from JWT
-    /// </summary>
-    protected Guid GetCurrentUserId()
-    {
-        var userId = CurrentUser.UserId;
-        if (!userId.HasValue)
-        {
-            throw new UnauthorizedAccessException("User ID not found in token");
-        }
-        return userId.Value;
-    }
+    protected ActionResult BadRequestResponse(string message)
+        => BadRequest(ApiResponse.Fail(message));
 }

@@ -1,75 +1,53 @@
 using EcommerceInventory.Application.Common.Interfaces;
-using EcommerceInventory.Application.Common.Models;
 using EcommerceInventory.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
 
 namespace EcommerceInventory.Application.Features.Auth.Commands.ForgotPassword;
 
-public class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordCommand, Result>
+public class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordCommand, bool>
 {
-    private readonly IRepository<User> _userRepository;
-    private readonly IRepository<PasswordResetToken> _resetTokenRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IEmailService _emailService;
+    private readonly IUnitOfWork      _uow;
+    private readonly IEmailService    _emailService;
+    private readonly IDateTimeService _dateTime;
 
-    public ForgotPasswordCommandHandler(
-        IRepository<User> userRepository,
-        IRepository<PasswordResetToken> resetTokenRepository,
-        IUnitOfWork unitOfWork,
-        IEmailService emailService)
+    public ForgotPasswordCommandHandler(IUnitOfWork uow,
+                                         IEmailService emailService,
+                                         IDateTimeService dateTime)
     {
-        _userRepository = userRepository;
-        _resetTokenRepository = resetTokenRepository;
-        _unitOfWork = unitOfWork;
+        _uow          = uow;
         _emailService = emailService;
+        _dateTime     = dateTime;
     }
 
-    public async Task<Result> Handle(ForgotPasswordCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(ForgotPasswordCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.Query()
-            .FirstOrDefaultAsync(u => u.Email == request.Email.ToLower(), cancellationToken);
+        var user = await _uow.Users.Query()
+            .FirstOrDefaultAsync(u => u.Email == request.Email.ToLower().Trim(), cancellationToken);
 
-        // Always return success (security: don't reveal if email exists)
-        if (user == null)
+        if (user == null || user.IsDeleted)
+            return true;
+
+        var oldTokens = await _uow.PasswordResetTokens.Query()
+            .Where(t => t.UserId == user.Id && !t.IsUsed)
+            .ToListAsync(cancellationToken);
+        foreach (var old in oldTokens)
+            old.MarkUsed();
+
+        var rawToken  = Guid.NewGuid().ToString("N") + Guid.NewGuid().ToString("N");
+        var tokenHash = BCrypt.Net.BCrypt.HashPassword(rawToken);
+        var expiresAt = _dateTime.UtcNow.AddHours(1);
+
+        var resetToken = PasswordResetToken.Create(user.Id, tokenHash, expiresAt);
+        await _uow.PasswordResetTokens.AddAsync(resetToken, cancellationToken);
+        await _uow.SaveChangesAsync(cancellationToken);
+
+        _ = Task.Run(async () =>
         {
-            return Result.SuccessResult("If the email exists, a password reset link has been sent");
-        }
+            try { await _emailService.SendPasswordResetAsync(user.Email, user.FullName, rawToken); }
+            catch { }
+        }, CancellationToken.None);
 
-        // Generate reset token
-        var token = GenerateSecureToken();
-        var tokenHash = HashToken(token);
-
-        var resetToken = new PasswordResetToken
-        {
-            UserId = user.Id,
-            TokenHash = tokenHash,
-            ExpiresAt = DateTime.UtcNow.AddHours(1),
-            IsUsed = false
-        };
-
-        await _resetTokenRepository.AddAsync(resetToken, cancellationToken);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-        // TODO: Send email with reset link (use actual URL from config)
-        // var resetLink = $"https://your-frontend.com/reset-password?token={token}&email={user.Email}";
-        // await _emailService.SendPasswordResetAsync(user.Email, resetLink);
-
-        return Result.SuccessResult("If the email exists, a password reset link has been sent");
-    }
-
-    private static string GenerateSecureToken()
-    {
-        var bytes = new byte[32];
-        RandomNumberGenerator.Create().GetBytes(bytes);
-        return Convert.ToBase64String(bytes);
-    }
-
-    private static string HashToken(string token)
-    {
-        using var sha256 = SHA256.Create();
-        var hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(token));
-        return Convert.ToBase64String(hashedBytes);
+        return true;
     }
 }

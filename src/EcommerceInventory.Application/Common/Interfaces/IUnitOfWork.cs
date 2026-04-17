@@ -1,12 +1,29 @@
+using EcommerceInventory.Domain.Entities;
+
 namespace EcommerceInventory.Application.Common.Interfaces;
 
-/// <summary>
-/// Unit of work pattern - coordinates database operations and transactions
-/// </summary>
 public interface IUnitOfWork : IDisposable
 {
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-    Task BeginTransactionAsync(CancellationToken cancellationToken = default);
-    Task CommitTransactionAsync(CancellationToken cancellationToken = default);
-    Task RollbackTransactionAsync(CancellationToken cancellationToken = default);
+    IGenericRepository<User>                   Users                   { get; }
+    IGenericRepository<Role>                   Roles                   { get; }
+    IGenericRepository<Permission>             Permissions             { get; }
+    IGenericRepository<RefreshToken>           RefreshTokens           { get; }
+    IGenericRepository<PasswordResetToken>     PasswordResetTokens     { get; }
+    IGenericRepository<EmailVerificationToken> EmailVerificationTokens { get; }
+    IGenericRepository<Category>               Categories              { get; }
+    IGenericRepository<Product>                Products                { get; }
+    IGenericRepository<ProductImage>           ProductImages           { get; }
+    IGenericRepository<Warehouse>              Warehouses              { get; }
+    IGenericRepository<Stock>                  Stocks                  { get; }
+    IGenericRepository<StockMovement>          StockMovements          { get; }
+    IGenericRepository<Supplier>               Suppliers               { get; }
+    IGenericRepository<PurchaseOrder>          PurchaseOrders          { get; }
+    IGenericRepository<PurchaseOrderItem>      PurchaseOrderItems      { get; }
+    IGenericRepository<SalesOrder>             SalesOrders             { get; }
+    IGenericRepository<SalesOrderItem>         SalesOrderItems         { get; }
+
+    Task<int> SaveChangesAsync(CancellationToken ct = default);
+    Task BeginTransactionAsync(CancellationToken ct = default);
+    Task CommitTransactionAsync(CancellationToken ct = default);
+    Task RollbackTransactionAsync(CancellationToken ct = default);
 }

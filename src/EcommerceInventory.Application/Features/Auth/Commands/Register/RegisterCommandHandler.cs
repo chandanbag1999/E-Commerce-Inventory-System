@@ -1,70 +1,79 @@
 using EcommerceInventory.Application.Common.Interfaces;
-using EcommerceInventory.Application.Common.Models;
 using EcommerceInventory.Application.Features.Auth.DTOs;
 using EcommerceInventory.Domain.Entities;
-using EcommerceInventory.Domain.Enums;
 using EcommerceInventory.Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceInventory.Application.Features.Auth.Commands.Register;
 
-public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result<RegisterResponseDto>>
+public class RegisterCommandHandler
+    : IRequestHandler<RegisterCommand, RegisterResponseDto>
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IRepository<User> _userRepository;
-    private readonly ITokenService _tokenService;
-    private readonly IEmailService _emailService;
-    private readonly IDateTimeService _dateTimeService;
+    private readonly IUnitOfWork      _uow;
+    private readonly IEmailService    _emailService;
+    private readonly IDateTimeService _dateTime;
 
-    public RegisterCommandHandler(
-        IUnitOfWork unitOfWork,
-        IRepository<User> userRepository,
-        ITokenService tokenService,
-        IEmailService emailService,
-        IDateTimeService dateTimeService)
+    public RegisterCommandHandler(IUnitOfWork uow,
+                                   IEmailService emailService,
+                                   IDateTimeService dateTime)
     {
-        _unitOfWork = unitOfWork;
-        _userRepository = userRepository;
-        _tokenService = tokenService;
+        _uow          = uow;
         _emailService = emailService;
-        _dateTimeService = dateTimeService;
+        _dateTime     = dateTime;
     }
 
-    public async Task<Result<RegisterResponseDto>> Handle(RegisterCommand request, CancellationToken cancellationToken)
+    public async Task<RegisterResponseDto> Handle(
+        RegisterCommand request,
+        CancellationToken cancellationToken)
     {
-        // Check if email already exists
-        if (await _userRepository.Query().AnyAsync(u => u.Email == request.Email.ToLower(), cancellationToken))
-        {
-            return Result<RegisterResponseDto>.FailureResult("Email is already registered");
-        }
+        var emailExists = await _uow.Users.Query()
+            .IgnoreQueryFilters()
+            .AnyAsync(u => u.Email == request.Email.ToLower().Trim(),
+                      cancellationToken);
 
-        // Hash password
+        if (emailExists)
+            throw new DomainException(
+                "An account with this email already exists.");
+
         var passwordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
-        // Create user entity
         var user = User.Create(
-            request.FullName.Trim(),
-            request.Email.Trim().ToLower(),
-            passwordHash,
-            request.Phone?.Trim());
+            fullName:     request.FullName,
+            email:        request.Email,
+            passwordHash: passwordHash,
+            phone:        request.Phone);
 
-        await _userRepository.AddAsync(user, cancellationToken);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _uow.Users.AddAsync(user, cancellationToken);
+        await _uow.SaveChangesAsync(cancellationToken);
 
-        // TODO: Generate and send email verification token
-        // This will be implemented when we create the EmailVerificationToken service
+        var rawToken  = Guid.NewGuid().ToString("N") + Guid.NewGuid().ToString("N");
+        var tokenHash = BCrypt.Net.BCrypt.HashPassword(rawToken);
+        var expiresAt = _dateTime.UtcNow.AddHours(24);
 
-        var response = new RegisterResponseDto
+        var verificationToken = EmailVerificationToken.Create(
+            userId:    user.Id,
+            tokenHash: tokenHash,
+            expiresAt: expiresAt);
+
+        await _uow.EmailVerificationTokens.AddAsync(verificationToken, cancellationToken);
+        await _uow.SaveChangesAsync(cancellationToken);
+
+        _ = Task.Run(async () =>
         {
-            Id = user.Id,
-            FullName = user.FullName,
-            Email = user.Email,
-            Status = user.Status.ToString(),
-            IsEmailVerified = user.IsEmailVerified,
-            CreatedAt = user.CreatedAt
-        };
+            try { await _emailService.SendEmailVerificationAsync(user.Email, user.FullName, rawToken); }
+            catch { }
+        }, CancellationToken.None);
 
-        return Result<RegisterResponseDto>.SuccessResult(response, "Registration successful. Please check your email to verify your account.");
+        return new RegisterResponseDto
+        {
+            Id              = user.Id,
+            FullName        = user.FullName,
+            Email           = user.Email,
+            Phone           = user.Phone,
+            Status          = user.Status.ToString(),
+            IsEmailVerified = user.IsEmailVerified,
+            CreatedAt       = user.CreatedAt
+        };
     }
 }

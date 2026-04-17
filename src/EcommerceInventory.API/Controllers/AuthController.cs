@@ -1,4 +1,3 @@
-using EcommerceInventory.API.Controllers;
 using EcommerceInventory.Application.Common.Interfaces;
 using EcommerceInventory.Application.Common.Models;
 using EcommerceInventory.Application.Features.Auth.Commands.ChangePassword;
@@ -9,254 +8,157 @@ using EcommerceInventory.Application.Features.Auth.Commands.RefreshToken;
 using EcommerceInventory.Application.Features.Auth.Commands.Register;
 using EcommerceInventory.Application.Features.Auth.Commands.ResetPassword;
 using EcommerceInventory.Application.Features.Auth.Commands.VerifyEmail;
-using EcommerceInventory.Application.Features.Auth.DTOs;
-using MediatR;
+using EcommerceInventory.Application.Features.Auth.Queries.GetMe;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceInventory.API.Controllers;
 
-/// <summary>
-/// Authentication controller — Register, Login, Refresh, Logout, etc.
-/// 9 endpoints total
-/// </summary>
 public class AuthController : BaseApiController
 {
-    private readonly IMediator _mediator;
     private readonly ICurrentUserService _currentUser;
 
-    public AuthController(IMediator mediator, ICurrentUserService currentUser)
+    public AuthController(ICurrentUserService currentUser)
     {
-        _mediator = mediator;
         _currentUser = currentUser;
     }
 
-    // ─────────────────────────────────────────────
-    // POST /auth/register
-    // ─────────────────────────────────────────────
-    /// <summary>
-    /// Register a new user account
-    /// </summary>
-    [AllowAnonymous]
     [HttpPost("register")]
-    [ProducesResponseType(typeof(ApiResponse<RegisterResponseDto>), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Register([FromBody] RegisterCommand command, CancellationToken ct)
+    [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Register(
+        [FromBody] RegisterCommand command,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(command, ct);
-
-        if (!result.Success)
-        {
-            return BadRequest(result.Errors.FirstOrDefault() ?? result.Message ?? "Registration failed");
-        }
-
-        return Created(string.Empty, new ApiResponse<RegisterResponseDto>(true, result.Data!, result.Message));
+        var result = await Mediator.Send(command, ct);
+        return StatusCode(201, ApiResponse<object>.Ok(result,
+            "Registration successful. " +
+            "Please check your email to verify your account."));
     }
 
-    // ─────────────────────────────────────────────
-    // POST /auth/login
-    // ─────────────────────────────────────────────
-    /// <summary>
-    /// Login and receive access + refresh token pair
-    /// </summary>
-    [AllowAnonymous]
     [HttpPost("login")]
-    [ProducesResponseType(typeof(ApiResponse<LoginResponseDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> Login([FromBody] LoginCommand command, CancellationToken ct)
-    {
-        var result = await _mediator.Send(command, ct);
-
-        if (!result.Success)
-        {
-            return Unauthorized(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message ?? "Operation failed"));
-        }
-
-        return Ok(new ApiResponse<LoginResponseDto>(true, result.Data!, result.Message));
-    }
-
-    // ─────────────────────────────────────────────
-    // POST /auth/refresh-token
-    // ─────────────────────────────────────────────
-    /// <summary>
-    /// Rotate tokens — send expired access token + valid refresh token, get new pair
-    /// </summary>
     [AllowAnonymous]
-    [HttpPost("refresh-token")]
-    [ProducesResponseType(typeof(ApiResponse<LoginResponseDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenCommand command, CancellationToken ct)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> Login(
+        [FromBody] LoginCommand command,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(command, ct);
-
-        if (!result.Success)
-        {
-            return Unauthorized(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message ?? "Operation failed"));
-        }
-
-        return Ok(new ApiResponse<LoginResponseDto>(true, result.Data!, result.Message));
+        var result = await Mediator.Send(command, ct);
+        return Ok(ApiResponse<object>.Ok(result, "Login successful."));
     }
 
-    // ─────────────────────────────────────────────
-    // POST /auth/logout  [Bearer Auth Required]
-    // ─────────────────────────────────────────────
-    /// <summary>
-    /// Logout — revoke the refresh token
-    /// </summary>
+    [HttpPost("refresh-token")]
+    [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> RefreshToken(
+        [FromBody] RefreshTokenCommand command,
+        CancellationToken ct)
+    {
+        var result = await Mediator.Send(command, ct);
+        return Ok(ApiResponse<object>.Ok(result,
+            "Token refreshed successfully."));
+    }
+
     [HttpPost("logout")]
     [Authorize]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> Logout([FromBody] LogoutRequestDto request, CancellationToken ct)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Logout(
+        [FromBody] LogoutRequestDto request,
+        CancellationToken ct)
     {
+        var userId = _currentUser.UserId
+            ?? throw new UnauthorizedAccessException("Not authenticated.");
+
         var command = new LogoutCommand
         {
             RefreshToken = request.RefreshToken,
-            UserId = GetCurrentUserId()
+            UserId       = userId
         };
 
-        var result = await _mediator.Send(command, ct);
-
-        if (!result.Success)
-        {
-            return BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message ?? "Operation failed"));
-        }
-
-        return Ok(new ApiResponse<object>(true, result.Message ?? "Operation successful"));
+        await Mediator.Send(command, ct);
+        return Ok(ApiResponse.Ok("Logged out successfully."));
     }
 
-    // ─────────────────────────────────────────────
-    // POST /auth/verify-email
-    // ─────────────────────────────────────────────
-    /// <summary>
-    /// Verify email using the token sent via email
-    /// </summary>
-    [AllowAnonymous]
     [HttpPost("verify-email")]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> VerifyEmail([FromBody] VerifyEmailCommand command, CancellationToken ct)
+    [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> VerifyEmail(
+        [FromBody] VerifyEmailCommand command,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(command, ct);
-
-        if (!result.Success)
-        {
-            return BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message ?? "Operation failed"));
-        }
-
-        return Ok(new ApiResponse<object>(true, result.Message ?? "Operation successful"));
+        await Mediator.Send(command, ct);
+        return Ok(ApiResponse.Ok(
+            "Email verified successfully. You can now login."));
     }
 
-    // ─────────────────────────────────────────────
-    // POST /auth/forgot-password
-    // ─────────────────────────────────────────────
-    /// <summary>
-    /// Request a password reset email (always returns success for security)
-    /// </summary>
-    [AllowAnonymous]
     [HttpPost("forgot-password")]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordCommand command, CancellationToken ct)
-    {
-        var result = await _mediator.Send(command, ct);
-
-        if (!result.Success)
-        {
-            return BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message ?? "Operation failed"));
-        }
-
-        return Ok(new ApiResponse<object>(true, result.Message ?? "Operation successful"));
-    }
-
-    // ─────────────────────────────────────────────
-    // POST /auth/reset-password
-    // ─────────────────────────────────────────────
-    /// <summary>
-    /// Reset password using the token from email
-    /// </summary>
     [AllowAnonymous]
-    [HttpPost("reset-password")]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command, CancellationToken ct)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> ForgotPassword(
+        [FromBody] ForgotPasswordCommand command,
+        CancellationToken ct)
     {
-        var result = await _mediator.Send(command, ct);
-
-        if (!result.Success)
-        {
-            return BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message ?? "Operation failed"));
-        }
-
-        return Ok(new ApiResponse<object>(true, result.Message ?? "Operation successful"));
+        await Mediator.Send(command, ct);
+        return Ok(ApiResponse.Ok(
+            "If an account exists with this email, " +
+            "a password reset link has been sent."));
     }
 
-    // ─────────────────────────────────────────────
-    // GET /auth/me  [Bearer Auth Required]
-    // ─────────────────────────────────────────────
-    /// <summary>
-    /// Get current authenticated user information
-    /// </summary>
+    [HttpPost("reset-password")]
+    [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ResetPassword(
+        [FromBody] ResetPasswordCommand command,
+        CancellationToken ct)
+    {
+        await Mediator.Send(command, ct);
+        return Ok(ApiResponse.Ok(
+            "Password reset successful. Please login with your new password."));
+    }
+
     [HttpGet("me")]
     [Authorize]
-    [ProducesResponseType(typeof(ApiResponse<CurrentUserInfoDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status401Unauthorized)]
-    public IActionResult Me()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> GetMe(CancellationToken ct)
     {
-        if (!_currentUser.IsAuthenticated || _currentUser.UserId == null)
-        {
-            return Unauthorized(new ApiResponse<object>(false, "Not authenticated"));
-        }
+        var userId = _currentUser.UserId
+            ?? throw new UnauthorizedAccessException("Not authenticated.");
 
-        var user = new CurrentUserInfoDto
-        {
-            Id = _currentUser.UserId.Value,
-            Email = _currentUser.Email ?? string.Empty,
-            Roles = _currentUser.Roles,
-            Permissions = _currentUser.Permissions
-        };
+        var result = await Mediator.Send(
+            new GetMeQuery { UserId = userId }, ct);
 
-        return Ok(new ApiResponse<CurrentUserInfoDto>(true, user));
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    // ─────────────────────────────────────────────
-    // POST /auth/change-password  [Bearer Auth Required]
-    // ─────────────────────────────────────────────
-    /// <summary>
-    /// Change current user's password
-    /// </summary>
     [HttpPost("change-password")]
     [Authorize]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ApiResponse<object>), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand command, CancellationToken ct)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> ChangePassword(
+        [FromBody] ChangePasswordRequestDto request,
+        CancellationToken ct)
     {
-        // Ensure user can only change their own password
-        command.UserId = GetCurrentUserId();
+        var userId = _currentUser.UserId
+            ?? throw new UnauthorizedAccessException("Not authenticated.");
 
-        var result = await _mediator.Send(command, ct);
-
-        if (!result.Success)
+        var command = new ChangePasswordCommand
         {
-            return BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message ?? "Operation failed"));
-        }
+            UserId      = userId,
+            OldPassword = request.OldPassword,
+            NewPassword = request.NewPassword
+        };
 
-        return Ok(new ApiResponse<object>(true, result.Message ?? "Operation successful"));
+        await Mediator.Send(command, ct);
+        return Ok(ApiResponse.Ok(
+            "Password changed successfully."));
     }
 }
 
-// ─────────────────────────────────────────────
-// DTOs for Auth Controller requests/responses
-// ─────────────────────────────────────────────
-
-public class LogoutRequestDto
-{
-    public string RefreshToken { get; set; } = string.Empty;
-}
-
-public class CurrentUserInfoDto
-{
-    public Guid Id { get; set; }
-    public string Email { get; set; } = string.Empty;
-    public IList<string> Roles { get; set; } = new List<string>();
-    public IList<string> Permissions { get; set; } = new List<string>();
-}
+public record LogoutRequestDto(string RefreshToken);
+public record ChangePasswordRequestDto(string OldPassword, string NewPassword);

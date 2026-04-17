@@ -1,20 +1,17 @@
-using Microsoft.AspNetCore.Http;
-
 namespace EcommerceInventory.Application.Common.Interfaces;
 
-/// <summary>
-/// Service for uploading images to Cloudinary
-/// </summary>
+public class CloudinaryUploadResult
+{
+    public string PublicId  { get; set; } = string.Empty;
+    public string SecureUrl { get; set; } = string.Empty;
+    public string Format    { get; set; } = string.Empty;
+    public long   Bytes     { get; set; }
+    public int    Width     { get; set; }
+    public int    Height    { get; set; }
+}
+
 public interface ICloudinaryService
 {
-    /// <summary>
-    /// Uploads an image to Cloudinary
-    /// </summary>
-    /// <returns>Tuple of (SecureUrl, PublicId)</returns>
-    Task<(string SecureUrl, string PublicId)> UploadImageAsync(IFormFile file, string folder);
-
-    /// <summary>
-    /// Deletes an image from Cloudinary by public ID
-    /// </summary>
-    Task DeleteImageAsync(string publicId);
+    Task<CloudinaryUploadResult> UploadImageAsync(Stream fileStream, string fileName, string contentType, string folder);
+    Task<bool> DeleteImageAsync(string publicId);
 }

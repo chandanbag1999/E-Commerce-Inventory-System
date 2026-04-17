@@ -1,92 +1,120 @@
-using EcommerceInventory.Application.Features.Categories.Commands.UploadCategoryImage;
-using EcommerceInventory.Application.Features.Categories.Commands.UpdateCategory;
-using EcommerceInventory.Application.Features.Categories.Commands.DeleteCategory;
+using EcommerceInventory.Application.Common.Models;
 using EcommerceInventory.Application.Features.Categories.Commands.CreateCategory;
-using EcommerceInventory.Application.Features.Categories.DTOs;
+using EcommerceInventory.Application.Features.Categories.Commands.DeleteCategory;
+using EcommerceInventory.Application.Features.Categories.Commands.UpdateCategory;
+using EcommerceInventory.Application.Features.Categories.Commands.UploadCategoryImage;
 using EcommerceInventory.Application.Features.Categories.Queries.GetAllCategories;
 using EcommerceInventory.Application.Features.Categories.Queries.GetCategoryById;
-using EcommerceInventory.API.Authorization;
-using EcommerceInventory.Application.Common.Models;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceInventory.API.Controllers;
 
-[ApiController]
 [Authorize]
-[Route("api/v1/[controller]")]
-public class CategoriesController : ControllerBase
+public class CategoriesController : BaseApiController
 {
-    private readonly IMediator _mediator;
-
-    public CategoriesController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
-    [HasPermission("Categories.View")]
+    // GET /api/v1/categories
     [HttpGet]
-    public async Task<IActionResult> GetAll(CancellationToken ct)
+    public async Task<IActionResult> GetAll(
+        [FromQuery] bool includeInactive = false,
+        CancellationToken ct = default)
     {
-        var result = await _mediator.Send(new GetAllCategoriesQuery(), ct);
-        return Ok(new ApiResponse<IReadOnlyList<CategoryDto>>(true, result.Data!));
+        var result = await Mediator.Send(
+            new GetAllCategoriesQuery { IncludeInactive = includeInactive }, ct);
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    [HasPermission("Categories.View")]
+    // GET /api/v1/categories/{id}
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetCategoryByIdQuery(id), ct);
-        return result.Success ? Ok(new ApiResponse<CategoryDto>(true, result.Data!)) : NotFound(new ApiResponse<object>(false, result.Message!));
+        var result = await Mediator.Send(
+            new GetCategoryByIdQuery { Id = id }, ct);
+        return Ok(ApiResponse<object>.Ok(result));
     }
 
-    [HasPermission("Categories.Create")]
+    // POST /api/v1/categories
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateCategoryDto dto, CancellationToken ct)
+    public async Task<IActionResult> Create(
+        [FromForm] CreateCategoryRequestDto request,
+        CancellationToken ct)
     {
+        Stream? imageStream = null;
+        string? fileName    = null;
+        string? contentType = null;
+
+        if (request.ImageFile != null && request.ImageFile.Length > 0)
+        {
+            imageStream = request.ImageFile.OpenReadStream();
+            fileName    = request.ImageFile.FileName;
+            contentType = request.ImageFile.ContentType;
+        }
+
         var command = new CreateCategoryCommand
         {
-            Name = dto.Name,
-            Description = dto.Description,
-            ParentId = dto.ParentId
+            Name             = request.Name,
+            Description      = request.Description,
+            ParentId         = request.ParentId,
+            SortOrder        = request.SortOrder,
+            ImageStream      = imageStream,
+            ImageFileName    = fileName,
+            ImageContentType = contentType
         };
-        var result = await _mediator.Send(command, ct);
-        return result.Success ? Created(string.Empty, new ApiResponse<CategoryDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+
+        var result = await Mediator.Send(command, ct);
+        return StatusCode(201, ApiResponse<object>.Ok(result,
+            "Category created successfully."));
     }
 
-    [HasPermission("Categories.Edit")]
+    // PUT /api/v1/categories/{id}
     [HttpPut("{id:guid}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCategoryDto dto, CancellationToken ct)
+    public async Task<IActionResult> Update(
+        Guid id,
+        [FromBody] UpdateCategoryCommand command,
+        CancellationToken ct)
     {
-        var command = new UpdateCategoryCommand
-        {
-            Id = id,
-            Name = dto.Name,
-            Description = dto.Description
-        };
-        var result = await _mediator.Send(command, ct);
-        return result.Success ? Ok(new ApiResponse<CategoryDto>(true, result.Data!, result.Message)) : NotFound(new ApiResponse<object>(false, result.Message!));
+        command.Id = id;
+        var result = await Mediator.Send(command, ct);
+        return Ok(ApiResponse<object>.Ok(result,
+            "Category updated successfully."));
     }
 
-    [HasPermission("Categories.Delete")]
+    // DELETE /api/v1/categories/{id}
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
     {
-        var result = await _mediator.Send(new DeleteCategoryCommand(id), ct);
-        return result.Success ? Ok(new ApiResponse<bool>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+        await Mediator.Send(new DeleteCategoryCommand { Id = id }, ct);
+        return Ok(ApiResponse.Ok("Category deleted successfully."));
     }
 
-    [HasPermission("Categories.Edit")]
+    // POST /api/v1/categories/{id}/image
     [HttpPost("{id:guid}/image")]
-    public async Task<IActionResult> UploadImage(Guid id, IFormFile imageFile, CancellationToken ct)
+    public async Task<IActionResult> UploadImage(
+        Guid id, IFormFile file, CancellationToken ct)
     {
+        if (file == null || file.Length == 0)
+            return BadRequest(ApiResponse.Fail("File is required."));
+
+        await using var stream = file.OpenReadStream();
         var command = new UploadCategoryImageCommand
         {
-            CategoryId = id,
-            ImageFile = imageFile
+            CategoryId  = id,
+            FileStream  = stream,
+            FileName    = file.FileName,
+            ContentType = file.ContentType
         };
-        var result = await _mediator.Send(command, ct);
-        return result.Success ? Ok(new ApiResponse<CategoryDto>(true, result.Data!, result.Message)) : BadRequest(new ApiResponse<object>(false, result.Errors.FirstOrDefault() ?? result.Message));
+
+        var imageUrl = await Mediator.Send(command, ct);
+        return Ok(ApiResponse<object>.Ok(
+            new { imageUrl }, "Image uploaded successfully."));
     }
+}
+
+public class CreateCategoryRequestDto
+{
+    public string   Name        { get; set; } = string.Empty;
+    public string?  Description { get; set; }
+    public Guid?    ParentId    { get; set; }
+    public int      SortOrder   { get; set; } = 0;
+    public IFormFile? ImageFile { get; set; }
 }
