@@ -25,7 +25,7 @@ public class CreateWarehouseCommandHandler
         CreateWarehouseCommand request,
         CancellationToken cancellationToken)
     {
-        // 1. Code uniqueness check
+        // 1. Code uniqueness
         var codeExists = await _uow.Warehouses.Query()
             .AnyAsync(w => w.Code == request.Code.ToUpper().Trim(),
                       cancellationToken);
@@ -33,7 +33,7 @@ public class CreateWarehouseCommandHandler
             throw new DomainException(
                 $"Warehouse code '{request.Code}' already exists.");
 
-        // 2. Manager exists check (if provided)
+        // 2. Manager exists check
         string? managerName = null;
         if (request.ManagerId.HasValue)
         {
@@ -49,11 +49,11 @@ public class CreateWarehouseCommandHandler
         if (request.Address != null)
         {
             address = new Address(
-                request.Address.Street  ?? string.Empty,
-                request.Address.City    ?? string.Empty,
-                request.Address.State   ?? string.Empty,
-                request.Address.Pincode ?? string.Empty,
-                request.Address.Country ?? "India");
+                request.Address.Street,
+                request.Address.City,
+                request.Address.State,
+                request.Address.Pincode,
+                request.Address.Country);
         }
 
         // 4. Create entity
@@ -62,7 +62,13 @@ public class CreateWarehouseCommandHandler
             code:      request.Code,
             address:   address,
             managerId: request.ManagerId,
-            phone:     request.Phone);
+            phone:     request.Phone,
+            email:     request.Email,
+            capacity:  request.Capacity);
+
+        // #8: set audit
+        warehouse.CreatedBy = _currentUser.UserId;
+        warehouse.UpdatedBy = _currentUser.UserId;
 
         await _uow.Warehouses.AddAsync(warehouse, cancellationToken);
         await _uow.SaveChangesAsync(cancellationToken);
@@ -78,11 +84,17 @@ public class CreateWarehouseCommandHandler
             Name        = w.Name,
             Code        = w.Code,
             IsActive    = w.IsActive,
+            Status      = w.IsActive ? "Active" : "Inactive",
             Phone       = w.Phone,
-            ManagerId   = w.ManagerId,
-            ManagerName = managerName,
+            Email       = w.Email,
+            Capacity    = w.Capacity,
+            Utilization = w.Capacity.HasValue && w.Capacity.Value > 0
+                ? Math.Round((double)stockLines / w.Capacity.Value * 100, 1)
+                : null,
+            ManagerId      = w.ManagerId,
+            ManagerName    = managerName,
             TotalStockLines = stockLines,
-            Address     = w.Address == null ? null : new AddressDto
+            Address        = w.Address == null ? null : new AddressDto
             {
                 Street  = w.Address.Street,
                 City    = w.Address.City,
@@ -90,7 +102,9 @@ public class CreateWarehouseCommandHandler
                 Pincode = w.Address.Pincode,
                 Country = w.Address.Country
             },
-            CreatedAt = w.CreatedAt,
-            UpdatedAt = w.UpdatedAt
+            AddressString = w.Address?.ToString(),
+            Version    = w.Version,
+            CreatedAt  = w.CreatedAt,
+            UpdatedAt  = w.UpdatedAt
         };
 }

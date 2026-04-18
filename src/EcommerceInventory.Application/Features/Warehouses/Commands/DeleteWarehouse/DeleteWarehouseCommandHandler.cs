@@ -1,4 +1,5 @@
 using EcommerceInventory.Application.Common.Interfaces;
+using EcommerceInventory.Domain.Enums;
 using EcommerceInventory.Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ public class DeleteWarehouseCommandHandler
         if (warehouse == null)
             throw new NotFoundException("Warehouse", request.Id);
 
-        // Check if warehouse has active stock
+        // Check for active stock
         var hasStock = await _uow.Stocks.Query()
             .AnyAsync(s => s.WarehouseId == request.Id && s.Quantity > 0,
                       cancellationToken);
@@ -30,6 +31,28 @@ public class DeleteWarehouseCommandHandler
             throw new BusinessRuleViolationException(
                 "Cannot delete warehouse that has active stock. " +
                 "Please transfer or adjust stock first.");
+
+        // #2: Check for pending purchase orders
+        var hasPendingPO = await _uow.PurchaseOrders.Query()
+            .AnyAsync(po => po.WarehouseId == request.Id
+                && po.Status != OrderStatus.Received
+                && po.Status != OrderStatus.Cancelled,
+                cancellationToken);
+        if (hasPendingPO)
+            throw new BusinessRuleViolationException(
+                "Cannot delete warehouse that has pending purchase orders. " +
+                "Please complete or cancel them first.");
+
+        // #2: Check for pending sales orders
+        var hasPendingSO = await _uow.SalesOrders.Query()
+            .AnyAsync(so => so.WarehouseId == request.Id
+                && so.Status != OrderStatus.Delivered
+                && so.Status != OrderStatus.Cancelled,
+                cancellationToken);
+        if (hasPendingSO)
+            throw new BusinessRuleViolationException(
+                "Cannot delete warehouse that has pending sales orders. " +
+                "Please complete or cancel them first.");
 
         warehouse.SoftDelete();
         await _uow.SaveChangesAsync(cancellationToken);

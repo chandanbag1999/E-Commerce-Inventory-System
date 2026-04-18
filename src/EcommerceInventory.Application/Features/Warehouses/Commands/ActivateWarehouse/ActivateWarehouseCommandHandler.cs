@@ -1,27 +1,21 @@
 using EcommerceInventory.Application.Common.Interfaces;
 using EcommerceInventory.Application.Features.Warehouses.DTOs;
 using EcommerceInventory.Domain.Exceptions;
-using EcommerceInventory.Domain.ValueObjects;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace EcommerceInventory.Application.Features.Warehouses.Commands.UpdateWarehouse;
+namespace EcommerceInventory.Application.Features.Warehouses.Commands.ActivateWarehouse;
 
-public class UpdateWarehouseCommandHandler
-    : IRequestHandler<UpdateWarehouseCommand, WarehouseDto>
+public class ActivateWarehouseCommandHandler
+    : IRequestHandler<ActivateWarehouseCommand, WarehouseDto>
 {
-    private readonly IUnitOfWork         _uow;
-    private readonly ICurrentUserService _currentUser;
+    private readonly IUnitOfWork _uow;
 
-    public UpdateWarehouseCommandHandler(
-        IUnitOfWork uow, ICurrentUserService currentUser)
-    {
-        _uow         = uow;
-        _currentUser = currentUser;
-    }
+    public ActivateWarehouseCommandHandler(IUnitOfWork uow)
+        => _uow = uow;
 
     public async Task<WarehouseDto> Handle(
-        UpdateWarehouseCommand request,
+        ActivateWarehouseCommand request,
         CancellationToken cancellationToken)
     {
         var warehouse = await _uow.Warehouses.GetByIdAsync(
@@ -29,40 +23,7 @@ public class UpdateWarehouseCommandHandler
         if (warehouse == null)
             throw new NotFoundException("Warehouse", request.Id);
 
-        // #11: concurrency check
-        if (warehouse.Version != request.Version)
-            throw new DomainException(
-                "This warehouse has been modified by another user. " +
-                "Please refresh and try again.");
-
-        // Manager exists check
-        string? managerName = null;
-        if (request.ManagerId.HasValue)
-        {
-            var manager = await _uow.Users.GetByIdAsync(
-                request.ManagerId.Value, cancellationToken);
-            if (manager == null)
-                throw new NotFoundException("User", request.ManagerId.Value);
-            managerName = manager.FullName;
-        }
-
-        Address? address = null;
-        if (request.Address != null)
-        {
-            address = new Address(
-                request.Address.Street,
-                request.Address.City,
-                request.Address.State,
-                request.Address.Pincode,
-                request.Address.Country);
-        }
-
-        warehouse.Update(request.Name, address, request.ManagerId,
-                          request.Phone, request.Email, request.Capacity);
-
-        // #8: audit
-        warehouse.UpdatedBy = _currentUser.UserId;
-
+        warehouse.Activate();
         await _uow.SaveChangesAsync(cancellationToken);
 
         var stockLines = await _uow.Stocks.Query()
@@ -82,7 +43,7 @@ public class UpdateWarehouseCommandHandler
                 ? Math.Round((double)stockLines / warehouse.Capacity.Value * 100, 1)
                 : null,
             ManagerId      = warehouse.ManagerId,
-            ManagerName    = managerName,
+            ManagerName    = null,
             TotalStockLines = stockLines,
             Address        = warehouse.Address == null ? null : new AddressDto
             {

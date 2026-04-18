@@ -9,6 +9,11 @@ namespace EcommerceInventory.Infrastructure.Persistence.Configurations;
 
 public class SalesOrderConfiguration : IEntityTypeConfiguration<SalesOrder>
 {
+    private static readonly JsonSerializerOptions _jsonOpts = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
+
     public void Configure(EntityTypeBuilder<SalesOrder> builder)
     {
         builder.ToTable("sales_orders");
@@ -25,8 +30,9 @@ public class SalesOrderConfiguration : IEntityTypeConfiguration<SalesOrder>
         builder.Property(so => so.TotalAmount).HasColumnName("total_amount").HasColumnType("numeric(18,2)").HasDefaultValue(0m).IsRequired();
         builder.Property(so => so.Notes).HasColumnName("notes").HasColumnType("text");
         builder.Property(so => so.ShippingAddress).HasColumnName("shipping_address_json").HasColumnType("jsonb")
-            .HasConversion(v => v == null ? null : JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
-                         v => v == null ? null : JsonSerializer.Deserialize<Address>(v, (JsonSerializerOptions?)null));
+            .HasConversion(
+                v => v == null ? null : JsonSerializer.Serialize(v, _jsonOpts),
+                v => v == null ? null : JsonSerializer.Deserialize<Address>(v, _jsonOpts));
         builder.Property(so => so.CreatedBy).HasColumnName("created_by").IsRequired();
         builder.Property(so => so.ApprovedBy).HasColumnName("approved_by");
         builder.Property(so => so.ApprovedAt).HasColumnName("approved_at");

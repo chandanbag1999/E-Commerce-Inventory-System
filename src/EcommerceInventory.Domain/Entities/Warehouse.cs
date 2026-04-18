@@ -4,14 +4,17 @@ using EcommerceInventory.Domain.ValueObjects;
 
 namespace EcommerceInventory.Domain.Entities;
 
-public class Warehouse : BaseEntity, ISoftDelete
+public class Warehouse : AuditableEntity, ISoftDelete
 {
     public string   Name      { get; private set; } = string.Empty;
     public string   Code      { get; private set; } = string.Empty;
     public Address? Address   { get; private set; }
     public Guid?    ManagerId { get; private set; }
     public string?  Phone     { get; private set; }
+    public string?  Email     { get; private set; }
+    public int?     Capacity  { get; private set; }
     public bool     IsActive  { get; private set; } = true;
+    public int      Version   { get; set; } = 0;
     public DateTime? DeletedAt { get; set; }
     public bool     IsDeleted => DeletedAt.HasValue;
 
@@ -20,10 +23,14 @@ public class Warehouse : BaseEntity, ISoftDelete
 
     protected Warehouse() { }
 
-    public static Warehouse Create(string name, string code,
-                                    Address? address = null,
-                                    Guid? managerId = null,
-                                    string? phone = null)
+    public static Warehouse Create(
+        string   name,
+        string   code,
+        Address? address   = null,
+        Guid?    managerId = null,
+        string?  phone     = null,
+        string?  email     = null,
+        int?     capacity  = null)
     {
         if (string.IsNullOrWhiteSpace(name))
             throw new DomainException("Warehouse name is required.");
@@ -37,11 +44,19 @@ public class Warehouse : BaseEntity, ISoftDelete
             Address   = address,
             ManagerId = managerId,
             Phone     = phone?.Trim(),
+            Email     = email?.Trim().ToLower(),
+            Capacity  = capacity,
             IsActive  = true
         };
     }
 
-    public void Update(string name, Address? address, Guid? managerId, string? phone)
+    public void Update(
+        string   name,
+        Address? address,
+        Guid?    managerId,
+        string?  phone,
+        string?  email,
+        int?     capacity)
     {
         if (string.IsNullOrWhiteSpace(name))
             throw new DomainException("Warehouse name is required.");
@@ -50,6 +65,9 @@ public class Warehouse : BaseEntity, ISoftDelete
         Address   = address;
         ManagerId = managerId;
         Phone     = phone?.Trim();
+        Email     = email?.Trim().ToLower();
+        Capacity  = capacity;
+        Version++;
         UpdatedAt = DateTime.UtcNow;
     }
 
@@ -67,6 +85,7 @@ public class Warehouse : BaseEntity, ISoftDelete
 
     public void SoftDelete()
     {
+        IsActive  = false;          // #17: deactivate on delete
         DeletedAt = DateTime.UtcNow;
         UpdatedAt = DateTime.UtcNow;
     }
